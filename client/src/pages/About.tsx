@@ -1,15 +1,13 @@
 /* ============================================================
-   ABOUT PAGE - Who I Am, Lineage, Decolonial Lens
-   ============================================================
-   EDIT GUIDE: All text content is directly editable below.
-   Replace placeholder bio with your actual biography.
+   ABOUT PAGE — Rob, the lineage, and how we got here
    ============================================================ */
 
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-about-portrait-9CSjB93QuLYvEtZFqgYEjW.webp";
+const HERO_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-about-portrait-93GxX36zxF8oC8nRpwa9XV.webp";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -26,175 +24,235 @@ export default function About() {
         <div className="absolute inset-0 grain-overlay" />
         <div className="relative z-10 text-center px-4 pt-20">
           <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-            The Teacher
+            Who is doing this work
           </p>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl tracking-wider text-white text-glow">
-            WHO I AM
+            ABOUT
           </h1>
           <p className="display text-xl sm:text-2xl text-feral-cyan mt-4">
-            Not a guru. A practitioner who shares the path.
+            Roberto Pérez Martínez · Berlin
           </p>
         </div>
       </section>
 
-      {/* Bio */}
+      {/* Opening — direct */}
       <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-              {/* Left: Key facts */}
-              <div className="lg:col-span-1 space-y-6">
-                {/* EDIT: Replace with your photo or keep the generated portrait */}
-                <div className="aspect-[3/4] bg-card border border-border/30 overflow-hidden">
-                  <img src={HERO_IMG} alt="Portrait" className="w-full h-full object-cover opacity-80" />
-                </div>
-                {/* EDIT: Key facts about you */}
-                <div className="space-y-3 text-sm">
-                  <div className="border border-border/30 p-3">
-                    <p className="text-primary tracking-widest uppercase text-xs" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>Based in</p>
-                    <p className="text-foreground">Berlin, Germany</p>
-                  </div>
-                  <div className="border border-border/30 p-3">
-                    <p className="text-primary tracking-widest uppercase text-xs" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>Lineage</p>
-                    <p className="text-foreground">Kashmir Shaivism (Trika)</p>
-                  </div>
-                  <div className="border border-border/30 p-3">
-                    <p className="text-primary tracking-widest uppercase text-xs" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>Lens</p>
-                    <p className="text-foreground">Decolonial Queerfeminist</p>
-                  </div>
-                  <div className="border border-border/30 p-3">
-                    <p className="text-primary tracking-widest uppercase text-xs" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>Practice</p>
-                    <p className="text-foreground">Nondual Tantra & Physical Theater</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right: Bio text */}
-              <div className="lg:col-span-2 space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
-                {/* EDIT: Your biography - replace all placeholder text */}
-                <p>
-                  I am a practitioner and teacher of <span className="text-foreground font-semibold">Nondual Tantra</span> in
-                  the Kashmir Shaivism tradition, and a <span className="text-foreground font-semibold">physical theater
-                  artist</span> based in Berlin. My work sits at the intersection of ancient nondual philosophy,
-                  somatic practice, and decolonial thought.
-                </p>
-                <p>
-                  I came to this path not through the wellness industry, but through a deep dissatisfaction with
-                  the <span className="text-feral-red">spiritual marketplace</span> — the commodification of awakening,
-                  the cultural appropriation disguised as "universality," and the systematic erasure of the radical
-                  political dimensions of Eastern traditions by Western interpreters.
-                </p>
-                <p>
-                  My training is <span className="text-foreground font-semibold">lineage-based</span>. I study under
-                  the guidance of masters who are faithful to the Bhairava Sutras and the Agamas — not to modern
-                  reinterpretations or New Age adaptations. The tradition I share is the same one transmitted from
-                  Vasugupta to Abhinavagupta to Lakshmanjoo.
-                </p>
-                <p>
-                  I apply a <span className="text-foreground font-semibold">decolonial, queerfeminist lens</span> to
-                  this tradition — not because I'm imposing modern politics onto ancient wisdom, but because the
-                  original Tantra was already radical. It recognized women as spiritually equal or superior, rejected
-                  the caste system, embraced the arts as yoga, and defied the morality of Vedic asceticism.
-                </p>
-                <p>
-                  Through <span className="text-foreground font-semibold">Feral Awareness</span>, I offer an online
-                  school, in-person labs in Berlin, and written transmissions. My approach is direct, uncompromising,
-                  and rooted in the understanding that <span className="serif-italic text-feral-cyan">liberation and
-                  enjoyment are not separate goals</span>.
-                </p>
-
-                <p className="text-foreground font-semibold border-l-2 border-primary pl-6">
-                  {/* EDIT: Personal manifesto statement */}
-                  I don't teach "self-improvement." I share a tradition that has the power to dissolve the self
-                  that needs improving. If that scares you, this is not your path. If it excites you, welcome.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <div className="divider-feral max-w-4xl mx-auto" />
-
-      {/* Lineage */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
-              THE LINEAGE
-            </h2>
             <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
-              {/* EDIT: Lineage content */}
-              <p>
-                The lineage of Kashmir Shaivism is not a chain of gurus demanding obedience. It is a
-                <span className="text-foreground font-semibold"> transmission of understanding</span> — a living thread
-                of consciousness that passes from teacher to student through direct experience, not dogma.
+              <p className="text-foreground text-xl leading-relaxed border-l-2 border-primary pl-6">
+                I am not a guru. I am not enlightened. I am a practitioner
+                in a specific lineage who has spent enough time in this
+                tradition to be able to share it carefully, and who has
+                the explicit authorization of my own teacher to do so.
+                That is the only credential that matters here.
               </p>
               <p>
-                The key figures in this tradition include:
+                My name is Roberto Pérez Martínez. I go by Rob. I was born
+                in a small town in Spain, raised Catholic, and I left the
+                church the moment I understood it had nothing to offer me.
+                I have a Bachelor&apos;s degree in mathematics and a
+                Master&apos;s in artificial intelligence — I spent some
+                years doing research at the Fraunhofer Institut, which is
+                a long way from where I am now and also, in some
+                unexpected ways, not as far as it sounds. I am queer,
+                neurodivergent, and currently based in Berlin, where I
+                run this school and continue my practice in the Trika
+                tradition.
               </p>
-            </div>
-
-            {/* EDIT: Add or remove lineage figures */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-              {[
-                { name: "Vasugupta", period: "9th century", role: "Received the Shiva Sutras. Founder of the written tradition." },
-                { name: "Somānanda", period: "9th century", role: "Established the Pratyabhijñā (Recognition) school." },
-                { name: "Utpaladeva", period: "10th century", role: "Poet-philosopher. Author of the Īśvarapratyabhijñā." },
-                { name: "Abhinavagupta", period: "10th-11th century", role: "The great synthesizer. Author of the Tantrāloka." },
-                { name: "Kṣemarāja", period: "11th century", role: "Student of Abhinavagupta. Made the tradition accessible." },
-                { name: "Lakshmanjoo", period: "20th century", role: "Last living master of the unbroken oral tradition in Kashmir." },
-              ].map((figure, i) => (
-                <div key={i} className="border border-border/30 bg-card/50 p-5 hover:border-primary/40 transition-colors">
-                  <h4 className="text-lg tracking-wider text-foreground serif-bold">{figure.name}</h4>
-                  <p className="text-primary text-xs tracking-wider uppercase mb-2" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                    {figure.period}
-                  </p>
-                  <p className="text-muted-foreground text-sm">{figure.role}</p>
-                </div>
-              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      <div className="divider-feral max-w-4xl mx-auto" />
+      <div className="divider-feral max-w-3xl mx-auto" />
 
-      {/* Decolonial Approach */}
-      <section className="py-20 lg:py-28 bg-card/30 relative">
-        <div className="absolute inset-0 grain-overlay" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+      {/* The break and the years that followed */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            <p className="text-feral-red tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-              Why it matters
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              How I got here
             </p>
             <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
-              THE DECOLONIAL LENS
+              THE LONG WAY ROUND
             </h2>
             <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
-              {/* EDIT: Decolonial content */}
               <p>
-                The Western spiritual marketplace has systematically <span className="text-feral-red font-semibold">stripped
-                Eastern traditions of their political and philosophical depth</span>, reducing them to wellness products
-                for individual consumption. Yoga became exercise. Meditation became productivity hacking. Tantra
-                became sex workshops.
+                Eight years ago, somewhere in my mid-twenties, I had a
+                psychotic break. I do not romanticize this. It was
+                terrifying, it cost me a lot, and I am one of the people
+                who walked back from it more or less intact, which is not
+                everyone&apos;s outcome and not something I take for
+                granted. What I will say is that the break opened
+                something. It cracked the assumption that ordinary
+                consensus reality was the only available frame, and
+                somewhere in the wreckage I started reading the Tibetan
+                Book of the Dead because nothing else I owned felt
+                relevant to what was happening to me.
               </p>
               <p>
-                This is not innocent. It is a continuation of <span className="text-foreground font-semibold">colonial
-                extraction</span> — taking what is useful for the dominant culture while discarding the radical
-                elements that challenge its foundations: the critique of materialism, the rejection of hierarchy,
-                the insistence on collective liberation.
+                That was the first time I understood that there were
+                traditions on this planet that had been mapping the kinds
+                of states I was now familiar with — not as pathology but
+                as territory. It was also my first awakening. Not in the
+                sense that I was suddenly enlightened. In the sense that
+                a layer of identification dropped, briefly, and I saw
+                something I could not unsee.
               </p>
               <p>
-                A decolonial approach to Tantra means <span className="text-foreground font-semibold">returning to the
-                source texts</span>, honoring the cultural context, acknowledging the political dimensions of the
-                tradition, and refusing to sanitize its radical edges for Western comfort.
+                I moved to Berlin. I went through what I can now identify
+                as several years of spiritual bypass — chasing the
+                openness of the first awakening, trying to reproduce it
+                with techniques and substances and intensities, mistaking
+                expanded states for liberation. I was not stupid. I was
+                doing what most people do when they have had a glimpse and
+                then lose it. The wellness industry is happy to sell you
+                a thousand variations on that exact mistake.
               </p>
               <p>
-                It also means applying the tradition's own principles — nonduality, the rejection of false
-                hierarchies, the embrace of the body and desire — to <span className="text-foreground font-semibold">contemporary
-                struggles</span>: gender liberation, anti-racism, anti-capitalism, and the dismantling of the
-                wellness-industrial complex.
+                What pulled me out was not a peak experience. It was, of
+                all things, eight years of practicing physical theater —
+                the lineages of Grotowski, Meyerhold, and Artaud. These
+                are not spiritual schools. They are theatrical traditions
+                that take the body absolutely seriously, that understand
+                the actor as a vehicle of presence rather than a
+                performer of feeling, and that drill into you the
+                discipline of being undefendedly here, in this body,
+                right now, with another person. I started to notice that
+                what I was learning in the studio was operating on the
+                same layer that the spiritual stuff had been claiming to
+                operate on. The body was doing the work that the mind
+                had been failing to do.
+              </p>
+              <p>
+                Two years ago I found my teacher.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="divider-feral max-w-3xl mx-auto" />
+
+      {/* Mar */}
+      <section className="py-20 lg:py-28 bg-card/30 relative">
+        <div className="absolute inset-0 grain-overlay" />
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              The teacher
+            </p>
+            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
+              MAR DELGADO
+            </h2>
+            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <p>
+                Mar Delgado is a PhD linguist, a scholar of the Trika
+                tradition, and a realized teacher in the lineage of
+                Kashmir Shaivism. She received her initial transmission
+                from a direct disciple of Daniel Odier, and after her own
+                realization her teaching aligns most closely with the work
+                of Swami Lakshmanjoo and the Lakshmanjoo Academy. She
+                runs a project called{" "}
+                <span className="serif-italic">Tantra Shaivita Aplicado</span>
+                , and she is the reason I am able to offer this work at
+                all.
+              </p>
+              <p>
+                What Mar does that almost nobody else does is hold both
+                halves of this tradition simultaneously. She is a rigorous
+                textual scholar — she reads the Sanskrit, she works with
+                the original commentaries, she does not let people get
+                away with vague pseudo-tantric language. And she is
+                actually realized — the kind of teacher whose presence
+                does the work that the texts are pointing toward, so you
+                can feel the difference between &quot;someone who knows
+                about this&quot; and &quot;someone who is in it.&quot;
+                Both at once. That is rare, and it is what a real
+                contemplative tradition is supposed to look like.
+              </p>
+              <p>
+                The lineage she stands in runs back through Lakshmanjoo,
+                Kṣemarāja, Abhinavagupta, Utpaladeva, Somānanda, and
+                Vasugupta — the founding figures of Kashmir Shaivism — and
+                forward, through her, into the work I am doing now. Mar
+                has authorized this school and continues to actively
+                support it. Nothing I teach is invented by me. Everything
+                comes through her, the texts, and a tradition older than
+                any of us.
+              </p>
+              <p className="text-foreground border-l-2 border-primary pl-6">
+                If you find anything valuable in this school, the
+                gratitude belongs to Mar and to the long line of
+                practitioners standing behind her.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="divider-feral max-w-3xl mx-auto" />
+
+      {/* What I bring */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              What I add
+            </p>
+            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
+              WHAT I BRING TO THIS
+            </h2>
+            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <p>
+                I bring three things that I think are useful, and I will
+                tell you what they are without false modesty.
+              </p>
+              <p>
+                <span className="text-foreground font-semibold">A
+                technical mind.</span>{" "}
+                Mathematics and AI research trained me to be uncomfortable
+                with vagueness. I cannot stand spirituality that hides
+                behind soft language. When I teach the Trika tradition, I
+                want the structure to be visible — the technical
+                vocabulary, the precise distinctions, the actual claims
+                the texts are making. If you want metaphor, I can do that
+                too. But I will always tell you when something is a
+                metaphor and when it is a precise philosophical claim,
+                and I will not mix the two to manipulate you into feeling
+                profundity.
+              </p>
+              <p>
+                <span className="text-foreground font-semibold">A body
+                trained in physical theater.</span>{" "}
+                Eight years of Grotowski, Meyerhold, and Artaud taught me
+                that the body is the primary site of practice, that
+                presence is something you can train, and that the
+                difference between a performance and a transmission is
+                tangible. I bring that into everything I teach. The Motion
+                Lab in Berlin is where this is most explicit, but the
+                same principle runs through the online school: if it is
+                not in the body, it is not in the practice.
+              </p>
+              <p>
+                <span className="text-foreground font-semibold">A life
+                that has been politicized from the start.</span>{" "}
+                I am queer. I am Spanish. I came up through the Catholic
+                Church and watched it do harm. I have been on the
+                receiving end of enough institutional violence to be
+                allergic to spirituality that asks me to look away from
+                the world. The decolonial, queer, feminist framing of
+                this school is not a marketing layer. It is how I read
+                the texts, because the texts themselves were already
+                doing that work. The wellness industry domesticates
+                everything it touches. I am not interested in being
+                domesticated.
+              </p>
+              <p className="text-foreground border-l-2 border-primary pl-6">
+                I do not teach self-improvement. I share a tradition
+                that has the power to dissolve the self that needs
+                improving.
               </p>
             </div>
           </motion.div>
@@ -204,11 +262,11 @@ export default function About() {
       {/* CTA */}
       <section className="py-16 text-center">
         <Link
-          href="/school"
+          href="/test"
           className="inline-flex items-center gap-3 text-primary tracking-widest uppercase text-lg hover:brightness-125 transition-all"
           style={{ fontFamily: "'Bebas Neue', sans-serif" }}
         >
-          Enter the School <ArrowRight size={18} />
+          Take the Consciousness Test <ArrowRight size={18} />
         </Link>
       </section>
     </div>

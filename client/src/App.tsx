@@ -7,10 +7,9 @@
    - Theme is set to "dark" by default (matches the radical aesthetic)
    ============================================================ */
 
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { useEffect } from "react";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -22,6 +21,19 @@ import Blog from "./pages/Blog";
 import Resources from "./pages/Resources";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import Impressum from "./pages/Impressum";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ConsciousnessTest from "./pages/ConsciousnessTest";
+import BlogPostYogaYouWereSold from "./pages/BlogPostYogaYouWereSold";
+
+/* Scroll to top when the route changes (SPA fix) */
+function ScrollToTop() {
+  const [location] = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  return null;
+}
 
 function Router() {
   return (
@@ -34,6 +46,10 @@ function Router() {
       <Route path={"/school"} component={School} />
       <Route path={"/blog"} component={Blog} />
       <Route path={"/resources"} component={Resources} />
+      <Route path={"/impressum"} component={Impressum} />
+      <Route path={"/privacy"} component={PrivacyPolicy} />
+      <Route path={"/test"} component={ConsciousnessTest} />
+      <Route path={"/blog/the-yoga-you-were-sold"} component={BlogPostYogaYouWereSold} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
@@ -44,12 +60,10 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
-        <TooltipProvider>
-          <Toaster />
-          <NavBar />
-          <Router />
-          <Footer />
-        </TooltipProvider>
+        <ScrollToTop />
+        <NavBar />
+        <Router />
+        <Footer />
       </ThemeProvider>
     </ErrorBoundary>
   );

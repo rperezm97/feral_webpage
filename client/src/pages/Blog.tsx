@@ -10,6 +10,7 @@
    ============================================================ */
 
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import { ArrowRight, Clock } from "lucide-react";
 
 const RESOURCES_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-resources-bg-BnYg7vxqQiPk2XxGQ7RFZc.webp";
@@ -20,58 +21,20 @@ const fadeUp = {
 };
 
 /* ============================================================
-   BLOG POSTS - Add your articles here
-   ============================================================
-   FORMAT:
-   {
-     title: "Post Title",
-     date: "2026-03-10",
-     readTime: "8 min",
-     excerpt: "First paragraph or summary...",
-     tags: ["tag1", "tag2"],
-     slug: "/blog/post-slug",  // or external URL
-   }
+   BLOG POSTS — Each post is a real route under /blog/:slug
+   To add a new post:
+     1. Create a new component in pages/BlogPost*.tsx
+     2. Register the route in App.tsx
+     3. Add an entry to this array
    ============================================================ */
 const POSTS = [
   {
-    title: "Spiritual Bypass: The Wellness Industry's Favorite Drug",
-    date: "2026-03-01",
-    readTime: "12 min",
-    excerpt: "When 'raising your vibration' becomes another form of repression. How the wellness industry weaponizes positivity to keep you docile, consuming, and disconnected from the radical potential of genuine spiritual practice.",
-    tags: ["decolonial", "critique", "spiritual bypass"],
-    slug: "#",
-  },
-  {
-    title: "The Body Comes First, The Meaning Comes Second",
-    date: "2026-02-15",
-    readTime: "9 min",
-    excerpt: "Neurobiology confirms what Kashmir Shaivism knew 6,000 years ago: your position, your tension, your shallow breath — these happen automatically, linked to unconscious energy. When these energies are processed through the body, the mind follows.",
-    tags: ["embodiment", "practice", "neuroscience"],
-    slug: "#",
-  },
-  {
-    title: "Why Neo-Tantra Is Not Tantra",
-    date: "2026-02-01",
-    readTime: "15 min",
-    excerpt: "A detailed examination of how the original nondual tradition was stripped of its philosophical depth, political radicalism, and scriptural foundation to become a sexual wellness product for Western consumption.",
+    title: "The Yoga You Were Sold",
+    subtitle: "And why nondual tantra is something else entirely",
+    date: "2026-04-08",
+    readTime: "8 min",
     tags: ["tantra", "decolonial", "tradition"],
-    slug: "#",
-  },
-  {
-    title: "Desire as Expansion: The Shaivite View",
-    date: "2026-01-15",
-    readTime: "10 min",
-    excerpt: "In Kashmir Shaivism, desire is not the enemy. It is the very pulsation of consciousness (spanda) expressing itself through you. The problem is not desire — it's the contraction around desire that creates suffering.",
-    tags: ["philosophy", "desire", "spanda"],
-    slug: "#",
-  },
-  {
-    title: "Self-Improvement Is Social Control",
-    date: "2026-01-01",
-    readTime: "11 min",
-    excerpt: "The self-improvement industry is not designed to make you free. It's designed to make you a more efficient participant in the systems that oppress you. A tantric perspective on why 'becoming your best self' is a trap.",
-    tags: ["critique", "decolonial", "politics"],
-    slug: "#",
+    slug: "/blog/the-yoga-you-were-sold",
   },
 ];
 
@@ -98,11 +61,11 @@ export default function Blog() {
 
       {/* Posts */}
       <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="space-y-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="space-y-6">
             {POSTS.map((post, i) => (
               <motion.article
-                key={i}
+                key={post.slug}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -111,57 +74,63 @@ export default function Blog() {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } },
                 }}
               >
-                <a
+                <Link
                   href={post.slug}
                   className="group block border border-border/30 bg-card/30 p-8 hover:border-primary/40 transition-all duration-300"
                 >
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-3">
                     {post.tags.map((tag) => (
-                      <span key={tag} className="text-xs px-2 py-1 border border-border/50 text-primary tracking-wider uppercase"
-                        style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                      <span
+                        key={tag}
+                        className="text-xs px-2 py-1 border border-border/50 text-primary tracking-wider uppercase"
+                        style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                      >
                         {tag}
                       </span>
                     ))}
                   </div>
-
-                  {/* Title */}
-                  <h2 className="text-2xl sm:text-3xl tracking-wider text-foreground group-hover:text-primary transition-colors mb-3">
+                  <h2 className="text-2xl sm:text-3xl tracking-wider text-foreground group-hover:text-primary transition-colors mb-2">
                     {post.title}
                   </h2>
-
-                  {/* Meta */}
+                  <p className="display text-lg text-feral-cyan mb-4">{post.subtitle}</p>
                   <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
-                    <span>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                    <span className="flex items-center gap-1"><Clock size={12} /> {post.readTime}</span>
+                    <span>
+                      {new Date(post.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock size={12} /> {post.readTime}
+                    </span>
                   </div>
-
-                  {/* Excerpt */}
-                  <p className="text-muted-foreground leading-relaxed mb-4">{post.excerpt}</p>
-
-                  {/* Read more */}
-                  <span className="inline-flex items-center gap-2 text-primary tracking-wider uppercase text-sm group-hover:brightness-125 transition-all"
-                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  <span
+                    className="inline-flex items-center gap-2 text-primary tracking-wider uppercase text-sm group-hover:brightness-125 transition-all"
+                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                  >
                     Read <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                   </span>
-                </a>
+                </Link>
               </motion.article>
             ))}
           </div>
 
-          {/* Substack CTA */}
+          {/* Honest note about more coming */}
           <div className="mt-16 text-center">
             <div className="divider-feral mb-8" />
-            <p className="text-muted-foreground mb-4">
-              {/* EDIT: Replace with your Substack URL */}
-              Get these essays delivered to your inbox. No spam. No spiritual bypass.
+            <p className="text-muted-foreground text-sm mb-4">
+              More essays are coming. Follow @feral.awareness to catch them
+              when they land.
             </p>
             <a
-              href="#"
-              className="inline-block px-8 py-4 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125"
+              href="https://instagram.com/feral.awareness"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary tracking-widest uppercase text-sm hover:brightness-125 transition-all"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              Subscribe on Substack
+              Follow @feral.awareness →
             </a>
           </div>
         </div>

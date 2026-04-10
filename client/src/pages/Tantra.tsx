@@ -1,23 +1,13 @@
 /* ============================================================
-   TANTRA PAGE - What is Nondual Tantra / Kashmir Shaivism
-   ============================================================
-   CONTENT SECTIONS:
-   1. Hero banner
-   2. What is Kashmir Shaivism (origins, 6000 years)
-   3. What is Nondual Tantra (Bhairava Sutras, Agamas)
-   4. Difference from Neo-Tantra (critical section)
-   5. Philosophy & Lifestyle
-   6. Key Texts
-   7. CTA to Practice page
-   
-   EDIT GUIDE: All text is directly editable. Sanskrit terms use serif-italic class.
+   TANTRA PAGE — The tradition, scripturally specific
    ============================================================ */
 
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-tantra-origins-7yQJqP5DoD4KDmkQy3T9tH.webp";
+const HERO_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-tantra-origins-7yQJqP5DoD4KDmkQy3T9tH.webp";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -40,187 +30,373 @@ export default function Tantra() {
             NONDUAL TANTRA
           </h1>
           <p className="display text-xl sm:text-2xl text-feral-cyan mt-4">
-            Kashmir Shaivism &mdash; The Original Left-Hand Path
+            Kashmir Shaivism · The Trika
           </p>
         </div>
       </section>
 
-      {/* What is Kashmir Shaivism */}
+      {/* What the tradition actually is */}
       <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            {/* EDIT: Section title */}
-            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
-              WHAT IS KASHMIR SHAIVISM?
-            </h2>
-
-            {/* EDIT: Content paragraphs */}
-            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
-              <p>
-                <span className="serif-italic text-feral-cyan">Kashmir Shaivism</span> (also called <span className="serif-italic">Trika</span> or
-                the <span className="serif-italic">Shaivism of Kashmir</span>) is a <span className="text-foreground font-semibold">nondual spiritual
-                tradition</span> that developed in the Kashmir region, transmitted orally for thousands of years and committed
-                to writing between the 7th and 11th centuries CE. Historians of religion trace its origins to approximately
-                <span className="text-foreground font-semibold"> 6,000 years ago</span>.
-              </p>
-              <p>
-                For Shaivism, there exists an <span className="text-foreground font-semibold">absolute and omnipresent consciousness</span> that
-                manifests in the entire universe. This consciousness is called <span className="serif-italic text-feral-cyan">Shiva</span>, and it is
-                not separate from you. You already participate in divinity, even if you are not experiencing it due to
-                misunderstandings (<span className="serif-italic">vikalpas</span>) and energetic contractions
-                (<span className="serif-italic">sanharas</span>) that veil your true nature.
-              </p>
-              <p>
-                This tradition is based on the <span className="serif-italic text-foreground font-semibold">Agamas</span>, specifically
-                the <span className="serif-italic">Bhairava Sutras</span>, which contain the most direct nondual knowledge.
-                These scriptures describe methods to expand consciousness through meditation, devotion, and the
-                recognition of one's own divine nature.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <div className="divider-feral max-w-4xl mx-auto" />
-
-      {/* What is Nondual Tantra */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
-              WHAT IS NONDUAL TANTRA?
-            </h2>
-            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
-              {/* EDIT: Content */}
-              <p>
-                <span className="serif-italic text-feral-cyan">Tantra</span> is a spiritual path consisting of a
-                <span className="text-foreground font-semibold"> nondual cosmovision</span> and a set of
-                <span className="text-foreground font-semibold"> practices (yoga)</span> whose objective is the
-                recognition of our true nature, which is not separate from divinity. This recognition is what is
-                usually called <span className="serif-italic">awakening</span>, because until achieving it, as the
-                Greek poet Pindar said: <span className="serif-italic text-feral-cyan">"a dream of a shadow is the human being."</span>
-              </p>
-              <p>
-                The Shaivite path was <span className="text-foreground font-semibold">completely revolutionary</span> in its
-                time: it recognized women as equal and even spiritually superior, was practiced mostly by lay people
-                who ignored the caste system, accepted the arts as a form of yoga, and embraced practices that
-                challenged the prevailing morality. It specifically defied the morality, asceticism, and misogyny
-                of the religions and forms of spirituality derived from the Vedas.
-              </p>
-              <p>
-                Applied Nondual Tantra is a set of practices designed to <span className="text-foreground font-semibold">erase
-                the bodily memories of your traumatic experiences</span>, and to destroy the mental structures linked
-                to the Ego that prevent us from living an authentic and joyful life.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <div className="divider-feral max-w-4xl mx-auto" />
-
-      {/* Difference from Neo-Tantra */}
-      <section className="py-20 lg:py-28 bg-card/30 relative">
-        <div className="absolute inset-0 grain-overlay" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            <p className="text-feral-red tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-              Critical Distinction
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              What it is
             </p>
             <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
-              THIS IS NOT NEO-TANTRA
+              A LIVING MAP OF CONSCIOUSNESS
             </h2>
             <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
-              {/* EDIT: Neo-tantra critique */}
               <p>
-                The vast majority of what you will find in the spiritual scene has <span className="text-feral-red font-semibold">nothing
-                to do</span> with the Tantra Sutras or the original nondual path. Not even those who claim to share
-                "traditional tantra" base their teachings on the Shaivite scriptures. They only share techniques
-                derived from the Vedas.
+                Kashmir Shaivism — also called the{" "}
+                <span className="serif-italic text-feral-cyan">Trika</span>,
+                meaning &quot;the threefold&quot; — is a non-dual philosophical
+                and contemplative tradition that crystallized in the Kashmir
+                Valley between roughly the seventh and twelfth centuries, as
+                a synthesis of much older oral and textual currents. It is
+                rooted in a specific body of scripture called the{" "}
+                <span className="serif-italic text-foreground font-semibold">
+                  Bhairava Āgamas
+                </span>{" "}
+                — non-dual tantric texts that were transmitted inside small
+                circles of practicing yogīs and yoginīs, and are still
+                studied and practiced today in an unbroken lineage.
               </p>
               <p>
-                What you will find under the name "Tantra" is actually <span className="text-feral-red font-semibold">neo-tantra</span>: a
-                modern New Age invention based primarily on sexuality and romantic-affective relationships. Under
-                this umbrella, each teacher mixes techniques and therapies — old, new, and invented — creating
-                a peculiar blend. Within neo-tantra, you won't find any homogeneity beyond talk of "sacred" or
-                "conscious" sexuality.
+                At the center of the tradition is a simple, radical claim:
+                there is one reality, and that reality is consciousness. Not
+                an impersonal ground, not a remote deity, not a cosmic
+                principle you have to reach. Consciousness is what you
+                already are, right now, reading this. What looks like a
+                world of separate objects and a separate self is
+                consciousness temporarily contracting itself to taste
+                finitude — voluntarily, playfully, and without losing
+                anything in the process. Waking up is not becoming
+                something new. It is{" "}
+                <span className="text-foreground font-semibold serif-italic">
+                  pratyabhijñā
+                </span>
+                , recognition — the direct, felt seeing of what was always
+                the case.
               </p>
               <p>
-                By contrast, those of us who share the <span className="text-foreground font-semibold">original tantra</span> are
-                completely faithful to the scriptures of people who achieved awakening and left clear understanding
-                and precise instructions so that we could follow their path.
+                This is a tradition that insists the finite and the infinite
+                are not opposed. Your body is not an obstacle; it is the
+                laboratory. Your desires are not traps; they are{" "}
+                <span className="serif-italic">spanda</span>, the pulsation
+                of consciousness reaching toward its own expression. Your
+                emotions are not lower-vibrational noise; they are the
+                pathways. Your political life, your relationships, your
+                grief, your joy — all of it is already the practice, if you
+                know how to meet it.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="divider-feral max-w-3xl mx-auto" />
+
+      {/* Why nondual */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              The frame
+            </p>
+            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
+              WHY NONDUAL
+            </h2>
+            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <p>
+                The word &quot;non-dual&quot; gets thrown around a lot, and
+                most of the time it means something vaguely mystical —
+                &quot;everything is one, man.&quot; The technical meaning in
+                the Trika tradition is much more precise, and it matters.
+              </p>
+              <p>
+                Dualistic traditions split reality into two fundamentally
+                different categories: consciousness and matter, spirit and
+                world, sacred and profane, pure and impure, liberation and
+                ordinary life. Practice becomes the work of moving from one
+                side to the other — getting rid of the bad half, cultivating
+                the good half. Most of the yoga and meditation you have
+                encountered in the West operates this way, even when it
+                doesn&apos;t advertise it. The body is to be transcended.
+                Desire is to be renounced. The world is to be seen through.
+                You are to become something other than what you currently
+                are.
+              </p>
+              <p>
+                Non-dual tantra refuses this split at the root. There are
+                not two categories. There is one reality —{" "}
+                <span className="serif-italic">cit</span>, consciousness,
+                pure awareness — and everything that appears is that same
+                reality in a particular mode. The world is not other than
+                consciousness. Matter is not other than spirit. Your
+                body is not a vehicle for something more real; it is that
+                something more real, appearing as a body. This is not a
+                metaphor. The texts are technically rigorous about it.
+              </p>
+              <p>
+                Why does this matter practically? Because as long as your
+                cosmovision splits reality into two, your practice will be
+                an exhausting attempt to get rid of half of yourself. You
+                will treat your own emotions as enemies. You will feel
+                guilty for wanting things. You will sit in meditation hoping
+                to &quot;clear&quot; the mental noise that is, in the Trika
+                frame, consciousness itself pulsing. The split creates the
+                suffering it claims to solve.
               </p>
               <p className="text-foreground font-semibold border-l-2 border-primary pl-6">
-                {/* EDIT: Key quote */}
-                Schools that call themselves "tantric" and then base their practices on sexual-relational content
-                belong to the New Age and have nothing to do with Nondual Tantra. We do not accept schools that
-                appropriate the name of the highest teaching.
+                In a non-dual map, nothing needs to be rejected. Every state
+                is already consciousness. The task is not purification but
+                recognition. You are not climbing a ladder. You are
+                uncovering what was always there.
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Philosophy & Lifestyle */}
+      <div className="divider-feral max-w-3xl mx-auto" />
+
+      {/* The scriptures */}
       <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              The texts
+            </p>
             <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
-              PHILOSOPHY & LIFESTYLE
+              THE BHAIRAVA ĀGAMAS AND THEIR COMMENTATORS
             </h2>
-            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
-              {/* EDIT: Philosophy content */}
+            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed mb-12">
               <p>
-                For tantrikas, there is <span className="text-foreground font-semibold">no frontier between the spiritual
-                and the mundane</span>. Our practices are designed to meditate while pointing to consciousness in the
-                midst of our daily activity. We do not conceive of being a yogi part-time and an ordinary person
-                the rest of the time.
+                The Trika tradition is based on a specific category of
+                scripture called the{" "}
+                <span className="serif-italic text-foreground font-semibold">
+                  Bhairava Āgamas
+                </span>
+                . Within classical Indian tantric literature, tantras are
+                traditionally divided into currents — dualist, non-dualist,
+                and mixed. The Bhairava Āgamas belong to the fully non-dual
+                stream. They take{" "}
+                <span className="serif-italic">Bhairava</span> — a wrathful,
+                boundary-dissolving form of Śiva — as the name of ultimate
+                reality, and they refuse every split between sacred and
+                profane, pure and impure, permitted and forbidden.
               </p>
               <p>
-                This inseparable union between the mundane and the spiritual defines the way of life of tantrikas.
-                Since there is no need to subtract hours from the mundane to go to the temple or the meditation hall,
-                <span className="text-foreground font-semibold"> renunciation ceases to make sense</span>. Most Shaivites
-                enjoy the pleasures of life without fear, because as long as you maintain contact with divine
-                consciousness, nothing creates attachment and therefore cannot harm you.
-              </p>
-              <p>
-                Shaivite yogis and yoginis go <span className="text-foreground font-semibold">unnoticed in their daily
-                life</span>. Nobody would say they are devotees, not by their clothing, not by using coded language,
-                not by their behavior or diet. In Shaivism, devotion goes inside — it is a way of being in the
-                world, not an external performance.
+                These texts were not written as philosophy. They are more
+                like condensed maps: short, cryptic verses meant to be
+                received from a teacher and unpacked through practice and
+                commentary. Over the centuries, a lineage of realized
+                masters produced the commentarial tradition that makes these
+                texts readable today. Here are the ones we work with.
               </p>
             </div>
-          </motion.div>
-        </div>
-      </section>
 
-      <div className="divider-feral max-w-4xl mx-auto" />
-
-      {/* Key Texts */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
-              KEY TEXTS
-            </h2>
-            {/* EDIT: Add or remove texts */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { title: "Shiva Sutras", author: "Vasugupta", desc: "The foundational aphorisms received directly from Shiva." },
-                { title: "Spandakārikā", author: "Vasugupta", desc: "The doctrine of vibration — consciousness as dynamic pulsation." },
-                { title: "Tantrāloka", author: "Abhinavagupta", desc: "The encyclopedic masterwork of nondual tantra." },
-                { title: "Pratyabhijñāhṛdayam", author: "Kṣemarāja", desc: "The heart of recognition — the most accessible entry point." },
-                { title: "Vijñāna Bhairava Tantra", author: "Anonymous", desc: "112 meditation techniques for direct experience." },
-                { title: "Śivastotrāvalī", author: "Utpaladeva", desc: "Ecstatic devotional hymns of supreme beauty." },
+                {
+                  title: "Śiva Sūtras",
+                  author: "Vasugupta · ~9th c.",
+                  desc: "The foundational aphorisms, received by Vasugupta after a vision instructing him to find them inscribed on a rock on Mahādeva mountain. Three sections mapping the three upāyas.",
+                },
+                {
+                  title: "Spanda Kārikā",
+                  author: "Vasugupta · ~9th c.",
+                  desc: "The doctrine of vibration. Consciousness as dynamic pulsation — the heartbeat of the absolute, felt in every moment of experience.",
+                },
+                {
+                  title: "Vijñāna Bhairava Tantra",
+                  author: "Anonymous · early medieval",
+                  desc: "One hundred and twelve techniques (dhāraṇās) for recognition through direct sensory, emotional, and somatic experience. The most practical of the core texts.",
+                },
+                {
+                  title: "Pratyabhijñāhṛdayam",
+                  author: "Kṣemarāja · ~11th c.",
+                  desc: "The Heart of Recognition. Twenty short sūtras with commentary — the most accessible entry point into the philosophy. If you read only one text to begin with, this is it.",
+                },
+                {
+                  title: "Tantrāloka",
+                  author: "Abhinavagupta · ~10th–11th c.",
+                  desc: "The encyclopedic masterwork. Thirty-seven chapters synthesizing the entire non-dual tantric tradition. Abhinavagupta is the central philosophical figure of Kashmir Shaivism.",
+                },
+                {
+                  title: "Tantrasāra",
+                  author: "Abhinavagupta · ~10th–11th c.",
+                  desc: "The essence of the Tantrāloka — a shorter, distilled version of the same teachings. Dense, but readable in a few months of careful study.",
+                },
+                {
+                  title: "Īśvarapratyabhijñākārikā",
+                  author: "Utpaladeva · ~10th c.",
+                  desc: "The foundational text of the Pratyabhijñā (Recognition) school. A rigorous philosophical argument that liberation is not something to attain but something to recognize.",
+                },
+                {
+                  title: "Śivastotrāvalī",
+                  author: "Utpaladeva · ~10th c.",
+                  desc: "Ecstatic devotional hymns from the same philosopher who wrote the Īśvarapratyabhijñākārikā. Proof that rigorous philosophy and bhakti are not in conflict.",
+                },
               ].map((text, i) => (
                 <div key={i} className="border border-border/30 bg-card/50 p-5 hover:border-primary/40 transition-colors">
                   <h4 className="text-lg tracking-wider text-foreground mb-1 serif-bold">{text.title}</h4>
                   <p className="text-primary text-xs tracking-wider uppercase mb-2" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
                     {text.author}
                   </p>
-                  <p className="text-muted-foreground text-sm">{text.desc}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{text.desc}</p>
                 </div>
               ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="divider-feral max-w-3xl mx-auto" />
+
+      {/* The lineage */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              The line
+            </p>
+            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
+              LINEAGE AS CHAIN OF VERIFICATION
+            </h2>
+            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <p>
+                Lineage in a contemplative tradition is different from
+                institutional authority. It is not a credential. It is a
+                chain of verification: practice → realization → transmission
+                → practice → realization → transmission, across generations
+                of people who actually did the work and produced results
+                that other people in the lineage could test against their
+                own experience.
+              </p>
+              <p>
+                The Trika lineage that we work in runs, roughly: Vasugupta →
+                Somānanda → Utpaladeva → Abhinavagupta → Kṣemarāja → … →
+                Swami Lakshmanjoo (the last great Kashmiri master of the
+                twentieth century, who kept the transmission alive through
+                the twentieth-century disruptions of the Kashmir Valley) →
+                his students, including Daniel Odier → Mar Delgado (PhD in
+                linguistics, based in Spain, rigorous textual scholar and
+                realized teacher, authorized and supporting this school) →
+                my own practice and this work.
+              </p>
+              <p>
+                Lineage is not a guarantee of truth. Traditions degrade.
+                Interpretations drift. Teachers fail. But a living lineage
+                at least gives you continuity of practice, accumulated
+                insight from people who stress-tested the map, and a way to
+                check your own experience against something older than your
+                own confusion. It is more reliable than reinventing
+                spirituality from scratch every weekend.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="divider-feral max-w-3xl mx-auto" />
+
+      {/* Neo-tantra critique */}
+      <section className="py-20 lg:py-28 bg-card/30 relative">
+        <div className="absolute inset-0 grain-overlay" />
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <p className="text-feral-red tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              A necessary distinction
+            </p>
+            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
+              NEO-TANTRA IS NOT TANTRA
+            </h2>
+            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <p>
+                What you find marketed as &quot;tantra&quot; in the West —
+                at retreats, weekend workshops, couples&apos; therapy with a
+                spiritual accent, partner breath exercises, eye-gazing,
+                sacred sexuality courses — is almost entirely a
+                twentieth-century Western invention. Its lineage is not the
+                Bhairava Āgamas. Its lineage is Osho, the human potential
+                movement, and the wellness industry&apos;s ongoing project
+                of absorbing every genuine tradition and selling it back as
+                a personal development product.
+              </p>
+              <p>
+                This is not a minor terminological complaint. It is a
+                specific kind of cultural appropriation: take the name of a
+                sophisticated non-dual philosophical tradition, strip out
+                the philosophy, the scriptures, the lineage, the political
+                bite, and most of the content, keep the exotic word, and
+                sell it to people who don&apos;t know the difference. What
+                remains is usually a workshop about intimacy and eye contact
+                with some incense.
+              </p>
+              <p>
+                The real tantric tradition does include sexuality as one
+                possible doorway — among many others, alongside breath,
+                sound, emotion, silence, movement, taste, memory, and
+                dreaming. But it is not a sexuality tradition. It is a
+                consciousness tradition that treats every modality of human
+                experience as a potential gate. Reducing it to sexual
+                wellness is like reducing classical music to the sound of a
+                violin: technically accurate in one instance, completely
+                missing the form.
+              </p>
+              <p className="text-foreground font-semibold border-l-2 border-primary pl-6">
+                We are not hostile to pleasure or intimacy — the texts are
+                not. We are hostile to the replacement of a living tradition
+                with its marketing.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="divider-feral max-w-3xl mx-auto" />
+
+      {/* Lifestyle */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              Form of life
+            </p>
+            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
+              NOTHING TO RENOUNCE, NOTHING TO PERFORM
+            </h2>
+            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <p>
+                Because the tradition is non-dual, there is no frontier
+                between the spiritual and the ordinary. Practice is not a
+                half-hour activity you do in the morning so you can feel
+                virtuous the rest of the day. It is continuous, active
+                recognition in the middle of daily life — washing dishes,
+                walking to the train, arguing with your landlord, cooking,
+                grieving, being tired. The daily life is not an
+                interruption of the practice. It is the practice.
+              </p>
+              <p>
+                Because there is no split to enforce, there is no
+                renunciation. You do not have to give up pleasure, money,
+                sexuality, relationships, art, politics, or coffee. You also
+                do not have to indulge in any of them. The point is not
+                what you do with the objects but what you do with the
+                contraction around the objects — the grasping, the
+                identification, the story that completion is elsewhere.
+                When the contraction loosens, the object is free to be
+                what it actually is: consciousness appearing as a cup of
+                coffee.
+              </p>
+              <p>
+                Shaivite practitioners go unnoticed. There is no uniform,
+                no special diet, no coded vocabulary, no performance of
+                spirituality. Devotion is internal. It goes inside. In a
+                culture where spirituality is often a costume, this is
+                quietly radical.
+              </p>
             </div>
           </motion.div>
         </div>
@@ -233,7 +409,7 @@ export default function Tantra() {
           className="inline-flex items-center gap-3 text-primary tracking-widest uppercase text-lg hover:brightness-125 transition-all"
           style={{ fontFamily: "'Bebas Neue', sans-serif" }}
         >
-          Explore the Practice <ArrowRight size={18} />
+          Continue to the Practice <ArrowRight size={18} />
         </Link>
       </section>
     </div>

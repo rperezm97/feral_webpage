@@ -33,8 +33,8 @@ const IMAGES = {
   resources: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-resources-bg-BnYg7vxqQiPk2XxGQ7RFZc.webp",
 };
 
-/* EDIT: Change the test/access form URL */
-const TEST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScfI9axshcros3mD_6NUpeHcGWAtFBRBIdXw2YawErBtnY_Ig/viewform?usp=dialog";
+/* Internal test route */
+const TEST_URL = "/test";
 
 /* ============================================================
    SECTION PREVIEW DATA - Edit to change the cards on home page
@@ -43,73 +43,70 @@ const SECTIONS = [
   {
     icon: Flame,
     title: "Nondual Tantra",
-    description: "Kashmir Shaivism: 6,000 years of radical nondual tradition. Not the neo-tantra you've been sold.",
+    description: "The Bhairava Āgamas. Six thousand years of non-dual tantric tradition. Not neo-tantra. Not Patañjali. A radically different map of consciousness.",
     href: "/tantra",
     image: "tantra" as const,
   },
   {
     icon: Compass,
     title: "Practice",
-    description: "Three paths of meditation. Body as laboratory. Somatic unfolding through movement and stillness.",
+    description: "The three upāyas as a living system. The body as laboratory. Bhakti as the heat that melts the contraction. Active meditation in daily life.",
     href: "/practice",
     image: "practice" as const,
   },
   {
     icon: Users,
     title: "About",
-    description: "Who I am, where I come from, and why I refuse to dilute this tradition for Western comfort.",
+    description: "Rob Pérez Martínez. Berlin. A story that includes a psychotic break, eight years of physical theater, and a teacher who refused to dilute the transmission.",
     href: "/about",
     image: "about" as const,
   },
   {
     icon: BookOpen,
     title: "School",
-    description: "Online school & Berlin motion lab. Ongoing formation, not weekend retreats. Take the entrance test.",
+    description: "Ongoing formation, not weekend retreats. Online school and Berlin motion lab. Entry is via the Consciousness Test.",
     href: "/school",
     image: "tantra" as const,
   },
   {
     icon: PenTool,
     title: "Blog",
-    description: "Raw essays on consciousness, decolonization, embodiment, and the politics of awakening.",
+    description: "Essays on consciousness, decolonization, and the politics of recognition. Slow. No listicles.",
     href: "/blog",
     image: "resources" as const,
   },
   {
     icon: Library,
     title: "Resources",
-    description: "Essential readings, Sanskrit glossary, and curated references for serious practitioners.",
+    description: "Sanskrit glossary. Scripture references. What to read first and why.",
     href: "/resources",
     image: "resources" as const,
   },
 ];
 
 /* ============================================================
-   CONSULTORIO DATA - Edit case studies here
+   CONSULTORIO DATA - Real themes from the practice
    ============================================================ */
 const CONSULTORIO = [
-  { title: "Spiritual Bypass & Toxic Positivity", preview: "When 'raising your vibration' becomes another form of repression..." },
-  { title: "Colonial Religion & Body Shame", preview: "How centuries of puritanism live in your nervous system..." },
-  { title: "Desire as Expansion, Not Lack", preview: "You're chasing objects with the implicit belief that you need them..." },
-  { title: "Frozen Emotion & Fear of Death", preview: "All our moralistic stance without deep processing is just a temporary patch..." },
-  { title: "Self-Improvement as Social Control", preview: "Self-improvement is not designed to make you free, but to make you docile..." },
-];
-
-/* ============================================================
-   TESTIMONIALS - Edit testimonials here
-   ============================================================ */
-const TESTIMONIALS = [
   {
-    text: "This is not comfortable spirituality. It broke open everything I thought I knew about myself and rebuilt it from the body up.",
-    author: "Student, Berlin Lab",
+    title: "Spiritual bypass and the tyranny of \"high vibration\"",
+    preview: "When \"raising your frequency\" becomes another way to avoid grief, rage, and the political present...",
   },
   {
-    text: "Finally someone who doesn't separate the political from the spiritual. The decolonial lens changed my entire practice.",
-    author: "Online School Member",
+    title: "Colonial religion and body shame",
+    preview: "How centuries of Christian puritanism and Cartesian dualism live inside your nervous system, long after you stopped believing...",
   },
   {
-    text: "I came looking for meditation techniques. I found a complete dismantling of my ego's favorite hiding places.",
-    author: "Workshop Participant",
+    title: "Desire as expansion, not lack",
+    preview: "You are chasing objects with the implicit belief that you need them. In Trika, desire is spanda — consciousness pulsing...",
+  },
+  {
+    title: "Frozen emotion and the fear of death",
+    preview: "All moralistic stance without deep emotional processing is a temporary patch. Real freedom starts when fear is recognized as śakti...",
+  },
+  {
+    title: "Self-improvement as social control",
+    preview: "Self-improvement is not designed to make you free. It is designed to make you a more efficient participant in the systems that oppress you...",
   },
 ];
 
@@ -164,7 +161,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Nondual Tantra & Physical Theater
+            Nondual Tantra · Kashmir Shaivism
           </motion.p>
 
           {/* EDIT: Tagline */}
@@ -174,8 +171,11 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            Radical spirituality & embodiment for liberation & enjoyment.
-            Decolonial queerfem lens. Lineage-based. No spiritual bypass.
+            An awareness that holds the ground of the world while expanding
+            into the ocean of nectar at the edge of the universe. Not
+            renunciation. Not bypass. Not wellness. A living lineage in the
+            Trika tradition — queer, feminist, decolonial, because the texts
+            themselves were.
           </motion.p>
 
           {/* CTAs */}
@@ -186,21 +186,19 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.8 }}
           >
             <Link
-              href="/school"
+              href="/tantra"
               className="px-8 py-4 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 text-sm"
               style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.1rem" }}
             >
-              Enter the School
+              Enter the Tradition
             </Link>
-            <a
+            <Link
               href={TEST_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="px-8 py-4 border border-feral-cyan text-feral-cyan tracking-widest uppercase transition-all duration-300 hover:bg-feral-cyan/10 text-sm"
               style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.1rem" }}
             >
               Take the Consciousness Test
-            </a>
+            </Link>
           </motion.div>
         </div>
 
@@ -231,37 +229,242 @@ export default function Home() {
             {/* EDIT: Section subtitle */}
             <p className="text-primary tracking-widest uppercase text-sm mb-4"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-              What is this?
+              What we mean by feral
             </p>
 
-            {/* EDIT: Main intro text - this is your "manifesto lite" */}
+            {/* EDIT: Main intro text */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-8">
-              THIS IS NOT COMFORTABLE SPIRITUALITY
+              AN AWARENESS THAT DOES NOT CONTRACT
             </h2>
 
             <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed max-w-3xl mx-auto text-left">
-              {/* EDIT: Intro paragraphs */}
               <p>
-                Feral Awareness is a school of <span className="text-foreground font-semibold">Nondual Tantra</span> rooted
-                in the Kashmir Shaivism tradition and expressed through <span className="text-foreground font-semibold">physical
-                theater and somatic practice</span>. We don't separate the spiritual from the political, the body from
-                consciousness, or liberation from enjoyment.
+                Feral awareness is awareness that has stopped flinching.
               </p>
               <p>
-                Most of what you'll find under the name "Tantra" in the West is <span className="text-feral-red">neo-tantra</span>: a
-                modern invention based on sexuality and romantic relationships, disconnected from the original nondual
-                scriptures. We are faithful to the <span className="serif-italic">Bhairava Sutras</span> and the lineage
-                of masters from Vasugupta to Abhinavagupta to Lakshmanjoo.
+                It holds the ground — the body, the nervous system, the people
+                you love, the political present — while simultaneously
+                expanding into the edges of the universe, where the texts of
+                the Trika tradition describe an{" "}
+                <span className="serif-italic">ocean of nectar</span>{" "}
+                (<span className="serif-italic">amṛta</span>) pulsing through
+                every experience. It doesn&apos;t shrink when the mind
+                contracts around a desire or an object. It doesn&apos;t
+                withdraw from the world in the name of purity. It does not
+                perform serenity. It does not need to.
               </p>
               <p>
-                We apply a <span className="text-foreground font-semibold">decolonial, queerfeminist lens</span> to this
-                ancient tradition, because the original Tantra was already radical: it recognized women as spiritually
-                equal or superior, rejected the caste system, embraced the arts as yoga, and defied the morality of
-                Vedic asceticism.
+                The Trika tradition has a word for the mystical experience at
+                the center of this:{" "}
+                <span className="text-foreground font-semibold serif-italic">
+                  camatkāra
+                </span>{" "}
+                — ecstatic awe, the shiver of recognition that reality is not
+                a neutral backdrop but a living pulsation of consciousness
+                (<span className="serif-italic">spanda</span>). When you feel
+                it, life stops being a problem to solve and starts being a
+                flow — the manifestation of your own inherent powers
+                (<span className="serif-italic">śakti</span>) — without
+                shrinking in reaction to the mind or the objects it chases.
+              </p>
+              <p>
+                This is not self-improvement. It is{" "}
+                <span className="text-foreground font-semibold serif-italic">
+                  pratyabhijñā
+                </span>{" "}
+                — the recognition of what you already are. Consciousness
+                itself, in its fullness (<span className="serif-italic">pūrṇatā</span>),
+                temporarily contracted into the experience of being &quot;you.&quot;
+              </p>
+              <p className="text-foreground font-semibold border-l-2 border-primary pl-6">
+                &quot;Feral&quot; means pre-domesticated. Not wild in the sense of
+                chaotic. Wild in the sense of not fitted to the cage you were
+                born into — the cage of unprocessed fear, of social
+                performance, of the spiritual marketplace, of the belief that
+                freedom has to be earned.
               </p>
             </div>
 
             <div className="divider-feral mt-12" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          SECTION 2.5: WHY NONDUAL
+          The philosophical framing — what makes Trika different
+          ============================================================ */}
+      <section className="py-20 lg:py-28 relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+          >
+            <p className="text-primary tracking-widest uppercase text-sm mb-4"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              The frame
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-8">
+              WHY NONDUAL TANTRA
+            </h2>
+
+            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <p>
+                Most of what you get sold as &quot;eastern spirituality&quot;
+                in the West comes from two places: the Vedas and Patañjali&apos;s
+                Yoga Sūtras. Both treat the world as an illusion to overcome,
+                the body as an obstacle, desire as a trap. Both come from
+                brahmanic caste contexts — privileged people who owned land
+                and wrote texts that reflected their privilege, often
+                misogynistic and hierarchical. Neo-tantra then took the name{" "}
+                <span className="serif-italic">Tantra</span>, stripped it of
+                its philosophical depth and political bite, and sold it back
+                as a sexuality workshop. That is not what we do here.
+              </p>
+              <p>
+                Kashmir Shaivism comes from a completely different lineage:
+                the{" "}
+                <span className="text-foreground font-semibold">
+                  Bhairava Āgamas
+                </span>
+                , non-dual tantric texts that put consciousness and the{" "}
+                <span className="serif-italic">yoginī</span> at the center,
+                treat multiplicity and diversity as manifestations of{" "}
+                <span className="serif-italic">śakti</span>, and embrace
+                pleasure, body, art, and the world itself as the path. The
+                world is not{" "}
+                <span className="serif-italic">māyā</span> as &quot;illusion.&quot;{" "}
+                <span className="serif-italic">Māyā</span> is the creative
+                power of consciousness voluntarily contracting itself to taste
+                finitude — to experience being separate so it can recognize
+                its own fullness.
+              </p>
+              <p>
+                In Trika, liberation (
+                <span className="serif-italic">mokṣa</span>) and enjoyment (
+                <span className="serif-italic">bhoga</span>) are not opposites.
+                A tradition that gives you one without the other is incomplete.
+                Renunciation without enjoyment becomes repression in spiritual
+                clothing. Enjoyment without liberation is empty hedonism. The
+                non-dual texts refuse both errors.
+              </p>
+              <p>
+                The lineage is specific: Vasugupta (who received the{" "}
+                <span className="serif-italic">Śiva Sūtras</span> on Mahādeva
+                mountain), Somānanda, Utpaladeva, Abhinavagupta (author of
+                the <span className="serif-italic">Tantrāloka</span>),
+                Kṣemarāja (author of the{" "}
+                <span className="serif-italic">Pratyabhijñāhṛdayam</span>),
+                Swami Lakshmanjoo (the last great Kashmiri master of the
+                twentieth century), and my own teacher Mar Delgado, who
+                continues the transmission today. We read the{" "}
+                <span className="serif-italic">Bhairava Āgamas</span>, the{" "}
+                <span className="serif-italic">Vijñāna Bhairava Tantra</span>,
+                the <span className="serif-italic">Spanda Kārikā</span>, the{" "}
+                <span className="serif-italic">Pratyabhijñāhṛdayam</span>, and
+                the <span className="serif-italic">Tantrasāra</span> as living
+                documents, not museum pieces.
+              </p>
+              <p className="text-foreground">
+                This path is decolonial because the tradition itself was
+                decolonial — it refused caste, centered the{" "}
+                <span className="serif-italic">yoginī</span>, and treated the
+                world as real. It is queer and feminist because{" "}
+                <span className="serif-italic">śakti</span> — power, energy,
+                the feminine principle — is not subordinate to{" "}
+                <span className="serif-italic">Śiva</span>. They are
+                inseparable and equal. Your politics are not a distraction
+                from the path. They are already practice.
+              </p>
+            </div>
+
+            <div className="divider-feral mt-12" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          SECTION 2.75: WHO THIS IS FOR
+          Speaking directly to the three audiences
+          ============================================================ */}
+      <section className="py-20 lg:py-28 bg-card/30 relative">
+        <div className="absolute inset-0 grain-overlay" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+          >
+            <p className="text-primary tracking-widest uppercase text-sm mb-4"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              Who
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-10">
+              WHO THIS IS FOR
+            </h2>
+
+            <div className="space-y-8 text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <div>
+                <h3 className="text-xl text-foreground tracking-wider mb-3"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  SERIOUS PRACTITIONERS WHO HAVE HIT A WALL
+                </h3>
+                <p>
+                  You have sat with other traditions — Zen, Vipassana,
+                  Advaita, Vedanta, neo-tantra, ceremonial paths. They gave
+                  you something, and then they gave you a ceiling. You started
+                  noticing the repression underneath the peace. You started
+                  wondering what a tradition would look like that did not
+                  require you to split yourself in half to practice it.
+                  Welcome.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-foreground tracking-wider mb-3"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  THE POLITICALLY RADICAL WHO ARE SUSPICIOUS OF SPIRITUALITY
+                </h3>
+                <p>
+                  You have watched the wellness industry absorb every
+                  liberation movement and sell it back as a personal
+                  development product. You are not going to be talked into a
+                  path that asks you to &quot;raise your vibration&quot; and
+                  stop caring about the world. Good. Neither are we. The Trika
+                  framework is politically sharp because the texts themselves
+                  were. Your politics are not a distraction from practice —
+                  they are already practice.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-foreground tracking-wider mb-3"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  ARTISTS, PERFORMERS, PEOPLE WHO LIVE IN THEIR BODIES
+                </h3>
+                <p>
+                  You have found that concepts don&apos;t go deep enough —
+                  that the body reaches what the mind cannot. You work with
+                  tension, breath, impulse, presence. The Trika tradition
+                  treats the body as the primary laboratory.{" "}
+                  <span className="serif-italic">Saṃskāras</span> —
+                  conditioning, the karmic residues of unprocessed experience
+                  — live in the body first, and they must be released there
+                  before the mind can follow. Everything we teach is designed
+                  to land somatically.
+                </p>
+              </div>
+
+              <p className="text-foreground border-l-2 border-primary pl-6 mt-8">
+                If none of these are you — if you are here for comfort, for
+                &quot;high vibration,&quot; for a teacher to tell you what to
+                think — this is not your place. That&apos;s okay. The door is
+                honest.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -281,7 +484,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl sm:text-5xl tracking-wide text-foreground">
-              EXPLORE THE PATH
+              WALK INTO THE TRADITION
             </h2>
           </motion.div>
 
@@ -356,8 +559,9 @@ export default function Home() {
               QUESTIONS THAT BURN
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Real themes from real people. No sanitized case studies.
-              These are the fires we work with.
+              Real themes from the practice. No sanitized case studies. These
+              are the fires we hold in the Consultorio — one-on-one tantric
+              guidance for people doing real work.
             </p>
           </motion.div>
 
@@ -385,15 +589,13 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-8">
-            <a
+            <Link
               href={TEST_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-primary tracking-wider uppercase text-sm hover:brightness-125 transition-all"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
               Submit your question <ArrowRight size={14} />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -420,74 +622,30 @@ export default function Home() {
               CONSCIOUSNESS TEST
             </h2>
             <p className="display text-xl sm:text-2xl text-feral-cyan mb-4">
-              Where are you on the wheel of energies?
+              The entrance gate to the school
             </p>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-              {/* EDIT: Test description */}
-              Discover the characteristics that define victorious practitioners who have mastered
-              the wheel of energies. This is not a personality quiz. It's a mirror.
+              This is not a personality quiz. Twelve questions mapping the
+              patterns that distinguish practitioners who actually wake up
+              from those who don&apos;t. Based on more than a decade of study
+              and transmission in the Trika tradition. It measures honesty
+              with yourself when that honesty is uncomfortable — which is
+              harder than it sounds.
             </p>
-            <a
+            <Link
               href={TEST_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-block px-10 py-5 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 text-lg"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              Take the Test Now
-            </a>
+              Take the Test
+            </Link>
           </motion.div>
         </div>
       </section>
 
       {/* ============================================================
-          SECTION 6: TESTIMONIALS
-          EDIT: Change the TESTIMONIALS array at the top of this file
-          ============================================================ */}
-      <section className="py-16 lg:py-24 bg-card/30 relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground">
-              TRANSMISSIONS RECEIVED
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((t, i) => (
-              <motion.div
-                key={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.15 } },
-                }}
-                className="border border-border/20 bg-background/50 p-8 relative"
-              >
-                <div className="absolute top-4 left-6 text-primary/20 text-6xl serif-bold leading-none">"</div>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6 relative z-10 pt-6 serif-italic">
-                  {t.text}
-                </p>
-                <p className="text-xs text-primary tracking-wider uppercase"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                  — {t.author}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          SECTION 7: NEWSLETTER CTA
-          EDIT: Replace with Substack embed or custom form
+          SECTION 6: NEWSLETTER — Coming Soon
+          Replace with real email form once Resend + custom domain are live
           ============================================================ */}
       <section className="py-20 lg:py-28 relative">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
@@ -501,29 +659,18 @@ export default function Home() {
               JOIN THE TRANSMISSION
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              {/* EDIT: Newsletter pitch */}
               Raw, unfiltered essays on nondual tantra, decolonial spirituality, and embodied
-              liberation. Delivered to your inbox. No spam. No spiritual bypass. No "love and light" bullshit.
+              liberation. Newsletter launching soon.
             </p>
-            {/* EDIT: Replace this with your actual newsletter form/Substack embed */}
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="flex-1 px-4 py-3 bg-card border border-border text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-              />
-              <button
-                className="px-6 py-3 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 text-sm shrink-0"
-                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-                onClick={() => window.open(TEST_URL, '_blank')}
-              >
-                Subscribe
-              </button>
-            </div>
-            <p className="text-xs text-muted-foreground mt-4 opacity-60">
-              {/* EDIT: Privacy note */}
-              Your data stays with us. We don't sell, share, or exploit your information.
-            </p>
+            <a
+              href="https://instagram.com/feral.awareness"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-feral-cyan text-feral-cyan tracking-widest uppercase transition-all duration-300 hover:bg-feral-cyan/10"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+            >
+              Follow @feral.awareness <ArrowRight size={14} />
+            </a>
           </motion.div>
         </div>
       </section>

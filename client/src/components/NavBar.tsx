@@ -28,7 +28,7 @@ const NAV_LINKS = [
 
 /* EDIT: Change the CTA (call to action) button in the nav */
 const CTA_LINK = {
-  href: "https://docs.google.com/forms/d/e/1FAIpQLScfI9axshcros3mD_6NUpeHcGWAtFBRBIdXw2YawErBtnY_Ig/viewform?usp=dialog",
+  href: "/test",
   label: "Take the Test",
 };
 
@@ -69,15 +69,13 @@ export default function NavBar() {
                 {link.label}
               </Link>
             ))}
-            <a
+            <Link
               href={CTA_LINK.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className="ml-4 px-5 py-2 bg-primary text-primary-foreground text-sm tracking-wider uppercase glow-blue transition-all duration-300 hover:brightness-125"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
               {CTA_LINK.label}
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -116,15 +114,14 @@ export default function NavBar() {
                   {link.label}
                 </Link>
               ))}
-              <a
+              <Link
                 href={CTA_LINK.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
                 className="block mt-4 px-5 py-3 bg-primary text-primary-foreground text-center text-lg tracking-wider uppercase glow-blue"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
                 {CTA_LINK.label}
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

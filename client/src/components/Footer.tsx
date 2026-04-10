@@ -84,28 +84,23 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter / Lead Magnet */}
+          {/* Consciousness Test CTA */}
           <div>
             <h4 className="text-sm tracking-widest uppercase text-foreground mb-4"
               style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.1rem" }}>
-              {/* EDIT: Change newsletter heading */}
-              Join the Transmission
+              Enter the School
             </h4>
             <p className="text-muted-foreground text-sm mb-4">
-              {/* EDIT: Change newsletter description */}
-              Raw essays on nondual tantra, decolonial spirituality, and embodied liberation.
-              No spam. No spiritual bypass.
+              Take the Consciousness Test — the entrance gate to Feral Awareness.
+              Not a personality quiz. A mirror.
             </p>
-            {/* EDIT: Replace with your Substack embed or email form */}
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScfI9axshcros3mD_6NUpeHcGWAtFBRBIdXw2YawErBtnY_Ig/viewform?usp=dialog"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/test"
               className="inline-block px-6 py-3 bg-primary text-primary-foreground text-sm tracking-wider uppercase glow-blue transition-all duration-300 hover:brightness-125"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              Subscribe
-            </a>
+              Take the Test
+            </Link>
           </div>
         </div>
 
@@ -113,10 +108,15 @@ export default function Footer() {
         <div className="divider-feral mt-12 mb-6" />
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Feral Awareness. All rights reserved.</p>
-          <p className="serif-italic opacity-60">
-            {/* EDIT: Change footer quote */}
-            "The body comes first, the meaning comes second."
-          </p>
+          <div className="flex items-center gap-4">
+            <Link href="/impressum" className="hover:text-primary transition-colors">
+              Impressum
+            </Link>
+            <span className="opacity-30">·</span>
+            <Link href="/privacy" className="hover:text-primary transition-colors">
+              Privacy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

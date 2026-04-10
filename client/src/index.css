@@ -8,7 +8,7 @@
    - Secondary Accent: Deep Red (#CC2200) for provocation
    - Text: Off-white (#F0F0F0)
    
-   TO EDIT COLORS: Change the oklch values in :root and .dark below.
+   TO EDIT COLORS: Change the oklch values in :root below.
    oklch format: oklch(lightness chroma hue)
    - lightness: 0 (black) to 1 (white)
    - chroma: 0 (gray) to 0.4 (vivid)
@@ -17,6 +17,107 @@
 
 @import "tailwindcss";
 @import "tw-animate-css";
+
+/* ============================================================
+   SELF-HOSTED FONTS
+   Rob: Download WOFF2 files from https://gwfh.mranftl.com/fonts
+   Place files in client/public/fonts/
+   ============================================================ */
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/fonts/bebas-neue-v16-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/playfair-display-v37-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/playfair-display-v37-latin-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/playfair-display-v37-latin-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/playfair-display-v37-latin-700italic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/playfair-display-v37-latin-900.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora-v40-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora-v40-latin-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora-v40-latin-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora-v40-latin-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora-v40-latin-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/lora-v40-latin-500italic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -29,8 +130,6 @@
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -44,19 +143,6 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
   /* Custom Feral colors for direct use in Tailwind classes */
   --color-feral-blue: oklch(0.5 0.25 260);
   --color-feral-cyan: oklch(0.7 0.15 240);
@@ -68,92 +154,39 @@
 /* ============================================================
    ROOT VARIABLES - These control the entire color system.
    Edit these to change the global palette.
+   The site is dark-only — no light theme to switch to.
    ============================================================ */
 :root {
   /* PRIMARY: Electric Blue from logo */
   --primary: oklch(0.5 0.25 260);
   --primary-foreground: oklch(1 0 0);
-  --sidebar-primary: oklch(0.5 0.25 260);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  
-  /* CHARTS: Blue gradient */
-  --chart-1: oklch(0.7 0.15 240);
-  --chart-2: oklch(0.6 0.2 250);
-  --chart-3: oklch(0.5 0.25 260);
-  --chart-4: oklch(0.4 0.2 260);
-  --chart-5: oklch(0.3 0.15 260);
-  
+
   --radius: 0.25rem;
-  
+
   /* BACKGROUNDS: Deep black with slight blue undertone */
   --background: oklch(0.08 0.005 260);
   --foreground: oklch(0.95 0.005 260);
   --card: oklch(0.12 0.01 260);
   --card-foreground: oklch(0.95 0.005 260);
-  --popover: oklch(0.12 0.01 260);
-  --popover-foreground: oklch(0.95 0.005 260);
-  
+
   /* SECONDARY: Slightly lighter dark */
   --secondary: oklch(0.15 0.01 260);
   --secondary-foreground: oklch(0.9 0.005 260);
   --muted: oklch(0.18 0.01 260);
   --muted-foreground: oklch(0.6 0.01 260);
-  
+
   /* ACCENT: Cyan from logo */
   --accent: oklch(0.7 0.15 240);
   --accent-foreground: oklch(0.08 0.005 260);
-  
+
   /* DESTRUCTIVE: Deep red for provocation */
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(1 0 0);
-  
+
   /* BORDERS & INPUTS */
   --border: oklch(0.2 0.02 260);
   --input: oklch(0.15 0.01 260);
   --ring: oklch(0.5 0.25 260);
-  
-  /* SIDEBAR */
-  --sidebar: oklch(0.1 0.01 260);
-  --sidebar-foreground: oklch(0.95 0.005 260);
-  --sidebar-accent: oklch(0.5 0.25 260);
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.2 0.02 260);
-  --sidebar-ring: oklch(0.5 0.25 260);
-}
-
-.dark {
-  --primary: oklch(0.5 0.25 260);
-  --primary-foreground: oklch(1 0 0);
-  --sidebar-primary: oklch(0.5 0.25 260);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --background: oklch(0.08 0.005 260);
-  --foreground: oklch(0.95 0.005 260);
-  --card: oklch(0.12 0.01 260);
-  --card-foreground: oklch(0.95 0.005 260);
-  --popover: oklch(0.12 0.01 260);
-  --popover-foreground: oklch(0.95 0.005 260);
-  --secondary: oklch(0.15 0.01 260);
-  --secondary-foreground: oklch(0.9 0.005 260);
-  --muted: oklch(0.18 0.01 260);
-  --muted-foreground: oklch(0.6 0.01 260);
-  --accent: oklch(0.7 0.15 240);
-  --accent-foreground: oklch(0.08 0.005 260);
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.2 0.02 260);
-  --input: oklch(0.15 0.01 260);
-  --ring: oklch(0.5 0.25 260);
-  --chart-1: oklch(0.7 0.15 240);
-  --chart-2: oklch(0.6 0.2 250);
-  --chart-3: oklch(0.5 0.25 260);
-  --chart-4: oklch(0.4 0.2 260);
-  --chart-5: oklch(0.3 0.15 260);
-  --sidebar: oklch(0.1 0.01 260);
-  --sidebar-foreground: oklch(0.95 0.005 260);
-  --sidebar-accent: oklch(0.5 0.25 260);
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.2 0.02 260);
-  --sidebar-ring: oklch(0.5 0.25 260);
 }
 
 /* ============================================================
@@ -165,7 +198,7 @@
    - Lora: Body text, paragraphs (substance, readability)
    
    TO CHANGE FONTS: Edit font-family values below AND update
-   the Google Fonts link in client/index.html
+   the @font-face declarations + WOFF2 files in client/public/fonts/
    ============================================================ */
 @layer base {
   * {

@@ -1,80 +1,95 @@
 /* ============================================================
-   SCHOOL PAGE - The Offer, Test de Acceso, Formats
-   ============================================================
-   EDIT GUIDE:
-   - Change TEST_URL to your actual Google Form or intake form
-   - Edit OFFERINGS array to add/remove programs
-   - Edit PRINCIPLES array to change school principles
+   SCHOOL PAGE — The offer
    ============================================================ */
 
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import { ArrowRight, CheckCircle } from "lucide-react";
 
-/* EDIT: Change the test/access form URL */
-const TEST_URL = "https://docs.google.com/forms/d/e/1FAIpQLScfI9axshcros3mD_6NUpeHcGWAtFBRBIdXw2YawErBtnY_Ig/viewform?usp=dialog";
+const TEST_URL = "/test";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-hero-blue-Hvikx3gGvgR7tDVXnsuGYK.webp";
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/Logo_negro_final_5a9a9024.png";
+const HERO_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-hero-blue-Hvikx3gGvgR7tDVXnsuGYK.webp";
+const LOGO_URL =
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/Logo_negro_final_5a9a9024.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-/* EDIT: School offerings/programs */
 const OFFERINGS = [
   {
     title: "Online School",
-    subtitle: "Ongoing Formation",
-    description: "A continuous, deep-dive program into Nondual Tantra. Not a weekend retreat. Not a certification mill. This is an ongoing formation where you study the scriptures, practice daily, and are held accountable by a community of serious practitioners.",
+    subtitle: "Ongoing formation",
+    description:
+      "A continuous, deep program in the Trika tradition for people who are serious about practice. Not a weekend retreat, not a certification mill, not a course you finish and move on from. Ongoing formation means you keep studying the texts, keep practicing, keep being held by a lineage and a community, for as long as the work is alive in you. Weekly live sessions, direct teaching, scripture study, and access for questions.",
     features: [
-      "Weekly live sessions with direct teaching",
-      "Study of original scriptures (Shiva Sutras, Vijñāna Bhairava Tantra, Tantrāloka)",
-      "Guided meditation practices across all three upāyas",
-      "Community of practitioners (not consumers)",
-      "Direct access to the teacher for questions",
-      "Monthly deep-dive into specific topics",
+      "Weekly live Zoom sessions with direct teaching",
+      "Close study of the Bhairava Āgamas and their commentaries — Śiva Sūtras, Spanda Kārikā, Vijñāna Bhairava Tantra, Pratyabhijñāhṛdayam, and selections from the Tantrāloka and Tantrasāra",
+      "Guided practice across all three upāyas, calibrated to where you actually are",
+      "A community of serious practitioners, not spiritual consumers",
+      "Direct access to me for questions between sessions",
+      "Monthly deep dives into specific themes from the tradition",
     ],
-    cta: "Apply for the Online School",
+    cta: "Apply for the school",
   },
   {
-    title: "Berlin Motion Lab",
-    subtitle: "Physical Theater & Somatic Practice",
-    description: "In-person sessions in Berlin where nondual philosophy meets the body. We use physical theater, movement improvisation, and somatic exploration to dissolve energetic contractions (sanharas) and expand the body's capacity to hold consciousness.",
+    title: "Motion Lab — Berlin",
+    subtitle: "Physical theater meets non-dual practice",
+    description:
+      "In-person work in Berlin where the tantric tradition meets the physical theater lineages I come from — Grotowski, Meyerhold, Artaud. We use movement, breath, voice, improvisation, and sustained presence to dissolve bodily contractions (saṃskāras) and expand the capacity of the body to hold consciousness without shrinking. Small groups. Deep work. This is not a yoga class.",
     features: [
-      "In-person sessions in Berlin",
-      "Physical theater techniques",
-      "Somatic exploration & movement",
-      "Dissolution of bodily contractions",
-      "Integration of philosophy through the body",
-      "Small groups for deep work",
+      "In-person sessions in Berlin, held weekly or bi-weekly",
+      "Physical theater techniques as tantric practice",
+      "Somatic exploration, movement, breath, voice, sustained presence",
+      "Direct work with bodily contractions that hold conditioning in place",
+      "Integration of philosophy through the body — not as concept",
+      "Small groups to allow for real depth",
     ],
-    cta: "Join the Berlin Lab",
+    cta: "Join the Motion Lab",
   },
   {
     title: "The Consultorio",
-    subtitle: "Individual Guidance",
-    description: "One-on-one sessions for practitioners who need direct, personalized guidance. We work with your specific patterns, contractions, and questions. This is not therapy — it's tantric guidance rooted in the tradition.",
+    subtitle: "One-on-one guidance",
+    description:
+      "Individual sessions for practitioners who need direct, personalized work on specific patterns, contractions, questions, or life situations. This is not therapy. It is tantric guidance rooted in the tradition and in my own practice — I will meet you where you actually are, not where a manual says you should be. Available online worldwide.",
     features: [
-      "One-on-one sessions",
-      "Personalized practice recommendations",
-      "Direct work with your specific patterns",
-      "Integration of life situations with practice",
-      "Rooted in scriptural understanding",
-      "Available online worldwide",
+      "One-on-one video sessions, online from anywhere",
+      "Work with your specific contractions, patterns, and questions",
+      "Personalized practice recommendations calibrated to your experience",
+      "Integration of life situations with practice in real time",
+      "Rooted in scripture, lineage, and lived transmission",
     ],
-    cta: "Request a Session",
+    cta: "Request a session",
   },
 ];
 
-/* EDIT: School principles */
 const PRINCIPLES = [
-  { title: "No Spiritual Bypass", text: "We don't use spirituality to avoid facing reality. We use it to face reality more fully." },
-  { title: "Lineage-Based", text: "Everything we teach is rooted in the Bhairava Sutras and the Kashmir Shaivism tradition." },
-  { title: "Body First", text: "The body is the laboratory. If it's not in the body, it's just philosophy." },
-  { title: "No Hierarchy of Worth", text: "No gurus on pedestals. The teacher is a practitioner who shares the path, not a savior." },
-  { title: "Decolonial Integrity", text: "We honor the source, refuse cultural appropriation, and maintain political awareness." },
-  { title: "Liberation & Enjoyment", text: "These are not separate goals. The tradition insists on both, and so do we." },
+  {
+    title: "No bypass",
+    text: "We do not use spirituality to avoid what is actually happening in your life, your body, your politics, or your grief. We use it to meet these things more fully.",
+  },
+  {
+    title: "Scripture and lineage",
+    text: "Everything we teach is grounded in the Bhairava Āgamas, the commentarial tradition of Kashmir Shaivism, and an unbroken line of practice that runs through Swami Lakshmanjoo, Mar Delgado, and into this work.",
+  },
+  {
+    title: "Body first",
+    text: "Saṃskāras live in the body before they live in the mind. If practice is not landing in the body, it is philosophy. We work somatically before we work conceptually.",
+  },
+  {
+    title: "No gurus on pedestals",
+    text: "I am a practitioner who shares the path, not a savior. The teacher is a mirror, not a destination. Anyone who lets you give them the authority of your own recognition is stealing from you.",
+  },
+  {
+    title: "Decolonial integrity",
+    text: "The tradition was already decolonial before the word existed. We honor the source, refuse cultural appropriation, do not dilute the philosophy for Western comfort, and do not separate politics from practice.",
+  },
+  {
+    title: "Liberation and enjoyment",
+    text: "Mokṣa without bhoga is repression in spiritual clothing. Bhoga without mokṣa is empty hedonism. The tradition refuses both errors, and so do we.",
+  },
 ];
 
 export default function School() {
@@ -91,33 +106,45 @@ export default function School() {
             THE SCHOOL
           </h1>
           <p className="display text-xl sm:text-2xl text-feral-cyan mt-4">
-            This is not a course. It's a commitment.
+            Not a course. A commitment.
           </p>
         </div>
       </section>
 
       {/* Intro */}
       <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
-              {/* EDIT: School intro */}
               <p>
-                Feral Awareness is a <span className="text-foreground font-semibold">school of Nondual Tantra</span>,
-                not a marketplace of spiritual products. We don't sell weekend retreats, certification programs,
-                or "transformational experiences." We offer <span className="text-foreground font-semibold">ongoing
-                formation</span> for people who are serious about the path.
+                Feral Awareness is a school of non-dual tantra in the Trika
+                tradition. It is not a marketplace of spiritual products.
+                There are no weekend retreats, no certification programs, no
+                &quot;transformational experiences&quot; to book. Those
+                formats do not produce the thing they promise. What we offer
+                is{" "}
+                <span className="text-foreground font-semibold">
+                  ongoing formation
+                </span>{" "}
+                for people who are serious about the path, in three formats:
+                an online school, an in-person Motion Lab in Berlin, and
+                one-on-one guidance through the Consultorio.
               </p>
               <p>
-                Entry to the school requires completing a <span className="text-foreground font-semibold">Consciousness
-                Test</span> — not to judge you, but to ensure that you understand what you're entering and that
-                this path is appropriate for where you are right now.
+                Entry into any of these formats starts the same way: you
+                take the Consciousness Test. This is not a personality quiz.
+                It is a mirror — a set of questions designed to surface how
+                honestly you are currently relating to your own experience,
+                and whether the work we do here is a good fit for where you
+                actually are. The test is free and takes about fifteen
+                minutes. It exists to protect both of us from wasting time.
               </p>
               <p className="text-foreground font-semibold border-l-2 border-primary pl-6">
-                {/* EDIT: Key statement */}
-                We are not for everyone. We are for the ones who feel that something fundamental is missing
-                from the spiritual offerings available to them. The ones who sense that awakening has political
-                dimensions. The ones who are tired of being sold comfort disguised as liberation.
+                We are not for everyone. We are for people who sense that
+                something fundamental is missing from the spirituality on
+                offer, who feel that awakening has political dimensions,
+                and who are tired of being sold comfort dressed up as
+                liberation. If that is you, welcome.
               </p>
             </div>
           </motion.div>
@@ -126,30 +153,27 @@ export default function School() {
 
       {/* Consciousness Test CTA */}
       <section className="py-16 lg:py-20 bg-gradient-to-r from-primary/10 via-transparent to-feral-cyan/10 relative">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             <img src={LOGO_URL} alt="" className="w-14 h-14 mx-auto mb-4 opacity-60 mix-blend-screen" />
             <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-4">
-              CONSCIOUSNESS TEST
+              START WITH THE TEST
             </h2>
             <p className="display text-lg sm:text-xl text-feral-cyan mb-3">
-              The Wheel of Energies
+              The entrance gate to the school
             </p>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              {/* EDIT: Test description */}
-              This test helps you understand where you are on the wheel of energies and whether the Feral
-              Awareness school is the right container for your practice right now. It's not a personality
-              quiz — it's a mirror that reflects the characteristics of victorious practitioners.
+              Twelve questions mapping how you actually relate to practice,
+              to the body, to desire, and to honesty with yourself. Fifteen
+              minutes. No account required.
             </p>
-            <a
+            <Link
               href={TEST_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-block px-10 py-5 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 text-lg"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              Take the Test Now
-            </a>
+              Take the Test
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -158,6 +182,9 @@ export default function School() {
       <section className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="text-center mb-12">
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              How we work
+            </p>
             <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground">
               OUR PRINCIPLES
             </h2>
@@ -189,6 +216,9 @@ export default function School() {
       <section className="py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="text-center mb-16">
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              Three ways in
+            </p>
             <h2 className="text-4xl sm:text-5xl tracking-wide text-foreground">
               THE OFFER
             </h2>
@@ -224,20 +254,64 @@ export default function School() {
                         </li>
                       ))}
                     </ul>
-                    <a
+                    <Link
                       href={TEST_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 mt-6 text-primary tracking-wider uppercase text-sm hover:brightness-125 transition-all"
                       style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                     >
                       {offer.cta} <ArrowRight size={14} />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <div className="divider-feral max-w-5xl mx-auto" />
+
+      {/* Pricing / honest note */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              About money
+            </p>
+            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground mb-8">
+              WHY PRICING COMES AFTER THE TEST
+            </h2>
+            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <p>
+                You will notice that there are no prices listed on this
+                page. This is deliberate, and it is not a sales tactic.
+                Pricing for the school is discussed after you take the
+                Consciousness Test, for two reasons.
+              </p>
+              <p>
+                First, the formats are calibrated. The Online School, the
+                Motion Lab, and the Consultorio each involve different
+                amounts of time, different depths of work, and different
+                kinds of commitment. Quoting a flat number without knowing
+                where you actually are would misrepresent the offer.
+              </p>
+              <p>
+                Second, I keep the work accessible. Sliding scales exist.
+                Solidarity arrangements exist. I would rather have the
+                conversation about what is actually workable for your life
+                than post a number that either excludes you or inflates the
+                price for people who can afford more. The wellness industry
+                treats pricing as a filter for desirability. I treat it as
+                a conversation about access.
+              </p>
+              <p className="text-foreground border-l-2 border-primary pl-6">
+                Take the test. If the fit is there, we will talk about
+                money honestly, and figure out whether there is a format
+                and a price that actually work for you. If the fit is not
+                there, I will tell you that too.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
