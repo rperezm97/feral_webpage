@@ -26,4 +26,4 @@ export const CDN_BASE =
    The matching TURNSTILE_SECRET goes in Cloudflare Pages env vars
    (NOT here — it must stay server-side).
    ============================================================ */
-export const TURNSTILE_SITE_KEY = ""; // e.g. "0x4AAAAAAA..."
+export const TURNSTILE_SITE_KEY = "0x4AAAAAAC8j7PnIM3z63td1"; // e.g. "0x4AAAAAAA..."
