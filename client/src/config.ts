@@ -6,7 +6,7 @@
    ============================================================ */
 
 /* Public site URL — update when custom domain is live */
-export const SITE_URL = "https://feral-webpage.pages.dev";
+export const SITE_URL = "https://www.feralawareness.com/";
 
 /* Contact email — keep in sync with Impressum.tsx and PrivacyPolicy.tsx */
 export const CONTACT_EMAIL = "feral.awareness@gmail.com";
