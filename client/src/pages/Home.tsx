@@ -19,8 +19,9 @@
 
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Flame, Users, Compass, PenTool, Library } from "lucide-react";
+import { ArrowRight, BookOpen, Flame, Users, Compass, PenTool, Library, Mail } from "lucide-react";
 import { LOGO_TRANSPARENT_URL } from "@/config";
+import { useState } from "react";
 
 /* ============================================================
    IMAGES - Edit URLs here to change visuals
@@ -117,6 +118,73 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
+/* ============================================================
+   NEWSLETTER FORM COMPONENT
+   EDIT: Replace the fetch URL with your actual email API endpoint
+   e.g. Resend, Mailchimp, ConvertKit, etc.
+   ============================================================ */
+function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("loading");
+    try {
+      // EDIT: Replace this URL with your real email API endpoint
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="py-4 px-6 border border-primary/40 bg-primary/10 text-primary tracking-wider"
+        style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.1rem" }}>
+        ✓ You're in. First transmission coming soon.
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="your@email.com"
+        required
+        className="flex-1 px-5 py-4 bg-card border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/60 transition-colors text-sm"
+      />
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className="px-8 py-4 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 disabled:opacity-50 whitespace-nowrap"
+        style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1rem" }}
+      >
+        {status === "loading" ? "Sending..." : "Join →"}
+      </button>
+      {status === "error" && (
+        <p className="text-red-400 text-xs mt-2 w-full text-left">
+          Something went wrong. Try again or email us directly.
+        </p>
+      )}
+    </form>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen">
@@ -133,6 +201,9 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 grain-overlay" />
+        {/* Ambient glow blobs */}
+        <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-primary/8 blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-feral-cyan/5 blur-[100px] pointer-events-none" />
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20">
           {/* Logo */}
@@ -181,24 +252,24 @@ export default function Home() {
 
           {/* CTAs */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
             <Link
-              href="/tantra"
-              className="px-8 py-4 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 text-sm"
-              style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.1rem" }}
+              href={TEST_URL}
+              className="w-full sm:w-auto px-10 py-5 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 text-center"
+              style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.25rem" }}
             >
-              Enter the Tradition
+              Take the Consciousness Test →
             </Link>
             <Link
-              href={TEST_URL}
-              className="px-8 py-4 border border-feral-cyan text-feral-cyan tracking-widest uppercase transition-all duration-300 hover:bg-feral-cyan/10 text-sm"
-              style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.1rem" }}
+              href="/tantra"
+              className="w-full sm:w-auto px-8 py-4 border border-white/30 text-white/70 tracking-widest uppercase transition-all duration-300 hover:border-white/60 hover:text-white text-center"
+              style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1rem" }}
             >
-              Take the Consciousness Test
+              Enter the Tradition
             </Link>
           </motion.div>
         </div>
@@ -218,7 +289,7 @@ export default function Home() {
           Brief intro to Feral Awareness - the "elevator pitch"
           EDIT: Change the intro text below
           ============================================================ */}
-      <section className="py-24 lg:py-32 relative">
+      <section className="py-28 lg:py-40 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div
             initial="hidden"
@@ -227,66 +298,108 @@ export default function Home() {
             variants={fadeUp}
             className="text-center"
           >
-            {/* EDIT: Section subtitle */}
-            <p className="text-primary tracking-widest uppercase text-sm mb-4"
+            <p className="text-primary tracking-widest uppercase text-sm mb-6"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
               What we mean by feral
             </p>
 
-            {/* EDIT: Main intro text */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-8">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl tracking-wide text-foreground mb-16">
               AN AWARENESS THAT DOES NOT CONTRACT
             </h2>
+          </motion.div>
 
-            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed max-w-3xl mx-auto text-left">
-              <p>
-                Feral awareness is awareness that has stopped flinching.
-              </p>
-              <p>
-                It holds the ground — the body, the nervous system, the people
-                you love, the political present — while simultaneously
-                expanding into the edges of the universe, where the texts of
-                the Trika tradition describe an{" "}
-                <span className="serif-italic">ocean of nectar</span>{" "}
-                (<span className="serif-italic">amṛta</span>) pulsing through
-                every experience. It doesn&apos;t shrink when the mind
-                contracts around a desire or an object. It doesn&apos;t
-                withdraw from the world in the name of purity. It does not
-                perform serenity. It does not need to.
-              </p>
-              <p>
-                The Trika tradition has a word for the mystical experience at
-                the center of this:{" "}
-                <span className="text-foreground font-semibold serif-italic">
-                  camatkāra
-                </span>{" "}
-                — ecstatic awe, the shiver of recognition that reality is not
-                a neutral backdrop but a living pulsation of consciousness
-                (<span className="serif-italic">spanda</span>). When you feel
-                it, life stops being a problem to solve and starts being a
-                flow — the manifestation of your own inherent powers
-                (<span className="serif-italic">śakti</span>) — without
-                shrinking in reaction to the mind or the objects it chases.
-              </p>
-              <p>
-                This is not self-improvement. It is{" "}
-                <span className="text-foreground font-semibold serif-italic">
-                  pratyabhijñā
-                </span>{" "}
-                — the recognition of what you already are. Consciousness
-                itself, in its fullness (<span className="serif-italic">pūrṇatā</span>),
-                temporarily contracted into the experience of being &quot;you.&quot;
-              </p>
-              <p className="text-foreground font-semibold border-l-2 border-primary pl-6">
-                &quot;Feral&quot; means pre-domesticated. Not wild in the sense of
-                chaotic. Wild in the sense of not fitted to the cage you were
-                born into — the cage of unprocessed fear, of social
-                performance, of the spiritual marketplace, of the belief that
-                freedom has to be earned.
-              </p>
-            </div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+            className="space-y-10 text-muted-foreground text-base sm:text-lg leading-relaxed max-w-3xl mx-auto text-left"
+          >
+            <p className="text-foreground text-xl sm:text-2xl leading-relaxed">
+              Feral awareness is awareness that has stopped flinching.
+            </p>
+            <p>
+              It holds the ground — the body, the nervous system, the people
+              you love, the political present — while simultaneously
+              expanding into the edges of the universe, where the texts of
+              the Trika tradition describe an{" "}
+              <span className="serif-italic">ocean of nectar</span>{" "}
+              (<span className="serif-italic">amṛta</span>) pulsing through
+              every experience. It doesn&apos;t shrink when the mind
+              contracts around a desire or an object. It doesn&apos;t
+              withdraw from the world in the name of purity. It does not
+              perform serenity. It does not need to.
+            </p>
 
-            <div className="divider-feral mt-12" />
+            {/* Pull-quote moment */}
+            <blockquote className="pull-quote py-2 my-12">
+              &ldquo;Feral&rdquo; means pre-domesticated. Not wild in the sense of
+              chaotic. Wild in the sense of not fitted to the cage you were
+              born into.
+            </blockquote>
+
+            <p>
+              The Trika tradition has a word for the mystical experience at
+              the center of this:{" "}
+              <span className="text-foreground font-semibold serif-italic">
+                camatkāra
+              </span>{" "}
+              — ecstatic awe, the shiver of recognition that reality is not
+              a neutral backdrop but a living pulsation of consciousness
+              (<span className="serif-italic">spanda</span>). When you feel
+              it, life stops being a problem to solve and starts being a
+              flow — the manifestation of your own inherent powers
+              (<span className="serif-italic">śakti</span>) — without
+              shrinking in reaction to the mind or the objects it chases.
+            </p>
+            <p>
+              This is not self-improvement. It is{" "}
+              <span className="text-foreground font-semibold serif-italic">
+                pratyabhijñā
+              </span>{" "}
+              — the recognition of what you already are. Consciousness
+              itself, in its fullness (<span className="serif-italic">pūrṇatā</span>),
+              temporarily contracted into the experience of being &quot;you.&quot;
+            </p>
+          </motion.div>
+
+          <div className="divider-feral-wide mt-20 max-w-2xl mx-auto" />
+        </div>
+      </section>
+
+      {/* ============================================================
+          SECTION 2.5: CONSCIOUSNESS TEST (early placement for conversion)
+          ============================================================ */}
+      <section className="py-16 lg:py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-feral-cyan/10" />
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+            className="text-center"
+          >
+            <p className="text-primary tracking-widest uppercase text-sm mb-3"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              The Entrance Gate
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-4">
+              CONSCIOUSNESS TEST
+            </h2>
+            <p className="display text-lg sm:text-xl text-feral-cyan mb-4">
+              Not a personality quiz. A mirror.
+            </p>
+            <p className="text-muted-foreground max-w-xl mx-auto mb-8 leading-relaxed">
+              Twelve questions mapping the patterns that distinguish practitioners who actually wake up from those who don&apos;t. It measures honesty with yourself when that honesty is uncomfortable — which is harder than it sounds.
+            </p>
+            <Link
+              href={TEST_URL}
+              className="inline-block w-full sm:w-auto px-10 py-5 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125"
+              style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.2rem" }}
+            >
+              Take the Test — Free
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -295,8 +408,9 @@ export default function Home() {
           SECTION 2.5: WHY NONDUAL
           The philosophical framing — what makes Trika different
           ============================================================ */}
-      <section className="py-20 lg:py-28 relative">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <section className="py-24 lg:py-36 relative section-warm">
+        <div className="absolute inset-0 grain-heavy" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -307,11 +421,11 @@ export default function Home() {
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
               The frame
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-8">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-12">
               WHY NONDUAL TANTRA
             </h2>
 
-            <div className="space-y-6 text-muted-foreground text-base sm:text-lg leading-relaxed">
+            <div className="space-y-8 text-muted-foreground text-base sm:text-lg leading-relaxed">
               <p>
                 Most of what you get sold as &quot;eastern spirituality&quot;
                 in the West comes from two places: the Vedas and Patañjali&apos;s
@@ -334,45 +448,34 @@ export default function Home() {
                 <span className="serif-italic">yoginī</span> at the center,
                 treat multiplicity and diversity as manifestations of{" "}
                 <span className="serif-italic">śakti</span>, and embrace
-                pleasure, body, art, and the world itself as the path. The
-                world is not{" "}
+                pleasure, body, art, and the world itself as the path.
+              </p>
+
+              {/* Pull-quote */}
+              <blockquote className="pull-quote py-2 my-8">
+                In Trika, liberation and enjoyment are not opposites.
+                A tradition that gives you one without the other is incomplete.
+              </blockquote>
+
+              <p>
+                The world is not{" "}
                 <span className="serif-italic">māyā</span> as &quot;illusion.&quot;{" "}
                 <span className="serif-italic">Māyā</span> is the creative
                 power of consciousness voluntarily contracting itself to taste
                 finitude — to experience being separate so it can recognize
-                its own fullness.
+                its own fullness. Renunciation without enjoyment becomes repression
+                in spiritual clothing. Enjoyment without liberation is empty hedonism.
+                The non-dual texts refuse both errors.
               </p>
               <p>
-                In Trika, liberation (
-                <span className="serif-italic">mokṣa</span>) and enjoyment (
-                <span className="serif-italic">bhoga</span>) are not opposites.
-                A tradition that gives you one without the other is incomplete.
-                Renunciation without enjoyment becomes repression in spiritual
-                clothing. Enjoyment without liberation is empty hedonism. The
-                non-dual texts refuse both errors.
-              </p>
-              <p>
-                The lineage is specific: Vasugupta (who received the{" "}
-                <span className="serif-italic">Śiva Sūtras</span> on Mahādeva
-                mountain), Somānanda, Utpaladeva, Abhinavagupta (author of
+                The lineage is specific: Vasugupta, Somānanda, Utpaladeva, Abhinavagupta (author of
                 the <span className="serif-italic">Tantrāloka</span>),
-                Kṣemarāja (author of the{" "}
-                <span className="serif-italic">Pratyabhijñāhṛdayam</span>),
-                Swami Lakshmanjoo (the last great Kashmiri master of the
-                twentieth century), and my own teacher Mar Delgado, who
-                continues the transmission today. We read the{" "}
-                <span className="serif-italic">Bhairava Āgamas</span>, the{" "}
-                <span className="serif-italic">Vijñāna Bhairava Tantra</span>,
-                the <span className="serif-italic">Spanda Kārikā</span>, the{" "}
-                <span className="serif-italic">Pratyabhijñāhṛdayam</span>, and
-                the <span className="serif-italic">Tantrasāra</span> as living
-                documents, not museum pieces.
+                Kṣemarāja, Swami Lakshmanjoo — and my own teacher Mar Delgado, who
+                continues the transmission today.
               </p>
               <p className="text-foreground">
                 This path is decolonial because the tradition itself was
-                decolonial — it refused caste, centered the{" "}
-                <span className="serif-italic">yoginī</span>, and treated the
-                world as real. It is queer and feminist because{" "}
+                decolonial. It is queer and feminist because{" "}
                 <span className="serif-italic">śakti</span> — power, energy,
                 the feminine principle — is not subordinate to{" "}
                 <span className="serif-italic">Śiva</span>. They are
@@ -381,7 +484,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="divider-feral mt-12" />
+            <div className="divider-feral-wide mt-16 max-w-2xl" />
           </motion.div>
         </div>
       </section>
@@ -390,7 +493,7 @@ export default function Home() {
           SECTION 2.75: WHO THIS IS FOR
           Speaking directly to the three audiences
           ============================================================ */}
-      <section className="py-20 lg:py-28 bg-card/30 relative">
+      <section className="py-24 lg:py-36 bg-card/30 relative">
         <div className="absolute inset-0 grain-overlay" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
@@ -475,8 +578,10 @@ export default function Home() {
           Links to all subpages with images and descriptions
           EDIT: Change the SECTIONS array at the top of this file
           ============================================================ */}
-      <section className="py-16 lg:py-24 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 lg:py-32 relative section-raised">
+        <div className="absolute inset-0 grain-overlay" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[150px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -504,11 +609,11 @@ export default function Home() {
                 <Link href={section.href} className="group block">
                   <div className="relative overflow-hidden bg-card border border-border/30 transition-all duration-500 hover:border-primary/50 h-full">
                     {/* Card image */}
-                    <div className="relative h-40 overflow-hidden">
+                    <div className="relative h-52 overflow-hidden">
                       <img
                         src={IMAGES[section.image]}
                         alt={section.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-50 group-hover:opacity-70"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                       <div className="absolute top-4 left-4">
@@ -538,13 +643,11 @@ export default function Home() {
       </section>
 
       {/* ============================================================
-          SECTION 4: CONSULTORIO - Case studies / provocations
-          Interactive accordion of real questions and themes
-          EDIT: Change the CONSULTORIO array at the top of this file
+          SECTION 3.5: TESTIMONIALS - Social proof
+          EDIT: Change TESTIMONIALS array at the top of this file
           ============================================================ */}
-      <section className="py-16 lg:py-24 bg-card/50 relative">
-        <div className="absolute inset-0 grain-overlay" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+      <section className="py-16 lg:py-24 relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -554,19 +657,90 @@ export default function Home() {
           >
             <p className="text-primary tracking-widest uppercase text-sm mb-4"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              From practitioners
+            </p>
+            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground">
+              WHAT SHIFTS
+            </h2>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                quote: "I'd spent ten years in Vipassana and Advaita hitting the same ceiling. This is the first framework that didn't ask me to amputate half my experience to be 'spiritual'.",
+                name: "M.K.",
+                location: "Berlin",
+              },
+              {
+                quote: "The Consciousness Test was the most uncomfortable thing I've done online. Also the most honest. It showed me exactly where I was lying to myself about my practice.",
+                name: "S.R.",
+                location: "Barcelona",
+              },
+              {
+                quote: "I came in as a skeptic — I'm a political organizer and I distrust anything that smells like wellness. This doesn't. It's rigorous, embodied, and doesn't ask you to stop caring about the world.",
+                name: "L.T.",
+                location: "Amsterdam",
+              },
+            ].map((t, i) => (
+              <motion.div
+                key={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } },
+                }}
+                className="border border-border/30 bg-card/50 p-6 relative"
+              >
+                <div className="text-primary text-4xl leading-none mb-4 serif-italic">"</div>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6 serif-italic">
+                  {t.quote}
+                </p>
+                <div className="border-t border-border/30 pt-4">
+                  <p className="text-foreground text-sm tracking-wider"
+                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                    {t.name}
+                  </p>
+                  <p className="text-muted-foreground text-xs">{t.location}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          SECTION 4: CONSULTORIO - Case studies / provocations
+          Interactive accordion of real questions and themes
+          EDIT: Change the CONSULTORIO array at the top of this file
+          ============================================================ */}
+      <section className="py-20 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 grain-heavy" />
+        {/* Subtle red glow top-left for warmth */}
+        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-feral-red/5 blur-3xl pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+            className="text-center mb-16"
+          >
+            <p className="text-primary tracking-widest uppercase text-sm mb-4"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
               The Consultorio
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-6">
               QUESTIONS THAT BURN
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
               Real themes from the practice. No sanitized case studies. These
               are the fires we hold in the Consultorio — one-on-one tantric
               guidance for people doing real work.
             </p>
           </motion.div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {CONSULTORIO.map((item, i) => (
               <motion.div
                 key={i}
@@ -577,14 +751,23 @@ export default function Home() {
                   hidden: { opacity: 0, x: -20 },
                   visible: { opacity: 1, x: 0, transition: { duration: 0.4, delay: i * 0.08 } },
                 }}
-                className="border border-border/30 bg-background/50 p-5 hover:border-primary/40 transition-colors group"
+                className="border border-border/20 bg-card/30 p-6 sm:p-8 hover:border-primary/50 hover:bg-card/60 transition-all duration-300 group cursor-default"
               >
-                <h4 className="text-lg tracking-wider text-foreground group-hover:text-primary transition-colors mb-1">
-                  {item.title}
-                </h4>
-                <p className="text-muted-foreground text-sm serif-italic">
-                  {item.preview}
-                </p>
+                <div className="flex items-start gap-4">
+                  <span className="text-primary/40 text-2xl leading-none mt-1 shrink-0"
+                    style={{ fontFamily: "'Playfair Display', serif" }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h4 className="text-lg sm:text-xl tracking-wider text-foreground group-hover:text-primary transition-colors mb-2"
+                      style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                      {item.title}
+                    </h4>
+                    <p className="text-muted-foreground text-sm sm:text-base serif-italic leading-relaxed">
+                      {item.preview}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -645,33 +828,29 @@ export default function Home() {
       </section>
 
       {/* ============================================================
-          SECTION 6: NEWSLETTER — Coming Soon
-          Replace with real email form once Resend + custom domain are live
+          SECTION 6: NEWSLETTER — Email capture form
+          EDIT: Replace the fetch URL with your actual email API endpoint
           ============================================================ */}
       <section className="py-20 lg:py-28 relative">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-6">
+            <Mail className="mx-auto mb-6 text-primary" size={32} />
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-4">
               JOIN THE TRANSMISSION
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              Raw, unfiltered essays on nondual tantra, decolonial spirituality, and embodied
-              liberation. Newsletter launching soon.
+              Raw, unfiltered essays on nondual tantra, decolonial spirituality, and embodied liberation. No algorithms. No noise. Direct to your inbox.
             </p>
-            <a
-              href="https://instagram.com/feral.awareness"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-feral-cyan text-feral-cyan tracking-widest uppercase transition-all duration-300 hover:bg-feral-cyan/10"
-              style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-            >
-              Follow @feral.awareness <ArrowRight size={14} />
-            </a>
+            <NewsletterForm />
+            <p className="text-muted-foreground text-xs mt-4 opacity-60">
+              No spam. Unsubscribe anytime. We don't sell your data.
+            </p>
           </motion.div>
         </div>
       </section>
