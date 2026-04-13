@@ -348,16 +348,28 @@ export default function ConsciousnessTest() {
     setSelectedOption(answers[currentQuestionId()] || null);
   }, [step]);
 
+  // Reset Turnstile token when leaving step 15 (prevents stale/expired token)
+  useEffect(() => {
+    if (step !== 15) {
+      setTurnstileToken("");
+    }
+  }, [step]);
+
   // Load Cloudflare Turnstile script + render widget when entering email step
   useEffect(() => {
     if (step !== 15 || !TURNSTILE_SITE_KEY) return;
 
     const SCRIPT_ID = "cf-turnstile-script";
+
     const renderWidget = () => {
-      const w = (window as unknown as { turnstile?: { render: (el: string, opts: object) => void } }).turnstile;
-      if (!w) return;
-      const container = document.getElementById("turnstile-widget");
-      if (container && container.childElementCount === 0) {
+      // Small delay to ensure React has finished painting the DOM
+      setTimeout(() => {
+        const w = (window as unknown as { turnstile?: { render: (el: string, opts: object) => void } }).turnstile;
+        if (!w) return;
+        const container = document.getElementById("turnstile-widget");
+        if (!container) return;
+        // Reset and re-render if already rendered (e.g. user went back and forward)
+        container.innerHTML = "";
         w.render("#turnstile-widget", {
           sitekey: TURNSTILE_SITE_KEY,
           theme: "dark",
@@ -365,7 +377,7 @@ export default function ConsciousnessTest() {
           "error-callback": () => setTurnstileToken(""),
           "expired-callback": () => setTurnstileToken(""),
         });
-      }
+      }, 100);
     };
 
     if (!document.getElementById(SCRIPT_ID)) {
