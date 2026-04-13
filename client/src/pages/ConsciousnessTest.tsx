@@ -327,6 +327,8 @@ export default function ConsciousnessTest() {
   const [openAnswers, setOpenAnswers] = useState<Record<string, string>>({});
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [foundUs, setFoundUs] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -428,19 +430,46 @@ export default function ConsciousnessTest() {
     // Attempt to submit. If endpoint is not configured (501) or network fails,
     // fall through to client-side results without misleading the user.
     try {
-      const res = await fetch("/api/consciousness-test", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          name,
-          score,
-          tier,
-          answers,
-          openAnswers,
-          turnstileToken,
-        }),
-      });
+      const questionResults = QUESTIONS.flatMap((q) => {
+      const letter = answers[q.id];
+      if (!letter) return [];
+      const opt = q.options.find((o) => o.letter === letter);
+      if (!opt) return [];
+      return [
+        {
+          section: q.section,
+          text: q.text,
+          selectedLabel: opt.label,
+          feedback: q.feedback[letter] ?? "",
+        },
+      ];
+    });
+
+    const resultsPayload = {
+      tierLabel: tierData.label,
+      tierColor: tierData.color,
+      opener: tierData.opener,
+      closing: tierData.closing,
+      questionResults,
+    };
+
+    const res = await fetch("/api/consciousness-test", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        name,
+        phone,
+        foundUs,
+        score,
+        tier,
+        answers,
+        openAnswers,
+        resultsPayload,
+        turnstileToken,
+      }),
+    });
+
       if (res.ok) {
         setEmailSent(true);
       } else if (res.status === 501) {
@@ -716,9 +745,8 @@ export default function ConsciousnessTest() {
         Before your results
       </h2>
       <p className="text-sm mb-8" style={{ color: "rgba(238,238,238,0.5)" }}>
-        Your full analysis will appear on the next screen. Leave your details
-        if you'd like us to follow up personally — especially if your results
-        suggest the school may be right for you.
+        Leave your details so we can send you the results. If it's a good fit,
+        we'll follow up, in case you want to join. 
       </p>
 
       <div className="space-y-4 max-w-md">
@@ -749,6 +777,8 @@ export default function ConsciousnessTest() {
             onBlur={(e) => (e.target.style.borderColor = "rgba(238,238,238,0.12)")}
           />
         </div>
+
+   
         <div>
           <label
             htmlFor="ct-email"
@@ -780,6 +810,67 @@ export default function ConsciousnessTest() {
             onBlur={(e) => (e.target.style.borderColor = "rgba(238,238,238,0.12)")}
           />
         </div>
+             <div>
+          <label
+            htmlFor="ct-phone"
+            className="block text-xs tracking-widest uppercase mb-2"
+            style={{ fontFamily: "'Bebas Neue', sans-serif", color: "rgba(238,238,238,0.4)" }}
+          >
+            Phone Number
+          </label>
+          <input
+            id="ct-phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            maxLength={30}
+            className="w-full px-4 py-3 text-sm outline-none transition-colors"
+            style={{
+              backgroundColor: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(238,238,238,0.12)",
+              color: "rgba(238,238,238,0.85)",
+            }}
+            placeholder="+49 ..."
+            onFocus={(e) => (e.target.style.borderColor = "rgba(0,229,255,0.4)")}
+            onBlur={(e) => (e.target.style.borderColor = "rgba(238,238,238,0.12)")}
+          />
+        </div>
+
+        <div>
+        <label
+          htmlFor="ct-found-us"
+          className="block text-xs tracking-widest uppercase mb-2"
+          style={{ fontFamily: "'Bebas Neue', sans-serif", color: "rgba(238,238,238,0.4)" }}
+        >
+          Where did you find us?
+        </label>
+        <select
+          id="ct-found-us"
+          name="found-us"
+          value={foundUs}
+          onChange={(e) => setFoundUs(e.target.value)}
+          className="w-full px-4 py-3 text-sm outline-none transition-colors"
+          style={{
+            backgroundColor: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(238,238,238,0.12)",
+            color: "rgba(238,238,238,0.85)",
+          }}
+          onFocus={(e) => (e.target.style.borderColor = "rgba(0,229,255,0.4)")}
+          onBlur={(e) => (e.target.style.borderColor = "rgba(238,238,238,0.12)")}
+        >
+          <option value="">Choose one</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Friend or student">Friend or student</option>
+          <option value="Search engine">Search engine</option>
+          <option value="Workshop or event">Workshop or event</option>
+          <option value="Podcast or interview">Podcast or interview</option>
+          <option value="Newsletter">Newsletter</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
 
         {/* Cloudflare Turnstile widget — only renders when site key is set */}
         {TURNSTILE_SITE_KEY && (
@@ -1013,15 +1104,18 @@ export default function ConsciousnessTest() {
         {/* Retake */}
         <button
           onClick={() => {
-            setStep(0);
-            setAnswers({});
-            setOpenAnswers({});
-            setEmail("");
-            setName("");
-            setSubmitted(false);
-            setEmailSent(false);
-            setSubmitError(null);
-            setTurnstileToken("");
+          setStep(0);
+          setAnswers({});
+          setOpenAnswers({});
+          setEmail("");
+          setName("");
+          setPhone("");
+          setFoundUs("");
+          setSubmitted(false);
+          setEmailSent(false);
+          setSubmitError(null);
+          setTurnstileToken("");
+
           }}
           className="text-xs tracking-widest uppercase transition-opacity hover:opacity-80"
           style={{ fontFamily: "'Bebas Neue', sans-serif", color: "rgba(238,238,238,0.25)" }}

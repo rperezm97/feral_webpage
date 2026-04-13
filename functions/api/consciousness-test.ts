@@ -1,57 +1,101 @@
 /* ============================================================
-   CONSCIOUSNESS TEST — Email Delivery via Resend
+   CONSCIOUSNESS TEST — Email Delivery via Resend + Supabase
    ============================================================
    Cloudflare Pages Function: POST /api/consciousness-test
 
-   SETUP REQUIRED before this works:
-   1. Purchase custom domain and point it to Cloudflare Pages
-   2. Verify domain in Resend dashboard (resend.com)
-   3. Create a Turnstile site at Cloudflare dashboard → Turnstile
-   4. Set environment variables in Cloudflare Pages dashboard:
-      - RESEND_API_KEY      → your Resend API key
-      - ROB_EMAIL           → your personal email for Tier 3 notifications
-      - TURNSTILE_SECRET    → your Turnstile secret key (NOT site key)
-      - RESEND_FROM         → e.g. "Feral Awareness <test@yourdomain.com>"
-   5. Add your Turnstile SITE key to client/src/config.ts
-   6. Add a Cloudflare WAF rate limit rule on /api/* (5 req/min/IP)
-   7. Deploy — Cloudflare auto-discovers this file in functions/
-
-   Until env vars are set, the frontend gracefully falls back
-   to showing results client-side only.
+   This version:
+   - stores submissions in Supabase
+   - supports phone + foundUs
+   - emails the detailed on-screen feedback to the respondent
+   - sends a clean admin email for Tier 3 submissions
    ============================================================ */
+
+import { createClient } from "@supabase/supabase-js";
 
 interface Env {
   RESEND_API_KEY: string;
   ROB_EMAIL: string;
   TURNSTILE_SECRET: string;
   RESEND_FROM: string;
+  SUPABASE_URL: string;
+  SUPABASE_SERVICE_ROLE_KEY: string;
+}
+
+interface QuestionResultPayload {
+  section?: unknown;
+  text?: unknown;
+  selectedLabel?: unknown;
+  feedback?: unknown;
+}
+
+interface ResultsPayload {
+  tierLabel?: unknown;
+  tierColor?: unknown;
+  opener?: unknown;
+  closing?: unknown;
+  questionResults?: unknown;
 }
 
 interface TestSubmission {
   email?: unknown;
   name?: unknown;
+  phone?: unknown;
+  foundUs?: unknown;
   score?: unknown;
   tier?: unknown;
   answers?: unknown;
   openAnswers?: unknown;
+  resultsPayload?: unknown;
   turnstileToken?: unknown;
 }
 
+interface ValidatedQuestionResult {
+  section: string;
+  text: string;
+  selectedLabel: string;
+  feedback: string;
+}
+
+interface ValidatedResultsPayload {
+  tierLabel: string;
+  tierColor: string;
+  opener: string;
+  closing: string;
+  questionResults: ValidatedQuestionResult[];
+}
+
+interface ValidatedSubmission {
+  email: string;
+  name: string;
+  phone: string;
+  foundUs: string;
+  score: number;
+  tier: number;
+  answers: Record<string, string>;
+  openAnswers: Record<string, string>;
+  resultsPayload: ValidatedResultsPayload;
+  turnstileToken: string;
+}
+
 const TIER_SUBJECTS: Record<number, string> = {
-  1: "Your Consciousness Test — honestly",
-  2: "Your Consciousness Test — something real is here",
-  3: "Your Consciousness Test — we will be in touch",
+  1: "Your Consciousness Test: this is not for you",
+  2: "Your Consciousness Test: something real is here",
+  3: "Your Consciousness Test: we will be in touch",
 };
 
-/* Limits — keep strict; the frontend never sends more */
-const MAX_BODY_BYTES = 10_000;
+const MAX_BODY_BYTES = 20_000;
 const MAX_EMAIL_LEN = 254;
 const MAX_NAME_LEN = 100;
+const MAX_PHONE_LEN = 30;
+const MAX_FOUND_US_LEN = 100;
 const MAX_ANSWER_KEYS = 12;
 const MAX_OPEN_KEYS = 2;
 const MAX_OPEN_VALUE_LEN = 2000;
 const MAX_ANSWER_VALUE_LEN = 5;
+const MAX_RESULT_ITEMS = 12;
+const MAX_RESULT_TEXT_LEN = 5000;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^[0-9+()\-\s/.]{6,30}$/;
 
 function jsonError(message: string, status: number): Response {
   return new Response(JSON.stringify({ error: message }), {
@@ -69,38 +113,68 @@ function escapeHtml(input: string): string {
     .replace(/'/g, "&#39;");
 }
 
-interface ValidatedSubmission {
-  email: string;
-  name: string;
-  score: number;
-  tier: number;
-  answers: Record<string, string>;
-  openAnswers: Record<string, string>;
-  turnstileToken: string;
+function validateResultsPayload(raw: ResultsPayload): ValidatedResultsPayload | string {
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+    return "resultsPayload must be an object";
+  }
+
+  const tierLabel = typeof raw.tierLabel === "string" ? raw.tierLabel.trim().slice(0, 200) : "";
+  const tierColor = typeof raw.tierColor === "string" ? raw.tierColor.trim().slice(0, 50) : "";
+  const opener = typeof raw.opener === "string" ? raw.opener.trim().slice(0, MAX_RESULT_TEXT_LEN) : "";
+  const closing = typeof raw.closing === "string" ? raw.closing.trim().slice(0, MAX_RESULT_TEXT_LEN) : "";
+
+  if (!Array.isArray(raw.questionResults)) return "questionResults must be an array";
+  if (raw.questionResults.length > MAX_RESULT_ITEMS) return "too many question results";
+
+  const questionResults: ValidatedQuestionResult[] = [];
+  for (const item of raw.questionResults as QuestionResultPayload[]) {
+    if (typeof item !== "object" || item === null || Array.isArray(item)) {
+      return "invalid question result item";
+    }
+
+    const section = typeof item.section === "string" ? item.section.trim().slice(0, 200) : "";
+    const text = typeof item.text === "string" ? item.text.trim().slice(0, MAX_RESULT_TEXT_LEN) : "";
+    const selectedLabel =
+      typeof item.selectedLabel === "string" ? item.selectedLabel.trim().slice(0, 500) : "";
+    const feedback =
+      typeof item.feedback === "string" ? item.feedback.trim().slice(0, MAX_RESULT_TEXT_LEN) : "";
+
+    questionResults.push({ section, text, selectedLabel, feedback });
+  }
+
+  return { tierLabel, tierColor, opener, closing, questionResults };
 }
 
 function validate(raw: TestSubmission): ValidatedSubmission | string {
-  // Email
   if (typeof raw.email !== "string") return "email must be a string";
   const email = raw.email.trim();
   if (email.length === 0 || email.length > MAX_EMAIL_LEN) return "invalid email length";
   if (!EMAIL_RE.test(email)) return "invalid email format";
 
-  // Name (optional)
   let name = "";
   if (raw.name !== undefined && raw.name !== null) {
     if (typeof raw.name !== "string") return "name must be a string";
     name = raw.name.trim().slice(0, MAX_NAME_LEN);
   }
 
-  // Score
+  let phone = "";
+  if (raw.phone !== undefined && raw.phone !== null && raw.phone !== "") {
+    if (typeof raw.phone !== "string") return "phone must be a string";
+    phone = raw.phone.trim().slice(0, MAX_PHONE_LEN);
+    if (phone.length > 0 && !PHONE_RE.test(phone)) return "invalid phone format";
+  }
+
+  let foundUs = "";
+  if (raw.foundUs !== undefined && raw.foundUs !== null) {
+    if (typeof raw.foundUs !== "string") return "foundUs must be a string";
+    foundUs = raw.foundUs.trim().slice(0, MAX_FOUND_US_LEN);
+  }
+
   if (typeof raw.score !== "number" || !Number.isInteger(raw.score)) return "score must be an integer";
   if (raw.score < 0 || raw.score > 60) return "score out of range";
 
-  // Tier
   if (typeof raw.tier !== "number" || ![1, 2, 3].includes(raw.tier)) return "tier must be 1, 2, or 3";
 
-  // Answers
   if (typeof raw.answers !== "object" || raw.answers === null || Array.isArray(raw.answers)) {
     return "answers must be an object";
   }
@@ -112,7 +186,6 @@ function validate(raw: TestSubmission): ValidatedSubmission | string {
     answers[k.slice(0, 20)] = v;
   }
 
-  // Open answers
   if (typeof raw.openAnswers !== "object" || raw.openAnswers === null || Array.isArray(raw.openAnswers)) {
     return "openAnswers must be an object";
   }
@@ -124,16 +197,21 @@ function validate(raw: TestSubmission): ValidatedSubmission | string {
     openAnswers[k.slice(0, 20)] = v;
   }
 
-  // Turnstile token (required when TURNSTILE_SECRET is set in env)
+  const resultsPayload = validateResultsPayload((raw.resultsPayload ?? {}) as ResultsPayload);
+  if (typeof resultsPayload === "string") return resultsPayload;
+
   if (typeof raw.turnstileToken !== "string") return "missing turnstile token";
 
   return {
     email,
     name,
+    phone,
+    foundUs,
     score: raw.score,
     tier: raw.tier,
     answers,
     openAnswers,
+    resultsPayload,
     turnstileToken: raw.turnstileToken,
   };
 }
@@ -156,14 +234,19 @@ async function verifyTurnstile(token: string, secret: string, ip: string): Promi
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const { RESEND_API_KEY, ROB_EMAIL, TURNSTILE_SECRET, RESEND_FROM } = context.env;
+  const {
+    RESEND_API_KEY,
+    ROB_EMAIL,
+    TURNSTILE_SECRET,
+    RESEND_FROM,
+    SUPABASE_URL,
+    SUPABASE_SERVICE_ROLE_KEY,
+  } = context.env;
 
-  // If Resend isn't configured, return 501 (frontend handles this gracefully)
   if (!RESEND_API_KEY || !RESEND_FROM) {
     return jsonError("Email delivery not configured yet", 501);
   }
 
-  // Body size guard
   const contentLength = Number(context.request.headers.get("content-length") || "0");
   if (contentLength > MAX_BODY_BYTES) return jsonError("payload too large", 413);
 
@@ -177,19 +260,85 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   const validated = validate(raw);
   if (typeof validated === "string") return jsonError(validated, 400);
 
-  // Verify Turnstile (skipped if secret not configured — useful for staging)
   if (TURNSTILE_SECRET) {
     const ip = context.request.headers.get("CF-Connecting-IP") || "";
     const ok = await verifyTurnstile(validated.turnstileToken, TURNSTILE_SECRET, ip);
     if (!ok) return jsonError("turnstile verification failed", 403);
   }
 
-  const { email, name, score, tier, answers, openAnswers } = validated;
+  const {
+    email,
+    name,
+    phone,
+    foundUs,
+    score,
+    tier,
+    answers,
+    openAnswers,
+    resultsPayload,
+  } = validated;
+
   const safeName = escapeHtml(name || "seeker");
   const safeEmail = escapeHtml(email);
+  const safePhone = escapeHtml(phone || "");
+  const safeFoundUs = escapeHtml(foundUs || "");
   const subject = TIER_SUBJECTS[tier] || TIER_SUBJECTS[1];
 
-  // TODO: Build a richer HTML template with tier-specific feedback per question.
+  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+  const { error: dbError } = await supabase.from("test_submissions").insert({
+    name: name || null,
+    email,
+    phone: phone || null,
+    found_us: foundUs || null,
+    score,
+    tier,
+    answers_json: answers,
+    open_answers_json: openAnswers,
+    source: "consciousness-test",
+    status: "new",
+  });
+
+  if (dbError) {
+    console.error("[Supabase] Insert failed:", dbError);
+    return jsonError("Could not save submission", 500);
+  }
+
+  const questionResultsHtml = resultsPayload.questionResults
+    .map(
+      (item) => `
+        <div style="margin: 0 0 20px 0; padding: 16px; border: 1px solid #222; background: #111;">
+          <p style="margin: 0 0 6px 0; color: #999; font-size: 12px; text-transform: uppercase;">
+            ${escapeHtml(item.section)}
+          </p>
+          <p style="margin: 0 0 8px 0; color: #eee;"><strong>${escapeHtml(item.text)}</strong></p>
+          <p style="margin: 0 0 8px 0; color: #00E5FF;">
+            Answer: ${escapeHtml(item.selectedLabel)}
+          </p>
+          <p style="margin: 0; color: #ccc; line-height: 1.6;">
+            ${escapeHtml(item.feedback)}
+          </p>
+        </div>
+      `
+    )
+    .join("");
+
+  const openAnswersHtml = Object.entries(openAnswers)
+    .filter(([, value]) => value.trim().length > 0)
+    .map(
+      ([key, value]) => `
+        <div style="margin: 0 0 16px 0;">
+          <p style="margin: 0 0 6px 0; color: #999; font-size: 12px; text-transform: uppercase;">
+            ${escapeHtml(key)}
+          </p>
+          <p style="margin: 0; color: #ccc; line-height: 1.6;">
+            ${escapeHtml(value)}
+          </p>
+        </div>
+      `
+    )
+    .join("");
+
   const emailHtml = `
     <div style="font-family: Georgia, serif; color: #eee; background: #0A0A0A; padding: 40px;">
       <h1 style="font-family: sans-serif; letter-spacing: 0.1em; color: #00E5FF;">
@@ -198,13 +347,55 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       <h2 style="font-family: sans-serif; letter-spacing: 0.05em;">
         Consciousness Test Results
       </h2>
+
       <p>Hello ${safeName},</p>
-      <p>Your score: <strong>${score}/60</strong> — Tier ${tier}</p>
-      <p style="color: #999;">
-        This is an automated delivery of your test results.
-        A detailed analysis was shown on screen when you completed the test.
-      </p>
-      ${tier === 3 ? '<p style="color: #00E5FF;">Your results suggest the school may be a strong fit. We will be in touch.</p>' : ""}
+      <p>Your score: <strong>${score}/60</strong> — <strong>${escapeHtml(resultsPayload.tierLabel)}</strong></p>
+
+      <hr style="border-color: #222; margin: 30px 0;" />
+
+      ${resultsPayload.opener
+        .split("\n\n")
+        .map(
+          (para) => `
+            <p style="color: #ccc; line-height: 1.7; margin: 0 0 16px 0;">
+              ${escapeHtml(para)}
+            </p>
+          `
+        )
+        .join("")}
+
+      <h3 style="font-family: sans-serif; letter-spacing: 0.05em; color: #00E5FF; margin-top: 32px;">
+        What we see in your answers
+      </h3>
+
+      ${questionResultsHtml}
+
+      ${
+        openAnswersHtml
+          ? `
+          <h3 style="font-family: sans-serif; letter-spacing: 0.05em; color: #00E5FF; margin-top: 32px;">
+            Your open answers
+          </h3>
+          ${openAnswersHtml}
+        `
+          : ""
+      }
+
+      <div style="margin-top: 32px; padding: 20px; border-left: 2px solid ${escapeHtml(
+        resultsPayload.tierColor || "#00E5FF"
+      )}; background: #111;">
+        ${resultsPayload.closing
+          .split("\n\n")
+          .map(
+            (para) => `
+              <p style="color: #ccc; line-height: 1.7; margin: 0 0 16px 0;">
+                ${escapeHtml(para)}
+              </p>
+            `
+          )
+          .join("")}
+      </div>
+
       <hr style="border-color: #222; margin: 30px 0;" />
       <p style="font-size: 12px; color: #666;">
         Feral Awareness · Roberto Pérez Martínez · Berlin<br/>
@@ -213,7 +404,6 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     </div>
   `;
 
-  // Send results to the respondent
   const sendResult = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -234,18 +424,45 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return jsonError("email delivery failed", 502);
   }
 
-  // Notify Rob for Tier 3 submissions
   if (tier === 3 && ROB_EMAIL) {
-    const notificationPayload = {
-      name: safeName,
-      email: safeEmail,
-      score,
-      tier,
-      answers,
-      openAnswers: Object.fromEntries(
-        Object.entries(openAnswers).map(([k, v]) => [k, escapeHtml(v)])
-      ),
-    };
+    const adminHtml = `
+      <div style="font-family: Arial, sans-serif; color: #111; padding: 24px;">
+        <h1 style="margin-top: 0;">New Tier 3 Submission</h1>
+
+        <p><strong>Name:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        <p><strong>Phone:</strong> ${safePhone || "—"}</p>
+        <p><strong>Found us via:</strong> ${safeFoundUs || "—"}</p>
+        <p><strong>Score:</strong> ${score}/60</p>
+        <p><strong>Tier:</strong> ${escapeHtml(resultsPayload.tierLabel)}</p>
+
+        <hr />
+
+        <h2>Answer summary</h2>
+        ${resultsPayload.questionResults
+          .map(
+            (item) => `
+              <div style="margin: 0 0 16px 0; padding: 12px; border: 1px solid #ddd;">
+                <p style="margin: 0 0 6px 0;"><strong>${escapeHtml(item.section)}</strong></p>
+                <p style="margin: 0 0 6px 0;">${escapeHtml(item.text)}</p>
+                <p style="margin: 0; color: #0aa;">Answer: ${escapeHtml(item.selectedLabel)}</p>
+              </div>
+            `
+          )
+          .join("")}
+
+        ${
+          openAnswersHtml
+            ? `
+            <hr />
+            <h2>Open answers</h2>
+            ${openAnswersHtml}
+          `
+            : ""
+        }
+      </div>
+    `;
+
     await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -255,8 +472,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       body: JSON.stringify({
         from: RESEND_FROM,
         to: ROB_EMAIL,
-        subject: `TIER 3 — Score: ${score}/60 — ${safeName} (${safeEmail})`,
-        html: `<pre style="font-family: monospace; white-space: pre-wrap;">${escapeHtml(JSON.stringify(notificationPayload, null, 2))}</pre>`,
+        subject: `TIER 3 — ${safeName} — ${score}/60`,
+        html: adminHtml,
       }),
     });
   }

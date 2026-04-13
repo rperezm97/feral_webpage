@@ -11,9 +11,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-
-/* EDIT: Change logo URL here */
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/Logo_negro_final_5a9a9024.png";
+import { LOGO_URL } from "@/config";
 
 /* EDIT: Add, remove, or reorder navigation links here */
 const NAV_LINKS = [

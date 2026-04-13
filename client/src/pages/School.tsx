@@ -5,13 +5,12 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { LOGO_URL } from "@/config";
 
 const TEST_URL = "/test";
 
 const HERO_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-hero-blue-Hvikx3gGvgR7tDVXnsuGYK.webp";
-const LOGO_URL =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/Logo_negro_final_5a9a9024.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },

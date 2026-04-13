@@ -10,7 +10,7 @@
 import { Link } from "wouter";
 import { Instagram } from "lucide-react";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/Logo_negro_final_5a9a9024.png";
+import { LOGO_URL } from "@/config";
 
 /* EDIT: Change social media links here */
 const SOCIAL_LINKS = [

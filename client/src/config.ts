@@ -27,3 +27,6 @@ export const CDN_BASE =
    (NOT here — it must stay server-side).
    ============================================================ */
 export const TURNSTILE_SITE_KEY = "0x4AAAAAAC8j7PnIM3z63td1"; // e.g. "0x4AAAAAAA..."
+
+export const LOGO_URL = `$/images/Logo_negro_final.png`;
+export const LOGO_TRANSPARENT_URL = `$/images/logo-transparent.png`;

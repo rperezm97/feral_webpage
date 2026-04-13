@@ -20,13 +20,14 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, Flame, Users, Compass, PenTool, Library } from "lucide-react";
+import { LOGO_TRANSPARENT_URL } from "@/config";
 
 /* ============================================================
    IMAGES - Edit URLs here to change visuals
    ============================================================ */
 const IMAGES = {
   hero: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-hero-blue-Hvikx3gGvgR7tDVXnsuGYK.webp",
-  logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/Logo_negro_final_5a9a9024.png",
+  logo: LOGO_TRANSPARENT_URL,
   tantra: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-tantra-origins-7yQJqP5DoD4KDmkQy3T9tH.webp",
   practice: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-practice-body-iQQ63gZgXFZF269mY8Auyv.webp",
   about: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-about-portrait-9CSjB93QuLYvEtZFqgYEjW.webp",
