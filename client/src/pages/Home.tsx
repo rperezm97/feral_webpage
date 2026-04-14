@@ -33,6 +33,12 @@ const IMAGES = {
   practice: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-practice-body-iQQ63gZgXFZF269mY8Auyv.webp",
   about: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-about-portrait-9CSjB93QuLYvEtZFqgYEjW.webp",
   resources: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-resources-bg-BnYg7vxqQiPk2XxGQ7RFZc.webp",
+  // Texture backgrounds — free Unsplash images, dark + nature/cosmic
+  // EDIT: Replace these URLs with your own images if desired
+  oceanNectar: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1600&q=80&auto=format&fit=crop", // bioluminescent ocean
+  nebula: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1600&q=80&auto=format&fit=crop",      // deep space nebula
+  iridescent: "https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=1600&q=80&auto=format&fit=crop",    // iridescent aurora
+  deepwater: "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=1600&q=80&auto=format&fit=crop",  // deep dark water
 };
 
 /* Internal test route */
@@ -274,6 +280,18 @@ export default function Home() {
           </motion.div>
         </div>
 
+          {/* Scarcity nudge */}
+          <motion.p
+            className="text-muted-foreground/50 text-xs tracking-widest uppercase mt-6"
+            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+          >
+            Spring cohort open · 8 spots remaining
+          </motion.p>
+        </div>
+
         {/* Scroll indicator */}
         <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
@@ -289,7 +307,7 @@ export default function Home() {
           Brief intro to Feral Awareness - the "elevator pitch"
           EDIT: Change the intro text below
           ============================================================ */}
-      <section className="py-28 lg:py-40 relative">
+      <section className="py-20 lg:py-28 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div
             initial="hidden"
@@ -400,6 +418,10 @@ export default function Home() {
             >
               Take the Test — Free
             </Link>
+            <p className="text-muted-foreground/60 text-xs mt-4 tracking-wider uppercase"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              Spring cohort · Limited to 12 students
+            </p>
           </motion.div>
         </div>
       </section>
@@ -408,8 +430,12 @@ export default function Home() {
           SECTION 2.5: WHY NONDUAL
           The philosophical framing — what makes Trika different
           ============================================================ */}
-      <section className="py-24 lg:py-36 relative section-warm">
-        <div className="absolute inset-0 grain-heavy" />
+      <section className="py-16 lg:py-24 relative overflow-hidden">
+        {/* Ocean of nectar texture */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${IMAGES.oceanNectar})` }} />
+        <div className="absolute inset-0 bg-black/80" />
+        <div className="absolute inset-0 shimmer-overlay" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial="hidden"
@@ -493,7 +519,7 @@ export default function Home() {
           SECTION 2.75: WHO THIS IS FOR
           Speaking directly to the three audiences
           ============================================================ */}
-      <section className="py-24 lg:py-36 bg-card/30 relative">
+      <section className="py-16 lg:py-20 bg-card/30 relative">
         <div className="absolute inset-0 grain-overlay" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
@@ -578,9 +604,10 @@ export default function Home() {
           Links to all subpages with images and descriptions
           EDIT: Change the SECTIONS array at the top of this file
           ============================================================ */}
-      <section className="py-20 lg:py-32 relative section-raised">
-        <div className="absolute inset-0 grain-overlay" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[150px] pointer-events-none" />
+      <section className="py-14 lg:py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{ backgroundImage: `url(${IMAGES.nebula})` }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"
@@ -646,16 +673,16 @@ export default function Home() {
           SECTION 3.5: TESTIMONIALS - Social proof
           EDIT: Change TESTIMONIALS array at the top of this file
           ============================================================ */}
-      <section className="py-16 lg:py-24 relative">
+      <section className="py-12 lg:py-16 relative">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="text-center mb-12"
+            className="text-center mb-10"
           >
-            <p className="text-primary tracking-widest uppercase text-sm mb-4"
+            <p className="text-primary tracking-widest uppercase text-sm mb-3"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
               From practitioners
             </p>
@@ -714,9 +741,7 @@ export default function Home() {
           Interactive accordion of real questions and themes
           EDIT: Change the CONSULTORIO array at the top of this file
           ============================================================ */}
-      <section className="py-20 lg:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 grain-heavy" />
-        {/* Subtle red glow top-left for warmth */}
+      <section className="py-14 lg:py-20 relative overflow-hidden">
         <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-feral-red/5 blur-3xl pointer-events-none" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
@@ -789,8 +814,12 @@ export default function Home() {
           Prominent CTA to the entrance test
           EDIT: Change the TEST_URL constant at the top of this file
           ============================================================ */}
-      <section className="py-20 lg:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-feral-cyan/10" />
+      <section className="py-16 lg:py-24 relative overflow-hidden">
+        {/* Iridescent deepwater background */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${IMAGES.deepwater})` }} />
+        <div className="absolute inset-0 bg-black/75" />
+        <div className="absolute inset-0 shimmer-overlay" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial="hidden"
@@ -802,27 +831,36 @@ export default function Home() {
             <div className="inline-block mb-6">
               <img src={IMAGES.logo} alt="" className="w-16 h-16 mx-auto opacity-60 mix-blend-screen" />
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl tracking-wide text-foreground mb-6">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl tracking-wide text-foreground mb-4">
               CONSCIOUSNESS TEST
             </h2>
             <p className="display text-xl sm:text-2xl text-feral-cyan mb-4">
               The entrance gate to the school
             </p>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
               This is not a personality quiz. Twelve questions mapping the
               patterns that distinguish practitioners who actually wake up
-              from those who don&apos;t. Based on more than a decade of study
-              and transmission in the Trika tradition. It measures honesty
+              from those who don&apos;t. It measures honesty
               with yourself when that honesty is uncomfortable — which is
               harder than it sounds.
             </p>
-            <Link
-              href={TEST_URL}
-              className="inline-block px-10 py-5 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 text-lg"
-              style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-            >
-              Take the Test
-            </Link>
+            {/* Scarcity bar */}
+            <div className="inline-flex items-center gap-3 px-5 py-2 border border-feral-cyan/30 bg-feral-cyan/5 mb-8">
+              <span className="w-2 h-2 rounded-full bg-feral-cyan animate-pulse shrink-0" />
+              <p className="text-feral-cyan text-sm tracking-widest uppercase"
+                style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                Next cohort: 8 spots remaining
+              </p>
+            </div>
+            <div className="block">
+              <Link
+                href={TEST_URL}
+                className="inline-block px-10 py-5 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 text-lg"
+                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+              >
+                Take the Test — Free
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -831,8 +869,10 @@ export default function Home() {
           SECTION 6: NEWSLETTER — Email capture form
           EDIT: Replace the fetch URL with your actual email API endpoint
           ============================================================ */}
-      <section className="py-20 lg:py-28 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+      <section className="py-14 lg:py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+          style={{ backgroundImage: `url(${IMAGES.iridescent})` }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-black/60 to-background" />
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center relative z-10">
           <motion.div
             initial="hidden"
