@@ -19,104 +19,21 @@
 
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Flame, Users, Compass, PenTool, Library, Mail } from "lucide-react";
-import { LOGO_TRANSPARENT_URL } from "@/config";
+import { ArrowRight, Mail } from "lucide-react";
 import { useState } from "react";
+import { HOME, IMAGES as CONTENT_IMAGES, LOGOS } from "@/content";
 
 /* ============================================================
-   IMAGES - Edit URLs here to change visuals
+   EDIT ALL CONTENT IN: src/content.ts
+   Images, text, CTAs, sections, consultorio topics — all there.
    ============================================================ */
-const IMAGES = {
-  hero: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-hero-blue-Hvikx3gGvgR7tDVXnsuGYK.webp",
-  logo: LOGO_TRANSPARENT_URL,
-  tantra: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-tantra-origins-7yQJqP5DoD4KDmkQy3T9tH.webp",
-  practice: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-practice-body-iQQ63gZgXFZF269mY8Auyv.webp",
-  about: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-about-portrait-9CSjB93QuLYvEtZFqgYEjW.webp",
-  resources: "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-resources-bg-BnYg7vxqQiPk2XxGQ7RFZc.webp",
-  // Texture backgrounds — free Unsplash images, dark + nature/cosmic
-  // EDIT: Replace these URLs with your own images if desired
-  oceanNectar: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1600&q=80&auto=format&fit=crop", // bioluminescent ocean
-  nebula: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1600&q=80&auto=format&fit=crop",      // deep space nebula
-  iridescent: "https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=1600&q=80&auto=format&fit=crop",    // iridescent aurora
-  deepwater: "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=1600&q=80&auto=format&fit=crop",  // deep dark water
-};
 
-/* Internal test route */
+/* Merge content.ts images with logo for backward compat */
+const IMAGES = { ...CONTENT_IMAGES, logo: LOGOS.transparent };
+
 const TEST_URL = "/test";
-
-/* ============================================================
-   SECTION PREVIEW DATA - Edit to change the cards on home page
-   ============================================================ */
-const SECTIONS = [
-  {
-    icon: Flame,
-    title: "Nondual Tantra",
-    description: "The Bhairava Āgamas. Six thousand years of non-dual tantric tradition. Not neo-tantra. Not Patañjali. A radically different map of consciousness.",
-    href: "/tantra",
-    image: "tantra" as const,
-  },
-  {
-    icon: Compass,
-    title: "Practice",
-    description: "The three upāyas as a living system. The body as laboratory. Bhakti as the heat that melts the contraction. Active meditation in daily life.",
-    href: "/practice",
-    image: "practice" as const,
-  },
-  {
-    icon: Users,
-    title: "About",
-    description: "Rob Pérez Martínez. Berlin. A story that includes a psychotic break, eight years of physical theater, and a teacher who refused to dilute the transmission.",
-    href: "/about",
-    image: "about" as const,
-  },
-  {
-    icon: BookOpen,
-    title: "School",
-    description: "Ongoing formation, not weekend retreats. Online school and Berlin motion lab. Entry is via the Consciousness Test.",
-    href: "/school",
-    image: "tantra" as const,
-  },
-  {
-    icon: PenTool,
-    title: "Blog",
-    description: "Essays on consciousness, decolonization, and the politics of recognition. Slow. No listicles.",
-    href: "/blog",
-    image: "resources" as const,
-  },
-  {
-    icon: Library,
-    title: "Resources",
-    description: "Sanskrit glossary. Scripture references. What to read first and why.",
-    href: "/resources",
-    image: "resources" as const,
-  },
-];
-
-/* ============================================================
-   CONSULTORIO DATA - Real themes from the practice
-   ============================================================ */
-const CONSULTORIO = [
-  {
-    title: "Spiritual bypass and the tyranny of \"high vibration\"",
-    preview: "When \"raising your frequency\" becomes another way to avoid grief, rage, and the political present...",
-  },
-  {
-    title: "Colonial religion and body shame",
-    preview: "How centuries of Christian puritanism and Cartesian dualism live inside your nervous system, long after you stopped believing...",
-  },
-  {
-    title: "Desire as expansion, not lack",
-    preview: "You are chasing objects with the implicit belief that you need them. In Trika, desire is spanda — consciousness pulsing...",
-  },
-  {
-    title: "Frozen emotion and the fear of death",
-    preview: "All moralistic stance without deep emotional processing is a temporary patch. Real freedom starts when fear is recognized as śakti...",
-  },
-  {
-    title: "Self-improvement as social control",
-    preview: "Self-improvement is not designed to make you free. It is designed to make you a more efficient participant in the systems that oppress you...",
-  },
-];
+const SECTIONS = HOME.sections;
+const CONSULTORIO = HOME.consultorio;
 
 /* Fade-in animation variant */
 const fadeUp = {
@@ -263,22 +180,28 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <Link
-              href={TEST_URL}
-              className="w-full sm:w-auto px-10 py-5 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 text-center"
-              style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.25rem" }}
+            {/* Primary CTA — pulsing glow to draw the eye */}
+            <motion.div
+              animate={{ boxShadow: ["0 0 20px rgba(0,85,255,0.4)", "0 0 50px rgba(0,85,255,0.75)", "0 0 20px rgba(0,85,255,0.4)"] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              Take the Consciousness Test →
-            </Link>
+              <Link
+                href={HOME.hero.cta_primary.href}
+                className="block w-full sm:w-auto px-12 py-5 bg-primary text-primary-foreground tracking-widest uppercase transition-all duration-300 hover:brightness-125 text-center"
+                style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.35rem", letterSpacing: "0.12em" }}
+              >
+                {HOME.hero.cta_primary.label} →
+              </Link>
+            </motion.div>
+            {/* Secondary CTA */}
             <Link
-              href="/tantra"
-              className="w-full sm:w-auto px-8 py-4 border border-white/30 text-white/70 tracking-widest uppercase transition-all duration-300 hover:border-white/60 hover:text-white text-center"
+              href={HOME.hero.cta_secondary.href}
+              className="w-full sm:w-auto px-8 py-5 border border-white/30 text-white/80 tracking-widest uppercase transition-all duration-300 hover:border-primary/60 hover:text-primary text-center"
               style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1rem" }}
             >
-              Enter the Tradition
+              {HOME.hero.cta_secondary.label}
             </Link>
           </motion.div>
-        </div>
 
           {/* Scarcity nudge */}
           <motion.p
@@ -288,7 +211,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.2 }}
           >
-            Spring cohort open · 8 spots remaining
+            School now open at founding price · Price increases when the cohort fills
           </motion.p>
         </div>
 
@@ -420,7 +343,7 @@ export default function Home() {
             </Link>
             <p className="text-muted-foreground/60 text-xs mt-4 tracking-wider uppercase"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-              Spring cohort · Limited to 12 students
+              Founding price · Will not last
             </p>
           </motion.div>
         </div>
@@ -621,7 +544,7 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {SECTIONS.map((section, i) => (
               <motion.div
                 key={section.href}
@@ -630,33 +553,35 @@ export default function Home() {
                 viewport={{ once: true, margin: "-50px" }}
                 variants={{
                   hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } },
                 }}
               >
-                <Link href={section.href} className="group block">
-                  <div className="relative overflow-hidden bg-card border border-border/30 transition-all duration-500 hover:border-primary/50 h-full">
-                    {/* Card image */}
-                    <div className="relative h-52 overflow-hidden">
-                      <img
-                        src={IMAGES[section.image]}
-                        alt={section.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-50 group-hover:opacity-70"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
-                      <div className="absolute top-4 left-4">
-                        <section.icon className="text-primary" size={24} />
-                      </div>
-                    </div>
+                <Link href={section.href} className="group block h-full">
+                  {/* Full-image card: image fills the card, text overlays bottom */}
+                  <div className="relative overflow-hidden h-80 border border-border/20 transition-all duration-500 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(0,85,255,0.2)]">
+                    {/* Background image — zooms on hover */}
+                    <img
+                      src={IMAGES[section.image]}
+                      alt={section.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-108 opacity-40 group-hover:opacity-60"
+                      style={{ transform: "scale(1)", transition: "transform 700ms ease, opacity 500ms ease" }}
+                    />
+                    {/* Gradient overlay — stronger at bottom for legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/10" />
+                    {/* Blue accent line that appears on hover */}
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-                    {/* Card content */}
-                    <div className="p-6">
-                      <h3 className="text-2xl tracking-wider text-foreground mb-2 group-hover:text-primary transition-colors">
+                    {/* Text overlay */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-6">
+                      <h3 className="text-2xl lg:text-3xl tracking-wider text-white mb-2 group-hover:text-primary transition-colors duration-300"
+                        style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
                         {section.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                      {/* Description slides up on hover */}
+                      <p className="text-white/60 text-sm leading-relaxed mb-3 max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-out">
                         {section.description}
                       </p>
-                      <span className="inline-flex items-center gap-2 text-primary text-sm tracking-wider uppercase"
+                      <span className="inline-flex items-center gap-2 text-primary text-sm tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
                         Explore <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                       </span>
@@ -849,7 +774,7 @@ export default function Home() {
               <span className="w-2 h-2 rounded-full bg-feral-cyan animate-pulse shrink-0" />
               <p className="text-feral-cyan text-sm tracking-widest uppercase"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                Next cohort: 8 spots remaining
+                School open · Founding price — not permanent
               </p>
             </div>
             <div className="block">

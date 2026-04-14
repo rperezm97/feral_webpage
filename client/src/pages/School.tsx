@@ -1,16 +1,20 @@
 /* ============================================================
    SCHOOL PAGE — The offer
+   ============================================================
+   EDIT GUIDE:
+   - All text, CTAs, principles, offerings: Edit SCHOOL in src/content.ts
+   - Hero image: Edit IMAGES.school in src/content.ts
    ============================================================ */
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle } from "lucide-react";
-import { LOGO_URL } from "@/config";
+import { ArrowRight, CheckCircle, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { SCHOOL, IMAGES, LOGOS } from "@/content";
 
-const TEST_URL = "/test";
-
-const HERO_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-hero-blue-Hvikx3gGvgR7tDVXnsuGYK.webp";
+const TEST_URL = SCHOOL.test_cta.cta.href;
+const HERO_IMG = IMAGES.school;
+const LOGO_URL = LOGOS.main;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -92,8 +96,52 @@ const PRINCIPLES = [
 ];
 
 export default function School() {
+  const [showSticky, setShowSticky] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show sticky CTA after scrolling 400px, unless dismissed
+      setShowSticky(window.scrollY > 400 && !dismissed);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [dismissed]);
+
   return (
     <div className="min-h-screen">
+
+      {/* ── Sticky floating CTA bar ── */}
+      <AnimatePresence>
+        {showSticky && (
+          <motion.div
+            initial={{ y: 80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 80, opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-6 py-4 bg-background/95 backdrop-blur-md border border-primary/50 shadow-[0_0_30px_rgba(0,85,255,0.25)]"
+            style={{ maxWidth: "calc(100vw - 2rem)" }}
+          >
+            <span className="text-muted-foreground text-sm tracking-wide hidden sm:block">
+              Ready to start?
+            </span>
+            <Link
+              href={TEST_URL}
+              className="px-7 py-2.5 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125 whitespace-nowrap"
+              style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1rem" }}
+            >
+              Take the Test →
+            </Link>
+            <button
+              onClick={() => { setDismissed(true); setShowSticky(false); }}
+              className="text-muted-foreground hover:text-foreground transition-colors ml-1"
+              aria-label="Dismiss"
+            >
+              <X size={16} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${HERO_IMG})` }} />

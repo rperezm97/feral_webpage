@@ -5,72 +5,30 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-
-const HERO_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-practice-body-iQQ63gZgXFZF269mY8Auyv.webp";
+import { PRACTICE, IMAGES } from "@/content";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-/* The three upāyas as the living pedagogical system */
-const UPAYAS = [
-  {
-    name: "Āṇavopāya",
-    subtitle: "The path of the individual",
-    description:
-      "The most accessible of the three. Practices that work with the body, the breath, mantra, sound, image — concrete supports for attention when the sense of separation is still thick and the mind pulls hard into discursive thinking. This is where most practitioners begin, and where most practice always partially lives, because we have bodies and conditioning and nervous systems that need grounded techniques.",
-    examples: [
-      "Prāṇāyāma — breath practices that shift the relationship between inhale, exhale, and the pauses",
-      "Mantra — recitation as a doorway into the felt resonance of sound-consciousness",
-      "Bindu concentration — single-pointed awareness on focal points in the body",
-      "Body-centered dhāraṇās from the Vijñāna Bhairava Tantra",
-    ],
-  },
-  {
-    name: "Śāktopāya",
-    subtitle: "The path of energy and meaning",
-    description:
-      "The middle path. Practices that work directly with śakti — the pulsation of consciousness expressing itself as thought, emotion, intention, perception, desire. Less about gross supports and more about watching the pure movement of energy through the field of experience. The contemplation of the 36 tattvas, the work with vikalpas (mental constructs), active meditation in the middle of daily life. Requires that the initial grip of identification with body-mind has already loosened a little.",
-    examples: [
-      "Contemplation of the 36 tattvas — the structure of how consciousness contracts into experience",
-      "Working with vikalpas — watching mental constructs arise and dissolve without grasping",
-      "Active meditation in daily life — practice that does not stop when you leave the cushion",
-      "Śakti practices — using emotion and energetic intensity as pathways",
-    ],
-  },
-  {
-    name: "Śāmbhavopāya",
-    subtitle: "The direct path of recognition",
-    description:
-      "The most direct. Not a technique so much as a direct recognition of the non-dual ground, often triggered by the presence and transmission of a teacher who is already there, or by the sudden penetration of one of the central insights of the tradition — that this, right here, right now, is already it. There is no technique because there is nowhere to go. What remains is recognition stabilizing itself across more and more of experience.",
-    examples: [
-      "Direct recognition (pratyabhijñā) through insight into the nature of awareness",
-      "Transmission through the presence of a realized teacher",
-      "The collapse of effort into what the texts call sahaja — the spontaneous natural state",
-      "Stabilization of the recognized ground across all activity",
-    ],
-  },
-];
-
 export default function Practice() {
   return (
     <div className="min-h-screen">
-      {/* Hero */}
+      {/* Hero — edit in content.ts → PRACTICE.hero */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${HERO_IMG})` }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.practice})` }} />
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 grain-overlay" />
         <div className="relative z-10 text-center px-4 pt-20">
           <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-            The Laboratory
+            {PRACTICE.hero.eyebrow}
           </p>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl tracking-wider text-white text-glow">
-            PRACTICE
+            {PRACTICE.hero.heading}
           </h1>
           <p className="display text-xl sm:text-2xl text-feral-cyan mt-4">
-            The body first. Devotion as the heat that melts the contraction.
+            {PRACTICE.hero.subheading}
           </p>
         </div>
       </section>
@@ -139,8 +97,9 @@ export default function Practice() {
               THE THREE UPĀYAS
             </h2>
 
+            {/* Upāya cards — edit in content.ts → PRACTICE.upayas.items */}
             <div className="space-y-8">
-              {UPAYAS.map((upaya, i) => (
+              {PRACTICE.upayas.items.map((upaya, i) => (
                 <motion.div
                   key={upaya.name}
                   initial="hidden"
@@ -317,14 +276,14 @@ export default function Practice() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA — edit in content.ts → PRACTICE.cta */}
       <section className="py-16 text-center">
         <Link
-          href="/school"
+          href={PRACTICE.cta.href}
           className="inline-flex items-center gap-3 text-primary tracking-widest uppercase text-lg hover:brightness-125 transition-all"
           style={{ fontFamily: "'Bebas Neue', sans-serif" }}
         >
-          See how this is taught <ArrowRight size={18} />
+          {PRACTICE.cta.label} <ArrowRight size={18} />
         </Link>
       </section>
     </div>

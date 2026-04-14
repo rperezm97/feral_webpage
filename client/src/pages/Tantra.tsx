@@ -5,9 +5,7 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-
-const HERO_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-tantra-origins-7yQJqP5DoD4KDmkQy3T9tH.webp";
+import { TANTRA, IMAGES } from "@/content";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -17,20 +15,20 @@ const fadeUp = {
 export default function Tantra() {
   return (
     <div className="min-h-screen">
-      {/* Hero */}
+      {/* Hero — edit in content.ts → TANTRA.hero */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${HERO_IMG})` }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.tantra})` }} />
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 grain-overlay" />
         <div className="relative z-10 text-center px-4 pt-20">
           <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-            The Tradition
+            {TANTRA.hero.eyebrow}
           </p>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl tracking-wider text-white text-glow">
-            NONDUAL TANTRA
+            {TANTRA.hero.heading}
           </h1>
           <p className="display text-xl sm:text-2xl text-feral-cyan mt-4">
-            Kashmir Shaivism · The Trika
+            {TANTRA.hero.subheading}
           </p>
         </div>
       </section>
@@ -196,49 +194,9 @@ export default function Tantra() {
               </p>
             </div>
 
+            {/* Scripture cards — edit titles/authors/descs in content.ts → TANTRA.scriptures.texts */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                {
-                  title: "Śiva Sūtras",
-                  author: "Vasugupta · ~9th c.",
-                  desc: "The foundational aphorisms, received by Vasugupta after a vision instructing him to find them inscribed on a rock on Mahādeva mountain. Three sections mapping the three upāyas.",
-                },
-                {
-                  title: "Spanda Kārikā",
-                  author: "Vasugupta · ~9th c.",
-                  desc: "The doctrine of vibration. Consciousness as dynamic pulsation — the heartbeat of the absolute, felt in every moment of experience.",
-                },
-                {
-                  title: "Vijñāna Bhairava Tantra",
-                  author: "Anonymous · early medieval",
-                  desc: "One hundred and twelve techniques (dhāraṇās) for recognition through direct sensory, emotional, and somatic experience. The most practical of the core texts.",
-                },
-                {
-                  title: "Pratyabhijñāhṛdayam",
-                  author: "Kṣemarāja · ~11th c.",
-                  desc: "The Heart of Recognition. Twenty short sūtras with commentary — the most accessible entry point into the philosophy. If you read only one text to begin with, this is it.",
-                },
-                {
-                  title: "Tantrāloka",
-                  author: "Abhinavagupta · ~10th–11th c.",
-                  desc: "The encyclopedic masterwork. Thirty-seven chapters synthesizing the entire non-dual tantric tradition. Abhinavagupta is the central philosophical figure of Kashmir Shaivism.",
-                },
-                {
-                  title: "Tantrasāra",
-                  author: "Abhinavagupta · ~10th–11th c.",
-                  desc: "The essence of the Tantrāloka — a shorter, distilled version of the same teachings. Dense, but readable in a few months of careful study.",
-                },
-                {
-                  title: "Īśvarapratyabhijñākārikā",
-                  author: "Utpaladeva · ~10th c.",
-                  desc: "The foundational text of the Pratyabhijñā (Recognition) school. A rigorous philosophical argument that liberation is not something to attain but something to recognize.",
-                },
-                {
-                  title: "Śivastotrāvalī",
-                  author: "Utpaladeva · ~10th c.",
-                  desc: "Ecstatic devotional hymns from the same philosopher who wrote the Īśvarapratyabhijñākārikā. Proof that rigorous philosophy and bhakti are not in conflict.",
-                },
-              ].map((text, i) => (
+              {TANTRA.scriptures.texts.map((text, i) => (
                 <div key={i} className="border border-border/30 bg-card/50 p-5 hover:border-primary/40 transition-colors">
                   <h4 className="text-lg tracking-wider text-foreground mb-1 serif-bold">{text.title}</h4>
                   <p className="text-primary text-xs tracking-wider uppercase mb-2" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
@@ -402,14 +360,14 @@ export default function Tantra() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA — edit label/href in content.ts → TANTRA.cta */}
       <section className="py-16 text-center">
         <Link
-          href="/practice"
+          href={TANTRA.cta.href}
           className="inline-flex items-center gap-3 text-primary tracking-widest uppercase text-lg hover:brightness-125 transition-all"
           style={{ fontFamily: "'Bebas Neue', sans-serif" }}
         >
-          Continue to the Practice <ArrowRight size={18} />
+          {TANTRA.cta.label} <ArrowRight size={18} />
         </Link>
       </section>
     </div>

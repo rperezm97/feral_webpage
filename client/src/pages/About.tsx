@@ -5,9 +5,7 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-
-const HERO_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-about-portrait-93GxX36zxF8oC8nRpwa9XV.webp";
+import { ABOUT, IMAGES } from "@/content";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -17,20 +15,20 @@ const fadeUp = {
 export default function About() {
   return (
     <div className="min-h-screen">
-      {/* Hero */}
+      {/* Hero — edit in content.ts → ABOUT.hero */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${HERO_IMG})` }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.about})` }} />
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 grain-overlay" />
         <div className="relative z-10 text-center px-4 pt-20">
           <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-            Who is doing this work
+            {ABOUT.hero.eyebrow}
           </p>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl tracking-wider text-white text-glow">
-            ABOUT
+            {ABOUT.hero.heading}
           </h1>
           <p className="display text-xl sm:text-2xl text-feral-cyan mt-4">
-            Roberto Pérez Martínez · Berlin
+            {ABOUT.hero.subheading}
           </p>
         </div>
       </section>
@@ -259,14 +257,14 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA — edit in content.ts → ABOUT.cta */}
       <section className="py-16 text-center">
         <Link
-          href="/test"
+          href={ABOUT.cta.href}
           className="inline-flex items-center gap-3 text-primary tracking-widest uppercase text-lg hover:brightness-125 transition-all"
           style={{ fontFamily: "'Bebas Neue', sans-serif" }}
         >
-          Take the Consciousness Test <ArrowRight size={18} />
+          {ABOUT.cta.label} <ArrowRight size={18} />
         </Link>
       </section>
     </div>

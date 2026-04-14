@@ -2,33 +2,16 @@
    NAVBAR - Fixed navigation with logo
    ============================================================
    EDIT GUIDE:
-   - To change nav links: Edit the NAV_LINKS array below
-   - To change logo: Replace the LOGO_URL constant
-   - To change CTA button: Edit the "Test de Acceso" link at bottom
+   - To change nav links: Edit NAV_LINKS in src/content.ts
+   - To change the CTA button: Edit NAV_CTA in src/content.ts
+   - To change logo: Edit LOGOS in src/content.ts
    ============================================================ */
 
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { LOGO_URL } from "@/config";
-
-/* EDIT: Add, remove, or reorder navigation links here */
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/tantra", label: "Tantra" },
-  { href: "/practice", label: "Practice" },
-  { href: "/about", label: "About" },
-  { href: "/school", label: "School" },
-  { href: "/blog", label: "Blog" },
-  { href: "/resources", label: "Resources" },
-];
-
-/* EDIT: Change the CTA (call to action) button in the nav */
-const CTA_LINK = {
-  href: "/test",
-  label: "Take the Test",
-};
+import { NAV_LINKS, NAV_CTA, LOGOS } from "@/content";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +24,7 @@ export default function NavBar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
             <img
-              src={LOGO_URL}
+              src={LOGOS.main}
               alt="Feral Awareness Logo"
               className="h-10 lg:h-14 w-auto mix-blend-screen"
             />
@@ -67,13 +50,20 @@ export default function NavBar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href={CTA_LINK.href}
-              className="ml-4 px-5 py-2 bg-primary text-primary-foreground text-sm tracking-wider uppercase glow-blue transition-all duration-300 hover:brightness-125"
-              style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+            {/* CTA button with subtle pulse to draw the eye */}
+            <motion.div
+              className="ml-4"
+              animate={{ boxShadow: ["0 0 12px rgba(0,85,255,0.3)", "0 0 28px rgba(0,85,255,0.6)", "0 0 12px rgba(0,85,255,0.3)"] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              {CTA_LINK.label}
-            </Link>
+              <Link
+                href={NAV_CTA.href}
+                className="block px-5 py-2 bg-primary text-primary-foreground text-sm tracking-wider uppercase transition-all duration-300 hover:brightness-125"
+                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+              >
+                {NAV_CTA.label}
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile menu button */}
@@ -113,12 +103,12 @@ export default function NavBar() {
                 </Link>
               ))}
               <Link
-                href={CTA_LINK.href}
+                href={NAV_CTA.href}
                 onClick={() => setIsOpen(false)}
                 className="block mt-4 px-5 py-3 bg-primary text-primary-foreground text-center text-lg tracking-wider uppercase glow-blue"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
-                {CTA_LINK.label}
+                {NAV_CTA.label}
               </Link>
             </div>
           </motion.div>

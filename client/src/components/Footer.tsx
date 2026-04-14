@@ -2,29 +2,13 @@
    FOOTER - Site-wide footer
    ============================================================
    EDIT GUIDE:
-   - To change social links: Edit the SOCIAL_LINKS array
-   - To change footer text: Edit the JSX below
-   - To add newsletter form: Replace the placeholder div
+   - To change social links, nav, tagline, CTA: Edit FOOTER in src/content.ts
+   - To change logo: Edit LOGOS in src/content.ts
    ============================================================ */
 
 import { Link } from "wouter";
 import { Instagram } from "lucide-react";
-
-import { LOGO_URL } from "@/config";
-
-/* EDIT: Change social media links here */
-const SOCIAL_LINKS = [
-  { href: "https://www.instagram.com/feral.awareness/", label: "Instagram", icon: Instagram },
-];
-
-const FOOTER_NAV = [
-  { href: "/tantra", label: "Nondual Tantra" },
-  { href: "/practice", label: "Practice" },
-  { href: "/about", label: "About" },
-  { href: "/school", label: "School" },
-  { href: "/blog", label: "Blog" },
-  { href: "/resources", label: "Resources" },
-];
+import { LOGOS, FOOTER, SITE } from "@/content";
 
 export default function Footer() {
   return (
@@ -37,29 +21,29 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              <img src={LOGO_URL} alt="Feral Awareness" className="h-12 w-auto mix-blend-screen" />
+              <img src={LOGOS.main} alt="Feral Awareness" className="h-12 w-auto mix-blend-screen" />
               <span className="text-xl tracking-widest text-foreground uppercase"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                Feral Awareness
+                {SITE.name}
               </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              {/* EDIT: Change tagline here */}
-              Radical spirituality & embodiment for liberation & enjoyment.
-              Decolonial queerfem lens, lineage-based.
+              {FOOTER.tagline}
             </p>
             <div className="flex gap-4 pt-2">
-              {SOCIAL_LINKS.map((social) => (
-                <a
-                  key={social.href}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon size={20} />
-                </a>
+              {FOOTER.social.map((social) => (
+                social.label === "Instagram" ? (
+                  <a
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                    aria-label={social.label}
+                  >
+                    <Instagram size={20} />
+                  </a>
+                ) : null
               ))}
             </div>
           </div>
@@ -71,7 +55,7 @@ export default function Footer() {
               Explore
             </h4>
             <ul className="space-y-2">
-              {FOOTER_NAV.map((link) => (
+              {FOOTER.nav.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -84,22 +68,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Consciousness Test CTA */}
+          {/* School CTA */}
           <div>
             <h4 className="text-sm tracking-widest uppercase text-foreground mb-4"
               style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.1rem" }}>
-              Enter the School
+              {FOOTER.school_cta.heading}
             </h4>
             <p className="text-muted-foreground text-sm mb-4">
-              Take the Consciousness Test — the entrance gate to Feral Awareness.
-              Not a personality quiz. A mirror.
+              {FOOTER.school_cta.body}
             </p>
             <Link
-              href="/test"
+              href={FOOTER.school_cta.cta.href}
               className="inline-block px-6 py-3 bg-primary text-primary-foreground text-sm tracking-wider uppercase glow-blue transition-all duration-300 hover:brightness-125"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              Take the Test
+              {FOOTER.school_cta.cta.label}
             </Link>
           </div>
         </div>
@@ -107,15 +90,16 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="divider-feral mt-12 mb-6" />
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Feral Awareness. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link href="/impressum" className="hover:text-primary transition-colors">
-              Impressum
-            </Link>
-            <span className="opacity-30">·</span>
-            <Link href="/privacy" className="hover:text-primary transition-colors">
-              Privacy
-            </Link>
+            {FOOTER.legal.map((link, i) => (
+              <span key={link.href} className="flex items-center gap-4">
+                {i > 0 && <span className="opacity-30">·</span>}
+                <Link href={link.href} className="hover:text-primary transition-colors">
+                  {link.label}
+                </Link>
+              </span>
+            ))}
           </div>
         </div>
       </div>

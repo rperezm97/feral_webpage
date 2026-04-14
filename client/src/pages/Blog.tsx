@@ -12,49 +12,38 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, Clock } from "lucide-react";
+import { BLOG, IMAGES, SITE } from "@/content";
 
-const RESOURCES_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663409144732/6xT7c74sLRiq4TRr5ix35o/feral-resources-bg-BnYg7vxqQiPk2XxGQ7RFZc.webp";
+/* ============================================================
+   BLOG POSTS — Edit in content.ts → BLOG.posts
+   To add a new post:
+     1. Add an entry to BLOG.posts in content.ts
+     2. Create a new component in pages/BlogPost*.tsx
+     3. Register the route in App.tsx
+   ============================================================ */
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-/* ============================================================
-   BLOG POSTS — Each post is a real route under /blog/:slug
-   To add a new post:
-     1. Create a new component in pages/BlogPost*.tsx
-     2. Register the route in App.tsx
-     3. Add an entry to this array
-   ============================================================ */
-const POSTS = [
-  {
-    title: "The Yoga You Were Sold",
-    subtitle: "And why nondual tantra is something else entirely",
-    date: "2026-04-08",
-    readTime: "8 min",
-    tags: ["tantra", "decolonial", "tradition"],
-    slug: "/blog/the-yoga-you-were-sold",
-  },
-];
-
 export default function Blog() {
   return (
     <div className="min-h-screen">
-      {/* Hero */}
+      {/* Hero — edit in content.ts → BLOG.hero */}
       <section className="relative h-[50vh] min-h-[350px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${RESOURCES_IMG})` }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.resources})` }} />
         <div className="absolute inset-0 bg-black/70" />
         <div className="absolute inset-0 grain-overlay" />
         <div className="relative z-10 text-center px-4 pt-20">
           <p className="text-primary tracking-widest uppercase text-sm mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-            Raw Transmissions
+            {BLOG.hero.eyebrow}
           </p>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl tracking-wider text-white text-glow">
-            BLOG
+            {BLOG.hero.heading}
           </h1>
           <p className="display text-xl sm:text-2xl text-feral-cyan mt-4">
-            Essays on consciousness, decolonization & embodied liberation
+            {BLOG.hero.subheading}
           </p>
         </div>
       </section>
@@ -62,8 +51,9 @@ export default function Blog() {
       {/* Posts */}
       <section className="py-20 lg:py-28">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          {/* Posts list — add new posts in content.ts → BLOG.posts */}
           <div className="space-y-6">
-            {POSTS.map((post, i) => (
+            {BLOG.posts.map((post, i) => (
               <motion.article
                 key={post.slug}
                 initial="hidden"
@@ -116,21 +106,20 @@ export default function Blog() {
             ))}
           </div>
 
-          {/* Honest note about more coming */}
+          {/* Footer note — edit in content.ts → BLOG.footer_note / BLOG.instagram_cta */}
           <div className="mt-16 text-center">
             <div className="divider-feral mb-8" />
             <p className="text-muted-foreground text-sm mb-4">
-              More essays are coming. Follow @feral.awareness to catch them
-              when they land.
+              {BLOG.footer_note}
             </p>
             <a
-              href="https://instagram.com/feral.awareness"
+              href={SITE.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary tracking-widest uppercase text-sm hover:brightness-125 transition-all"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              Follow @feral.awareness →
+              {BLOG.instagram_cta} →
             </a>
           </div>
         </div>
