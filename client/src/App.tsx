@@ -25,6 +25,7 @@ import Impressum from "./pages/Impressum";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ConsciousnessTest from "./pages/ConsciousnessTest";
 import BlogPostYogaYouWereSold from "./pages/BlogPostYogaYouWereSold";
+import Freebie from "./pages/Freebie";
 
 /* Scroll to top when the route changes (SPA fix) */
 function ScrollToTop() {
@@ -50,6 +51,7 @@ function Router() {
       <Route path={"/privacy"} component={PrivacyPolicy} />
       <Route path={"/test"} component={ConsciousnessTest} />
       <Route path={"/blog/the-yoga-you-were-sold"} component={BlogPostYogaYouWereSold} />
+      <Route path={"/freebie/:slug"} component={Freebie} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

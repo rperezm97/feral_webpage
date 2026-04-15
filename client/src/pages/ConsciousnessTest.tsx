@@ -22,6 +22,7 @@ interface Question {
   section: string;
   text: string;
   subtext?: string;
+  image?: string;
   options: Option[];
   feedback: Record<string, string>;
 }
@@ -695,183 +696,113 @@ export default function ConsciousnessTest() {
 
   // ── RENDER RESULTS ──────────────────────────────────────────
   const renderResults = () => {
-    const tierColor = tierData.color; // hex color — edit in content.ts → TEST_PAGE.score_bands[n].color
-
     return (
-      <motion.div key="results" variants={fadeUp} initial="hidden" animate="visible" exit="exit" className="space-y-12">
-        {/* Email status — honest about what actually happened */}
-        {emailSent ? (
-          <div
-            className="px-4 py-3 text-sm"
-            style={{
-              backgroundColor: "rgba(0,229,255,0.05)",
-              border: "1px solid rgba(0,229,255,0.2)",
-              color: "rgba(238,238,238,0.75)",
-            }}
+      <motion.div key="results" variants={fadeUp} initial="hidden" animate="visible" exit="exit" className="space-y-10">
+        {/* Header */}
+        <div>
+          <p
+            className="text-xs tracking-widest uppercase mb-4"
+            style={{ fontFamily: "'Bebas Neue', sans-serif", color: "var(--feral-cyan, #00E5FF)" }}
           >
-            ✓ A copy of your results has been sent to <strong>{email}</strong>.
-          </div>
-        ) : (
-          <div
-            className="px-4 py-3 text-sm"
-            style={{
-              backgroundColor: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(238,238,238,0.1)",
-              color: "rgba(238,238,238,0.55)",
-            }}
+            Submitted
+          </p>
+          <h2
+            className="text-5xl sm:text-6xl tracking-wider text-white mb-2 leading-none"
+            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
-            Email follow-up is currently inactive — your full results are shown
-            below. To stay in touch, follow{" "}
+            CHECK YOUR
+          </h2>
+          <h2
+            className="text-5xl sm:text-6xl tracking-wider leading-none mb-6"
+            style={{ fontFamily: "'Bebas Neue', sans-serif", color: "var(--feral-cyan, #00E5FF)" }}
+          >
+            EMAIL
+          </h2>
+          <div className="h-px w-24 mb-8" style={{ backgroundColor: "var(--feral-cyan, #00E5FF)" }} />
+
+          {emailSent ? (
+            <div className="space-y-4">
+              <p className="text-base leading-relaxed" style={{ color: "rgba(238,238,238,0.8)" }}>
+                Your full results — including personalized feedback on each answer — have been
+                sent to <strong style={{ color: "#fff" }}>{email}</strong>.
+              </p>
+              <p className="text-sm" style={{ color: "rgba(238,238,238,0.5)" }}>
+                If nothing arrives in five minutes, check your spam folder.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <p className="text-base leading-relaxed" style={{ color: "rgba(238,238,238,0.75)" }}>
+                Your results are on their way by email. If you don't receive them,
+                reach out on Instagram — we'll make sure you get them.
+              </p>
+              <a
+                href="https://instagram.com/feral.awareness"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm tracking-widest uppercase"
+                style={{ color: "var(--feral-cyan, #00E5FF)", fontFamily: "'Bebas Neue', sans-serif" }}
+              >
+                @feral.awareness →
+              </a>
+            </div>
+          )}
+        </div>
+
+        {submitError && (
+          <p className="text-xs px-3 py-2" style={{ color: "#FF6B6B", backgroundColor: "rgba(255,107,107,0.05)", border: "1px solid rgba(255,107,107,0.2)" }}>
+            Note: {submitError}
+          </p>
+        )}
+
+        {/* What to expect */}
+        <div
+          className="p-6 border-l-2"
+          style={{ borderColor: "var(--feral-cyan, #00E5FF)", backgroundColor: "rgba(0,229,255,0.03)" }}
+        >
+          <p className="text-sm leading-relaxed" style={{ color: "rgba(238,238,238,0.65)" }}>
+            The email includes your score, the tier interpretation, and personalized feedback
+            on each question. If there's a fit, we'll be in touch about the next step.
+            In the meantime, follow{" "}
             <a
               href="https://instagram.com/feral.awareness"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:opacity-80"
               style={{ color: "var(--feral-cyan, #00E5FF)" }}
             >
               @feral.awareness
-            </a>
-            .
-          </div>
-        )}
-
-        {/* Score header */}
-        <div>
-          <p
-            className="text-xs tracking-widest uppercase mb-4"
-            style={{ fontFamily: "'Bebas Neue', sans-serif", color: tierColor }}
-          >
-            Your Results
+            </a>{" "}
+            — that's where the work continues.
           </p>
-          <div className="flex items-end gap-4 mb-4">
-            <span
-              className="leading-none"
-              style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "5rem", color: tierColor }}
-            >
-              {score}
-            </span>
-            <span className="text-2xl mb-2" style={{ color: "rgba(238,238,238,0.3)" }}>/ 60</span>
-          </div>
-          <h2
-            className="text-3xl sm:text-4xl tracking-wider mb-4"
-            style={{ fontFamily: "'Bebas Neue', sans-serif", color: "#fff" }}
-          >
-            {tierData.level.toUpperCase()}
-          </h2>
-          <div className="h-px mb-6" style={{ backgroundColor: tierColor, opacity: 0.4 }} />
-          {/* Tier heading + body */}
-          <div className="space-y-3">
-            <p className="text-base leading-relaxed font-semibold" style={{ color: "rgba(238,238,238,0.95)" }}>
-              {tierData.heading}
-            </p>
-            {tierData.body.split("\n\n").map((para, i) => (
-              <p key={i} className="text-base leading-relaxed" style={{ color: "rgba(238,238,238,0.75)" }}>
-                {para}
-              </p>
-            ))}
-          </div>
         </div>
 
-        {/* Per-question feedback */}
-        <div className="space-y-6">
-          <p
-            className="text-xs tracking-widest uppercase"
-            style={{ fontFamily: "'Bebas Neue', sans-serif", color: "rgba(238,238,238,0.4)" }}
-          >
-            What we see in your answers
-          </p>
-          {QUESTIONS.map((q) => {
-            const letter = answers[q.id];
-            if (!letter) return null;
-            const feedback = q.feedback[letter];
-            const opt = q.options.find((o) => o.letter === letter);
-            return (
-              <div
-                key={q.id}
-                className="p-5 border"
-                style={{
-                  borderColor: "rgba(238,238,238,0.08)",
-                  backgroundColor: "rgba(255,255,255,0.02)",
-                }}
-              >
-                <p
-                  className="text-xs tracking-widest uppercase mb-1"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif", color: "rgba(238,238,238,0.3)" }}
-                >
-                  {q.section}
-                </p>
-                <p className="text-sm mb-1" style={{ color: "rgba(238,238,238,0.5)" }}>
-                  {q.text}
-                </p>
-                <p className="text-xs mb-3 italic" style={{ color: tierColor, opacity: 0.8 }}>
-                  You answered: "{opt?.label}"
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(238,238,238,0.75)" }}>
-                  {feedback}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Closing */}
-        <div
-          className="p-6 border-l-2"
-          style={{ borderColor: tierColor, backgroundColor: "rgba(255,255,255,0.02)" }}
-        >
-          <div className="space-y-3">
-            {[tierData.cta.label].map((para, i) => (
-              <p key={i} className="text-base leading-relaxed" style={{ color: "rgba(238,238,238,0.75)" }}>
-                {para}
-              </p>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA */}
+        {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4">
           <a
             href="https://instagram.com/feral.awareness"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 text-black tracking-widest uppercase transition-all hover:brightness-110"
-            style={{
-              fontFamily: "'Bebas Neue', sans-serif",
-              backgroundColor: "var(--feral-cyan, #00E5FF)",
-            }}
+            style={{ fontFamily: "'Bebas Neue', sans-serif", backgroundColor: "var(--feral-cyan, #00E5FF)" }}
           >
             Follow @feral.awareness
           </a>
-          {(tierData.level === "Ready" || tierData.level === "Deep") && (
-            <a
-              href={tierData.cta.href}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 tracking-widest uppercase transition-all"
-              style={{
-                fontFamily: "'Bebas Neue', sans-serif",
-                border: "1px solid var(--feral-cyan, #00E5FF)",
-                color: "var(--feral-cyan, #00E5FF)",
-              }}
-            >
-              {tierData.cta.label}
-            </a>
-          )}
         </div>
 
         {/* Retake */}
         <button
           onClick={() => {
-          setStep(0);
-          setAnswers({});
-          setOpenAnswers({});
-          setEmail("");
-          setName("");
-          setPhone("");
-          setFoundUs("");
-          setSubmitted(false);
-          setEmailSent(false);
-          setSubmitError(null);
-          setTurnstileToken("");
-
+            setStep(0);
+            setAnswers({});
+            setOpenAnswers({});
+            setEmail("");
+            setName("");
+            setPhone("");
+            setFoundUs("");
+            setSubmitted(false);
+            setEmailSent(false);
+            setSubmitError(null);
+            setTurnstileToken("");
           }}
           className="text-xs tracking-widest uppercase transition-opacity hover:opacity-80"
           style={{ fontFamily: "'Bebas Neue', sans-serif", color: "rgba(238,238,238,0.25)" }}
@@ -885,6 +816,18 @@ export default function ConsciousnessTest() {
   // ── MAIN RENDER ─────────────────────────────────────────────
   return (
     <div className="min-h-screen relative" style={{ backgroundColor: "#0A0A0A" }}>
+      {/* Per-question background image — fades in/out as you progress */}
+      {step >= 1 && step <= 12 && QUESTIONS[step - 1]?.image && (
+        <>
+          <div
+            key={`bg-${step}`}
+            className="pointer-events-none fixed inset-0 bg-cover bg-center transition-opacity duration-1000"
+            style={{ backgroundImage: `url(${QUESTIONS[step - 1].image})`, opacity: 0.07, zIndex: 0 }}
+          />
+          <div className="pointer-events-none fixed inset-0 bg-black/60" style={{ zIndex: 0 }} />
+        </>
+      )}
+
       {/* Grain overlay */}
       <div
         className="pointer-events-none fixed inset-0 opacity-30"

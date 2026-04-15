@@ -32,7 +32,7 @@ import { HOME, IMAGES as CONTENT_IMAGES, LOGOS } from "@/content";
 const IMAGES = { ...CONTENT_IMAGES, logo: LOGOS.transparent };
 
 const TEST_URL = "/test";
-const SECTIONS = HOME.sections;
+const SECTIONS = HOME.sections_block.sections;
 const CONSULTORIO = HOME.consultorio;
 
 /* Fade-in animation variant */
@@ -161,17 +161,23 @@ export default function Home() {
 
           {/* EDIT: Tagline */}
           <motion.p
-            className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-3 leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            An awareness that holds the ground of the world while expanding
-            into the ocean of nectar at the edge of the universe. Not
-            renunciation. Not bypass. Not wellness. A living lineage in the
-            Trika tradition — queer, feminist, decolonial, because the texts
-            themselves were.
+            {HOME.hero.subheadline}
           </motion.p>
+          {"clarifier" in HOME.hero && (
+            <motion.p
+              className="text-muted-foreground/60 text-sm max-w-xl mx-auto mb-10 leading-relaxed italic"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.75 }}
+            >
+              {(HOME.hero as { clarifier: string }).clarifier}
+            </motion.p>
+          )}
 
           {/* CTAs */}
           <motion.div
@@ -224,6 +230,49 @@ export default function Home() {
           <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent" />
         </motion.div>
       </section>
+
+      {/* ============================================================
+          FREEBIE STRIP — low-commitment entry point for Instagram audience
+          EDIT: Add/remove freebies in content.ts → HOME.freebie_cta.items
+          ============================================================ */}
+      {"freebie_cta" in HOME && (HOME.freebie_cta as { heading: string; subheading: string; items: Array<{ slug: string; label: string; tagline: string }> }).items.length > 0 && (
+        <section className="py-10 lg:py-14 relative bg-card/20 border-y border-border/10">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={fadeUp}
+              className="flex flex-col md:flex-row items-start md:items-center gap-6"
+            >
+              <div className="shrink-0">
+                <p className="text-primary tracking-widest uppercase text-xs mb-1"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  {(HOME.freebie_cta as { heading: string; subheading: string }).heading}
+                </p>
+                <p className="text-muted-foreground text-sm max-w-xs">
+                  {(HOME.freebie_cta as { heading: string; subheading: string }).subheading}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {(HOME.freebie_cta as { items: Array<{ slug: string; label: string; tagline: string }> }).items.map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={`/freebie/${item.slug}`}
+                    className="group inline-flex items-center gap-2 px-5 py-3 border border-primary/30 hover:border-primary hover:bg-primary/5 transition-all duration-300 text-sm tracking-wider uppercase"
+                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                  >
+                    <span className="text-foreground group-hover:text-primary transition-colors">
+                      {item.label}
+                    </span>
+                    <ArrowRight size={12} className="text-primary transition-transform group-hover:translate-x-1" />
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* ============================================================
           SECTION 2: WHAT IS THIS?
@@ -523,6 +572,54 @@ export default function Home() {
       </section>
 
       {/* ============================================================
+          LINEAGE — compact trust signal showing unbroken transmission
+          EDIT: content.ts → HOME.lineage
+          ============================================================ */}
+      {"lineage" in HOME && (
+        <section className="py-14 lg:py-20 relative overflow-hidden border-t border-border/10">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeUp}
+            >
+              <p className="text-primary tracking-widest uppercase text-xs mb-2"
+                style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                {(HOME.lineage as { eyebrow: string }).eyebrow}
+              </p>
+              <h2 className="text-2xl sm:text-3xl tracking-wide text-foreground mb-10">
+                {(HOME.lineage as { heading: string }).heading}
+              </h2>
+              <div className="flex flex-wrap gap-0">
+                {(HOME.lineage as { nodes: Array<{ name: string; century: string; works: string }> }).nodes.map((node, i, arr) => (
+                  <div key={i} className="flex items-start gap-3 mb-6">
+                    <div className="flex flex-col items-center">
+                      <div className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
+                      {i < arr.length - 1 && <div className="w-px flex-1 bg-primary/20 mt-1 min-h-8" />}
+                    </div>
+                    <div className="pb-4 mr-8">
+                      <p className="text-foreground text-sm tracking-wider"
+                        style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                        {node.name}
+                      </p>
+                      <p className="text-muted-foreground/60 text-xs">{node.century}</p>
+                      {node.works && (
+                        <p className="text-muted-foreground/40 text-xs serif-italic mt-0.5">{node.works}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-muted-foreground/50 text-xs mt-2 max-w-xl">
+                {(HOME.lineage as { note: string }).note}
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
           SECTION 3: EXPLORE - Section preview cards
           Links to all subpages with images and descriptions
           EDIT: Change the SECTIONS array at the top of this file
@@ -561,7 +658,7 @@ export default function Home() {
                   <div className="relative overflow-hidden h-80 border border-border/20 transition-all duration-500 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(0,85,255,0.2)]">
                     {/* Background image — zooms on hover */}
                     <img
-                      src={IMAGES[section.image]}
+                      src={section.image}
                       alt={section.title}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-108 opacity-40 group-hover:opacity-60"
                       style={{ transform: "scale(1)", transition: "transform 700ms ease, opacity 500ms ease" }}
@@ -616,23 +713,7 @@ export default function Home() {
             </h2>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                quote: "I'd spent ten years in Vipassana and Advaita hitting the same ceiling. This is the first framework that didn't ask me to amputate half my experience to be 'spiritual'.",
-                name: "M.K.",
-                location: "Berlin",
-              },
-              {
-                quote: "The Consciousness Test was the most uncomfortable thing I've done online. Also the most honest. It showed me exactly where I was lying to myself about my practice.",
-                name: "S.R.",
-                location: "Barcelona",
-              },
-              {
-                quote: "I came in as a skeptic — I'm a political organizer and I distrust anything that smells like wellness. This doesn't. It's rigorous, embodied, and doesn't ask you to stop caring about the world.",
-                name: "L.T.",
-                location: "Amsterdam",
-              },
-            ].map((t, i) => (
+            {HOME.testimonials.items.map((t, i) => (
               <motion.div
                 key={i}
                 initial="hidden"
@@ -654,6 +735,9 @@ export default function Home() {
                     {t.name}
                   </p>
                   <p className="text-muted-foreground text-xs">{t.location}</p>
+                  {"credential" in t && t.credential && (
+                    <p className="text-muted-foreground/60 text-xs italic mt-1">{t.credential as string}</p>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -691,7 +775,7 @@ export default function Home() {
           </motion.div>
 
           <div className="space-y-4">
-            {CONSULTORIO.map((item, i) => (
+            {CONSULTORIO.items.map((item, i) => (
               <motion.div
                 key={i}
                 initial="hidden"

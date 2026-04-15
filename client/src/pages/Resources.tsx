@@ -26,7 +26,7 @@ const fadeUp = {
 export default function Resources() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredGlossary = RESOURCES.glossary.filter(
+  const filteredGlossary = RESOURCES.glossary.terms.filter(
     (item) =>
       item.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.definition.toLowerCase().includes(searchTerm.toLowerCase())
@@ -114,7 +114,7 @@ export default function Resources() {
 
             {/* Reading categories — edit in content.ts → RESOURCES.readings */}
             <div className="space-y-10">
-              {RESOURCES.readings.map((category) => (
+              {RESOURCES.readings.categories.map((category) => (
                 <div key={category.category}>
                   <h3 className="text-xl tracking-wider text-primary mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
                     {category.category}
@@ -149,7 +149,7 @@ export default function Resources() {
             </h2>
             {/* External links — edit in content.ts → RESOURCES.links */}
             <div className="space-y-3">
-              {RESOURCES.links.map((link, i) => (
+              {RESOURCES.links.items.map((link, i) => (
                 <a
                   key={i}
                   href={link.url}

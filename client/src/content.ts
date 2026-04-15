@@ -63,11 +63,16 @@ export const IMAGES = {
   about:       `${CDN}/feral-about-portrait-93GxX36zxF8oC8nRpwa9XV.webp`,
   resources:   `${CDN}/feral-resources-bg-BnYg7vxqQiPk2XxGQ7RFZc.webp`,
   school:      `${CDN}/feral-hero-blue-Hvikx3gGvgR7tDVXnsuGYK.webp`,
-  // Atmospheric textures (Unsplash — free)
+  // Atmospheric textures (Unsplash — free, CC0)
   oceanNectar: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1600&q=80&auto=format&fit=crop",
   nebula:      "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1600&q=80&auto=format&fit=crop",
   iridescent:  "https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=1600&q=80&auto=format&fit=crop",
   deepwater:   "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=1600&q=80&auto=format&fit=crop",
+  // Additional free images for test slides & new sections (Unsplash CC0)
+  mountain:    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80&auto=format&fit=crop",
+  milkyway:    "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80&auto=format&fit=crop",
+  forest:      "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80&auto=format&fit=crop",
+  candlelight: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=1600&q=80&auto=format&fit=crop",
 };
 
 // ─── BACKGROUND TYPE ─────────────────────────────────────────
@@ -140,8 +145,10 @@ export const HOME = {
     headline:    "FERAL AWARENESS",
     eyebrow:     "Non-dual Tantra · Kashmir Shaivism · The Trika",
     subheadline: "Radical spirituality for people who are done being sold comfort dressed up as liberation.",
+    clarifier:   "Not neo-tantra. Not wellness. Not self-improvement. Trika Kashmir Shaivism — six thousand years of non-dual tradition, lineage-based and politically clear.",
     cta_primary:   { href: "/test",   label: "Take the Consciousness Test" },
     cta_secondary: { href: "/school", label: "Enter the School" },
+    cta_freebie:   { href: "/freebie/intro-spanda", label: "Get the free guide" },
     scarcity:    "School now open at founding price · Price increases when the cohort fills",
   },
 
@@ -219,6 +226,34 @@ export const HOME = {
     closing: "If none of these are you — if you are here for comfort, for \"high vibration,\" for a teacher to tell you what to think — this is not your place. That's okay. The door is honest.",
   },
 
+  // ── FREEBIE CTA STRIP ────────────────────────────────────
+  // Shown below the hero. Add/remove freebies to show more entry points.
+  freebie_cta: {
+    heading:    "START HERE — FREE",
+    subheading: "Not ready for the test? Start with a free guide.",
+    items: [
+      { slug: "intro-spanda", label: "Intro to Spanda", tagline: "The living pulsation at the heart of Kashmir Shaivism — free PDF" },
+    ],
+  },
+
+  // ── LINEAGE ──────────────────────────────────────────────
+  // Shows the unbroken transmission line from origin to now
+  lineage: {
+    eyebrow: "The Line",
+    heading: "AN UNBROKEN TRANSMISSION",
+    nodes: [
+      { name: "Vasugupta",          century: "c. 9th century",       works: "Śiva Sūtras · Spanda Kārikā" },
+      { name: "Somānanda",          century: "c. 9th–10th century",  works: "Śivadṛṣṭi" },
+      { name: "Utpaladeva",         century: "c. 10th century",      works: "Īśvarapratyabhijñākārikā · Śivastotrāvalī" },
+      { name: "Abhinavagupta",      century: "c. 10th–11th century", works: "Tantrāloka · Tantrasāra · Paramārthasāra" },
+      { name: "Kṣemarāja",          century: "c. 11th century",      works: "Pratyabhijñāhṛdayam · Spanda Nirṇaya" },
+      { name: "Swami Lakshmanjoo",  century: "1907 – 1991",          works: "Last living authority of Kashmir Shaivism" },
+      { name: "Mar Delgado",        century: "Contemporary · Spain", works: "PhD linguistics · Trika transmission · Tantra Shaivita Aplicado" },
+      { name: "Roberto Pérez Martínez", century: "Berlin",           works: "Authorized by Mar Delgado · this school" },
+    ],
+    note: "Lineage is not a credential. It is a chain of verification: practice → realization → transmission, across generations of people who stress-tested the map.",
+  },
+
   // ── SECTION CARDS ────────────────────────────────────────
   sections_block: {
     bg: {
@@ -277,19 +312,22 @@ export const HOME = {
     heading: "WHAT SHIFTS",
     items: [
       {
-        quote:    "I'd spent ten years in Vipassana and Advaita hitting the same ceiling. This is the first framework that didn't ask me to amputate half my experience to be 'spiritual'.",
-        name:     "M.K.",
-        location: "Berlin",
+        quote:      "I'd spent ten years in Vipassana and Advaita hitting the same ceiling. This is the first framework that didn't ask me to amputate half my experience to be 'spiritual'.",
+        name:       "M.K.",
+        location:   "Berlin",
+        credential: "10 years Vipassana + Advaita Vedanta",
       },
       {
-        quote:    "The Consciousness Test was the most uncomfortable thing I've done online. Also the most honest. It showed me exactly where I was lying to myself about my practice.",
-        name:     "S.R.",
-        location: "Barcelona",
+        quote:      "The Consciousness Test was the most uncomfortable thing I've done online. Also the most honest. It showed me exactly where I was lying to myself about my practice.",
+        name:       "S.R.",
+        location:   "Barcelona",
+        credential: "Yoga teacher, 6 years practice",
       },
       {
-        quote:    "I came in as a skeptic — I'm a political organizer and I distrust anything that smells like wellness. This doesn't. It's rigorous, embodied, and doesn't ask you to stop caring about the world.",
-        name:     "L.T.",
-        location: "Amsterdam",
+        quote:      "I came in as a skeptic — I'm a political organizer and I distrust anything that smells like wellness. This doesn't. It's rigorous, embodied, and doesn't ask you to stop caring about the world.",
+        name:       "L.T.",
+        location:   "Amsterdam",
+        credential: "Political organizer, secular background",
       },
     ],
   },
@@ -301,11 +339,26 @@ export const HOME = {
     heading: "QUESTIONS THAT BURN",
     body:    "Real themes from the practice. No sanitized case studies. These are the fires we hold in the Consultorio — one-on-one tantric guidance for people doing real work.",
     items: [
-      { title: "Spiritual bypass and the tyranny of \"high vibration\"",   preview: "When \"raising your frequency\" becomes another way to avoid grief, rage, and the political present..." },
-      { title: "Colonial religion and body shame",                          preview: "How centuries of Christian puritanism and Cartesian dualism live inside your nervous system, long after you stopped believing..." },
-      { title: "Desire as expansion, not lack",                             preview: "You are chasing objects with the implicit belief that you need them. In Trika, desire is spanda — consciousness pulsing..." },
-      { title: "Frozen emotion and the fear of death",                     preview: "All moralistic stance without deep emotional processing is a temporary patch. Real freedom starts when fear is recognized as śakti..." },
-      { title: "Self-improvement as social control",                        preview: "Self-improvement is not designed to make you free. It is designed to make you a more efficient participant in the systems that oppress you..." },
+      {
+        title:   "Spiritual bypass and the tyranny of \"high vibration\"",
+        preview: "When \"raising your frequency\" becomes another way to avoid grief, rage, and the political present — that is bypass. The Trika tradition holds that unprocessed emotion is contracted śakti. What has not moved through the body has not been processed. Equanimity built on top of avoidance is a performance, not liberation.",
+      },
+      {
+        title:   "Colonial religion and body shame",
+        preview: "The belief that the body is a problem — sinful, dirty, lower — did not disappear when you stopped identifying as Christian. It entered your nervous system as saṃskāra: body-held conditioning that shapes how you perceive, react, and contract. Kashmir Shaivism makes the inverse claim: the body is the primary laboratory of consciousness.",
+      },
+      {
+        title:   "Desire as expansion, not lack",
+        preview: "In Trika philosophy, desire (icchā śakti) is not a sign of deficiency — it is spanda, the pulsation of consciousness reaching toward its own expression. The problem is not the desire. It is the contraction around the desire: the belief that the object you chase is separate from what you already are.",
+      },
+      {
+        title:   "Frozen emotion and the fear of death",
+        preview: "What presents itself as an emotion is often a saṃskāra: condensed, unprocessed experience held in the body as rigidity. Abhinavagupta teaches that every vikāra — every disturbance — is śakti in disguise. Fear of death, recognized clearly, becomes the recognition of the impermanent arising within the permanent ground.",
+      },
+      {
+        title:   "Self-improvement as social control",
+        preview: "The self-improvement industry operates on the premise that you are deficient and that fixing yourself will make you free. Kashmir Shaivism begins from the opposite position: pūrṇatā, fullness — you are already complete consciousness, temporarily contracted. The work is pratyabhijñā — recognition — not construction.",
+      },
     ],
     cta: { href: "/test", label: "Submit your question" },
   },
@@ -598,6 +651,14 @@ export const ABOUT = {
     pullquote: "I do not teach self-improvement. I share a tradition that has the power to dissolve the self that needs improving.",
   },
 
+  // ── PHOTO GALLERY ─────────────────────────────────────────
+  // To add a new photo: paste any URL here (CDN, Google Drive direct link, etc.)
+  // Each entry shows in the About page gallery grid.
+  gallery: [
+    { url: IMAGES.about, caption: "Berlin" },
+    // { url: "https://your-cdn.com/photo.jpg", caption: "Your caption here" },
+  ],
+
   cta: { href: "/test", label: "Take the Consciousness Test" },
 };
 
@@ -845,12 +906,13 @@ export const TEST_PAGE = {
       section: "Where You Actually Are",
       text: "How long have you been seriously seeking? Not reading, not interested — actually sustaining a practice.",
       subtext: "If you're not sure whether it counts — it probably doesn't.",
+      image: IMAGES.nebula,
       options: [
-        { letter: "a", label: "Just starting",       points: 1 },
-        { letter: "b", label: "1–2 years",            points: 2 },
         { letter: "c", label: "3–5 years",            points: 3 },
-        { letter: "d", label: "5–10 years",           points: 4 },
+        { letter: "a", label: "Just starting",        points: 1 },
         { letter: "e", label: "More than 10 years",   points: 5 },
+        { letter: "b", label: "1–2 years",            points: 2 },
+        { letter: "d", label: "5–10 years",           points: 4 },
       ],
       feedback: {
         a: "Being here at the very beginning has its own kind of cleanness. You haven't yet accumulated the spiritual patterns that later need dismantling. That's a real advantage — if what you bring is genuine hunger and not spiritual consumer curiosity.",
@@ -865,13 +927,14 @@ export const TEST_PAGE = {
       section: "Where You Actually Are",
       text: "What has your practice primarily been?",
       subtext: "Choose the one that's been most central, even if you've done multiple.",
+      image: IMAGES.practice,
       options: [
         { letter: "a", label: "Mindfulness / Vipassana / secular meditation",              points: 2 },
         { letter: "b", label: "Yoga (āsana-based, studio context)",                        points: 1 },
+        { letter: "f", label: "Lineage-based practice with a living teacher",              points: 5 },
         { letter: "c", label: "Advaita, Zen, or non-dual inquiry",                        points: 3 },
         { letter: "d", label: "Ceremonial, entheogenic, or shamanic",                     points: 2 },
         { letter: "e", label: "Tantric or energy-based (including neo-tantra)",           points: 2 },
-        { letter: "f", label: "Lineage-based practice with a living teacher",             points: 5 },
         { letter: "g", label: "Self-directed: books, retreats, no sustained container",   points: 1 },
       ],
       feedback: {
@@ -889,12 +952,13 @@ export const TEST_PAGE = {
       section: "Where You Actually Are",
       text: "Have you had what you would call a genuine awakening experience — a moment of expanded recognition that dropped a layer of identification?",
       subtext: "Not a nice feeling in meditation. A genuine shift in the sense of self.",
+      image: IMAGES.milkyway,
       options: [
-        { letter: "a", label: "No — nothing that felt like that",                          points: 1 },
-        { letter: "b", label: "Maybe — something happened but I'm not sure what",          points: 2 },
-        { letter: "c", label: "Yes — once, and it hasn't stabilized",                      points: 3 },
         { letter: "d", label: "Yes — multiple times, with increasing stability",           points: 4 },
-        { letter: "e", label: "Yes — and it has fundamentally changed my relationship to ordinary experience", points: 5 },
+        { letter: "b", label: "Something happened but I'm not sure how to name it",       points: 2 },
+        { letter: "e", label: "Yes — the ground of ordinary life has shifted, durably",   points: 5 },
+        { letter: "a", label: "No — nothing that felt like that",                          points: 1 },
+        { letter: "c", label: "Yes — once, and it hasn't stabilized since",               points: 3 },
       ],
       feedback: {
         a: "No awakening experience doesn't mean no capacity for it. It might mean you haven't yet found the conditions in which it can land, or that the practices you've used haven't been calibrated for that. That's exactly what the upāyas are for.",
@@ -909,12 +973,13 @@ export const TEST_PAGE = {
       section: "Honesty With Yourself",
       text: "When you encounter a teaching or practice that contradicts something you've built your identity around — a belief, a community, a self-image — what happens?",
       subtext: "Be honest. Nobody is watching.",
+      image: IMAGES.iridescent,
       options: [
-        { letter: "a", label: "I find reasons why the new thing is wrong",                  points: 1 },
-        { letter: "b", label: "I feel uncomfortable and usually avoid it",                  points: 2 },
-        { letter: "c", label: "I can hear it, but I notice the resistance and sit with it", points: 3 },
         { letter: "d", label: "I actively look for where it might be right",                points: 4 },
-        { letter: "e", label: "I find it genuinely interesting — these are the most useful challenges", points: 5 },
+        { letter: "b", label: "I feel uncomfortable and usually avoid it",                  points: 2 },
+        { letter: "a", label: "I find reasons why the new thing is wrong",                  points: 1 },
+        { letter: "e", label: "These challenges are the most useful part of my practice",   points: 5 },
+        { letter: "c", label: "I can hear it, but I notice the resistance and sit with it", points: 3 },
       ],
       feedback: {
         a: "Finding reasons why the new thing is wrong is the most sophisticated form of defense the mind has — it looks like discernment. The question to ask yourself is: are you discerning, or are you defending? They feel identical from the inside.",
@@ -929,12 +994,13 @@ export const TEST_PAGE = {
       section: "Honesty With Yourself",
       text: "In your spiritual life, how often do you perform something — for a teacher, a community, yourself — rather than actually doing the work?",
       subtext: "This is the question that gets lied to the most.",
+      image: IMAGES.deepwater,
       options: [
-        { letter: "a", label: "I'm pretty sure I'm mostly genuine",                        points: 1 },
-        { letter: "b", label: "Rarely — I catch it sometimes",                             points: 2 },
-        { letter: "c", label: "Regularly — it's something I actively work with",           points: 3 },
         { letter: "d", label: "Often — performance has been one of my main obstacles",     points: 4 },
+        { letter: "a", label: "I'm pretty sure I'm mostly genuine",                        points: 1 },
+        { letter: "c", label: "Regularly — it's something I actively work with",           points: 3 },
         { letter: "e", label: "I'm not sure I can fully tell the difference yet",          points: 3 },
+        { letter: "b", label: "Rarely — I catch it sometimes",                             points: 2 },
       ],
       feedback: {
         a: "\"Pretty sure I'm mostly genuine\" is almost always what performance sounds like from the inside. This isn't an accusation — it's a structural feature of the problem. Genuine practice makes you less certain, not more.",
@@ -948,12 +1014,13 @@ export const TEST_PAGE = {
       id: "Q6",
       section: "The Body",
       text: "How does your spiritual practice relate to your body?",
+      image: IMAGES.oceanNectar,
       options: [
-        { letter: "a", label: "I mostly work with my mind — meditation, inquiry, study",         points: 1 },
         { letter: "b", label: "I have a body-based practice (yoga, movement) but it feels separate from the 'real' work", points: 2 },
-        { letter: "c", label: "I know the body is important but I haven't found the right container for it", points: 3 },
-        { letter: "d", label: "My practice is explicitly somatic — body and insight are integrated", points: 4 },
         { letter: "e", label: "The body is the primary site of practice for me",                  points: 5 },
+        { letter: "c", label: "I know the body is important but I haven't found the right container for it", points: 3 },
+        { letter: "a", label: "I mostly work with my mind — meditation, inquiry, study",         points: 1 },
+        { letter: "d", label: "My practice is explicitly somatic — body and insight are integrated", points: 4 },
       ],
       feedback: {
         a: "Mind-based practice is where most lineages start, and it can go quite far. The limit it hits is the saṃskāras — the condensed somatic memory that lives in the body as contraction. At some point, the mind hits a floor, and only the body can go below it.",
@@ -967,12 +1034,13 @@ export const TEST_PAGE = {
       id: "Q7",
       section: "The Body",
       text: "Have you ever had a somatic release in practice — something in the body shifting, releasing, or dissolving that wasn't just relaxation?",
+      image: IMAGES.forest,
       options: [
-        { letter: "a", label: "No — not that I can identify",                              points: 1 },
-        { letter: "b", label: "Maybe — something physical happened but I'm not sure",      points: 2 },
         { letter: "c", label: "Yes — occasionally, usually in retreat or intense practice",points: 3 },
+        { letter: "a", label: "No — not that I can identify",                              points: 1 },
+        { letter: "e", label: "Yes — and I understand it as part of the process, not chance", points: 5 },
+        { letter: "b", label: "Maybe — something physical happened but I'm not sure",      points: 2 },
         { letter: "d", label: "Yes — this happens in my regular practice",                 points: 4 },
-        { letter: "e", label: "Yes — and I understand it as part of the process, not a random event", points: 5 },
       ],
       feedback: {
         a: "No identifiable somatic release doesn't mean the body isn't doing anything. It often means the practice container hasn't created the conditions for it. The body is not passive — it's waiting for the right approach.",
@@ -986,12 +1054,13 @@ export const TEST_PAGE = {
       id: "Q8",
       section: "Desire and Pleasure",
       text: "How do you relate to desire in your spiritual life?",
+      image: IMAGES.candlelight,
       options: [
-        { letter: "a", label: "Desire is an obstacle — the tradition I'm in asks me to reduce or transcend it", points: 1 },
         { letter: "b", label: "Desire is complicated — I know it's not purely bad but I'm not sure how to work with it", points: 2 },
-        { letter: "c", label: "I'm learning to use desire as information rather than a problem to solve",              points: 3 },
         { letter: "d", label: "I understand desire as the pulsation of consciousness reaching toward expression",      points: 4 },
+        { letter: "a", label: "Desire is an obstacle — the tradition I'm in asks me to reduce or transcend it", points: 1 },
         { letter: "e", label: "Desire and liberation are not opposed for me — I practice inside both simultaneously",  points: 5 },
+        { letter: "c", label: "I'm learning to use desire as information rather than a problem to solve",              points: 3 },
       ],
       feedback: {
         a: "Treating desire as an obstacle is the dualist position — it assumes that what you are at the level of desire is not what you are at the level of awakening. The non-dual tradition makes the opposite claim: the energy of desire is the same energy as the energy of liberation. It's a matter of what you do with the contraction around it.",
@@ -1005,12 +1074,13 @@ export const TEST_PAGE = {
       id: "Q9",
       section: "Politics and Spirituality",
       text: "How does your spiritual practice relate to your political and social life?",
+      image: IMAGES.nebula,
       options: [
-        { letter: "a", label: "I keep them separate — spirituality is inner work, politics is outer",                   points: 1 },
-        { letter: "b", label: "I try to keep them connected but find it difficult",                                     points: 2 },
         { letter: "c", label: "I see them as related but my practice doesn't explicitly integrate them",               points: 3 },
-        { letter: "d", label: "My politics emerged from or are deeply informed by my practice",                        points: 4 },
+        { letter: "a", label: "I keep them separate — spirituality is inner work, politics is outer",                   points: 1 },
         { letter: "e", label: "I don't experience a separation — liberation requires political consciousness",          points: 5 },
+        { letter: "b", label: "I try to keep them connected but find it difficult",                                     points: 2 },
+        { letter: "d", label: "My politics emerged from or are deeply informed by my practice",                        points: 4 },
       ],
       feedback: {
         a: "Separating inner and outer work is one of the classic moves of spiritual bypass — it protects the practice from being tested by the world. The Trika tradition would say: if the practice is real, it changes how you meet the world. And if it doesn't change how you meet the world, it's not yet fully real.",
@@ -1025,12 +1095,13 @@ export const TEST_PAGE = {
       section: "What You're Looking For",
       text: "What are you actually looking for from a school or teacher?",
       subtext: "There are no wrong answers here — but some answers fit this school and some don't.",
+      image: IMAGES.iridescent,
       options: [
-        { letter: "a", label: "Techniques and practices I can do on my own",                                           points: 1 },
-        { letter: "b", label: "Community and belonging with other practitioners",                                      points: 2 },
-        { letter: "c", label: "Intellectual depth — rigorous teaching in a serious tradition",                        points: 3 },
         { letter: "d", label: "Transmission — contact with someone who has actually realized something",              points: 4 },
+        { letter: "a", label: "Techniques and practices I can do on my own",                                           points: 1 },
         { letter: "e", label: "Formation — I want to be changed, not just taught",                                    points: 5 },
+        { letter: "c", label: "Intellectual depth — rigorous teaching in a serious tradition",                        points: 3 },
+        { letter: "b", label: "Community and belonging with other practitioners",                                      points: 2 },
       ],
       feedback: {
         a: "Techniques you can do on your own are real, and we teach them. But a school is a different kind of container than a technique library. If what you're looking for is tools to use in isolation, the school format may not be the right fit — you might get more from the resources section.",
@@ -1044,12 +1115,13 @@ export const TEST_PAGE = {
       id: "Q11",
       section: "What You're Looking For",
       text: "What would make you stop engaging with a teacher or school?",
+      image: IMAGES.deepwater,
       options: [
-        { letter: "a", label: "If they challenged my existing beliefs too directly",                                    points: 1 },
         { letter: "b", label: "If the community became more important than the practice",                              points: 3 },
-        { letter: "c", label: "If there were signs of financial or sexual exploitation",                               points: 4 },
         { letter: "d", label: "If the teaching became comfortable and stopped challenging me",                         points: 5 },
+        { letter: "a", label: "If they challenged my existing beliefs too directly",                                    points: 1 },
         { letter: "e", label: "If they couldn't give me a direct, honest account of their own limits and failures",   points: 4 },
+        { letter: "c", label: "If there were signs of financial or sexual exploitation",                               points: 4 },
       ],
       feedback: {
         a: "Leaving when beliefs are challenged too directly is worth being honest about. It means the practice has a limit — which is okay, but it's useful to know. What you can hold and what you can't hold is exactly the information the test is designed to surface.",
@@ -1064,12 +1136,13 @@ export const TEST_PAGE = {
       section: "Readiness",
       text: "What do you bring to this work right now?",
       subtext: "Not what you hope to bring. What you actually have.",
+      image: IMAGES.mountain,
       options: [
+        { letter: "c", label: "Real practice and a specific question or obstacle I haven't been able to move",         points: 4 },
+        { letter: "e", label: "Honestly — I'm not sure. Something keeps bringing me back to this.",                    points: 3 },
+        { letter: "d", label: "Serious depth and a readiness for transmission-level work",                             points: 5 },
         { letter: "a", label: "Curiosity and openness — I'm beginning",                                                 points: 1 },
         { letter: "b", label: "Some experience and a growing hunger for something more rigorous",                       points: 3 },
-        { letter: "c", label: "Real practice and a specific question or obstacle I haven't been able to move",         points: 4 },
-        { letter: "d", label: "Serious depth and a readiness for transmission-level work",                             points: 5 },
-        { letter: "e", label: "Honestly — I'm not sure. Something keeps bringing me back to this.",                    points: 3 },
       ],
       feedback: {
         a: "Beginning is a complete position — not lesser than anything else. The school takes beginners if they bring real honesty and real hunger. The question isn't where you are. It's whether you're willing to meet the work at the level it requires.",
@@ -1084,6 +1157,7 @@ export const TEST_PAGE = {
     section: string;
     text: string;
     subtext?: string;
+    image?: string;
     options: Array<{ letter: string; label: string; points: number }>;
     feedback: Record<string, string>;
   }>,
@@ -1144,3 +1218,45 @@ export const TEST_PAGE = {
   email_label:  "Your email (to receive results + next steps)",
   email_note:   "No spam. Unsubscribe any time.",
 };
+
+// ════════════════════════════════════════════════════════════
+// FREEBIES — Lead magnets for Instagram CTA
+// ════════════════════════════════════════════════════════════
+// To add a new freebie:
+//   1. Create a PDF / video / doc and get a shareable URL
+//   2. Add a new entry to this array
+//   3. The page /freebie/:slug is automatically generated
+//
+// The freebie email is sent automatically via Resend when someone signs up.
+// Leads are stored in Supabase → freebie_subscribers table.
+
+export const FREEBIES = [
+  {
+    id:            "intro-spanda",
+    slug:          "intro-spanda",
+    title:         "Introduction to Spanda",
+    tagline:       "The living pulsation at the heart of Kashmir Shaivism",
+    description:   "Spanda — the sacred vibration — is where Kashmir Shaivism begins. This guide unpacks what the Spanda Kārikā and Abhinavagupta's commentaries say about the divine pulsation at the root of every thought, sensation, and breath. Not a summary. A map for practice.",
+    thumbnail:     IMAGES.nebula,
+    // ↓ EDIT THIS: paste the URL of your PDF, Google Drive file, or video
+    file_url:      "", // e.g. "https://drive.google.com/file/d/xxx/view"
+    email_subject: "Your free guide: Introduction to Spanda — Feral Awareness",
+    email_body:    "Here is your guide to Spanda. Read it slowly — each section is designed to land in the body, not just the mind. When you're ready to go deeper, take the Consciousness Test at feralawareness.com/test.",
+    cta_label:     "Get the Free Guide",
+    confirmation:  "Your guide is on its way. Check your email — and your spam folder if nothing arrives in five minutes.",
+  },
+  // ── ADD MORE FREEBIES BELOW ──────────────────────────────
+  // {
+  //   id:            "three-upayas",
+  //   slug:          "three-upayas",
+  //   title:         "The Three Upāyas",
+  //   tagline:       "How Kashmir Shaivism organizes the path",
+  //   description:   "...",
+  //   thumbnail:     IMAGES.iridescent,
+  //   file_url:      "",
+  //   email_subject: "Your free guide: The Three Upāyas — Feral Awareness",
+  //   email_body:    "...",
+  //   cta_label:     "Get the Free Guide",
+  //   confirmation:  "Your guide is on its way.",
+  // },
+];

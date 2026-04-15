@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:tantrashivaitaplicado.com)",
+      "Bash(pdftotext \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Main\\\\Shivasutras.pdf\" -)",
+      "Bash(pdftotext \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Main\\\\Spandakarika version de Mar.pdf\" -)",
+      "Bash(pdftotext \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\Kashmir Shaivism _ the secret supreme -- Swami Lakshman.pdf\" -)",
+      "Bash(pdftotext \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\Kundalinivijnana-rahasyam -- Swami Lakshmanjoo -- 2nd, 2010 -- Ishwar Ashram Trust -- b7e0029514e2f189164d636cbd1027c6 -- Anna's Archive.pdf\" -)",
+      "Bash(pdftotext \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\The Awakening of Supreme Consciousness -- Swami Lakshmanjoo -- 9d34da2f47abc838fbf8619977e042fe -- Anna's Archive.pdf\" -)",
+      "Bash(pdftotext \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\Shiva_Sutras_The_Supreme_Awakening_Swami_Lakshmanjoo.pdf\" -)",
+      "Bash(awk '/^export const HOME = \\\\{/,/^};/' C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/webpages/feral-site/client/src/content.ts)",
+      "Bash(pdftotext \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\Essence of the Supreme Reality - Paramarthasara -- Swami Lakshmanjoo -- 2021 -- 824dfe83c264a87f1650c10bf47d0857 -- Anna's Archive.pdf\" -)",
+      "Bash(pdftotext \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\Tantrasara_of_Abhinavagupta.pdf\" -)",
+      "Bash(pdftotext \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\Kaulajñananirnaya.pdf\" -)",
+      "Bash(ls *.epub)",
+      "Bash(ls *.doc)",
+      "Bash(cd /tmp)",
+      "Bash(unzip -q \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\The Recognition Sutras Christopher Wallis - Desconocido.epub\" -d recognition_sutras)",
+      "Bash(unzip -q \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Main\\\\vdoc.pub_tantra-illuminated-the-philosophy-history-and-practice-of-a-timeless-tradition.epub\" -d tantra_illuminated)",
+      "Bash(unzip -q \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\Light On Tantra In Kashmir Shaivism_ Chapter One Of -- Swami Lakshmanjoo,.epub\" -d light_on_tantra)",
+      "Bash(unzip -q \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\The Manual for Self Realization_ 112 Meditations of the -- Swami Lakshmanjoo -- 2015 -- Universal Shaiva Fellowship -- 9780996636506 -- e8afc58461c357581a4b9aa51429ac78 -- Anna's Archive.epub\" -d manual_self_realization)",
+      "Bash(cp \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\The Manual for Self Realization_ 112 Meditations of the -- Swami Lakshmanjoo -- 2015 -- Universal Shaiva Fellowship -- 9780996636506 -- e8afc58461c357581a4b9aa51429ac78 -- Anna's Archive.epub\" /tmp/manual.epub)",
+      "Bash(unzip -q manual.epub -d manual_self_realization)",
+      "Bash(unzip -q \"/c/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/Tantra_base_texts/Support texts/\"*Manual*.epub -d manual_self_realization)"
+    ]
+  }
+}

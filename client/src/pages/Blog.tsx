@@ -119,7 +119,7 @@ export default function Blog() {
               className="text-primary tracking-widest uppercase text-sm hover:brightness-125 transition-all"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              {BLOG.instagram_cta} →
+              {BLOG.instagram_cta.label}
             </a>
           </div>
         </div>

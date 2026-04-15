@@ -257,6 +257,35 @@ export default function About() {
         </div>
       </section>
 
+      {/* PHOTO GALLERY — edit in content.ts → ABOUT.gallery
+          To add a photo: add { url: "...", caption: "..." } to the array */}
+      {"gallery" in ABOUT && Array.isArray((ABOUT as { gallery: Array<{ url: string; caption: string }> }).gallery) && (ABOUT as { gallery: Array<{ url: string; caption: string }> }).gallery.length > 1 && (
+        <section className="py-10 lg:py-16">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+            <p className="text-primary tracking-widest uppercase text-xs mb-8"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              Photos
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {(ABOUT as { gallery: Array<{ url: string; caption: string }> }).gallery.map((photo, i) => (
+                <div key={i} className="group relative overflow-hidden aspect-square border border-border/10 hover:border-primary/30 transition-all duration-300">
+                  <img
+                    src={photo.url}
+                    alt={photo.caption || ""}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  />
+                  {photo.caption && (
+                    <div className="absolute bottom-0 left-0 right-0 p-2 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <p className="text-white/70 text-xs">{photo.caption}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA — edit in content.ts → ABOUT.cta */}
       <section className="py-16 text-center">
         <Link
