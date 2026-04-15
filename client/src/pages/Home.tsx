@@ -275,6 +275,90 @@ export default function Home() {
       )}
 
       {/* ============================================================
+          SECTION 2.75: WHO THIS IS FOR
+          Speaking directly to the three audiences
+          ============================================================ */}
+      <section className="py-16 lg:py-20 bg-card/30 relative">
+        <div className="absolute inset-0 grain-overlay" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+          >
+            <p className="text-primary tracking-widest uppercase text-sm mb-4"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              Who
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-10">
+              WHO THIS IS FOR
+            </h2>
+
+            <div className="space-y-8 text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <div>
+                <h3 className="text-xl text-foreground tracking-wider mb-3"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  SERIOUS PRACTITIONERS WHO HAVE HIT A WALL
+                </h3>
+                <p>
+                  You have sat with other traditions — Zen, Vipassana,
+                  Advaita, Vedanta, neo-tantra, ceremonial paths. They gave
+                  you something, and then they gave you a ceiling. You started
+                  noticing the repression underneath the peace. You started
+                  wondering what a tradition would look like that did not
+                  require you to split yourself in half to practice it.
+                  Welcome.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-foreground tracking-wider mb-3"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  THE POLITICALLY RADICAL WHO ARE SUSPICIOUS OF SPIRITUALITY
+                </h3>
+                <p>
+                  You have watched the wellness industry absorb every
+                  liberation movement and sell it back as a personal
+                  development product. You are not going to be talked into a
+                  path that asks you to &quot;raise your vibration&quot; and
+                  stop caring about the world. Good. Neither are we. The Trika
+                  framework is politically sharp because the texts themselves
+                  were. Your politics are not a distraction from practice —
+                  they are already practice.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl text-foreground tracking-wider mb-3"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  ARTISTS, PERFORMERS, PEOPLE WHO LIVE IN THEIR BODIES
+                </h3>
+                <p>
+                  You have found that concepts don&apos;t go deep enough —
+                  that the body reaches what the mind cannot. You work with
+                  tension, breath, impulse, presence. The Trika tradition
+                  treats the body as the primary laboratory.{" "}
+                  <span className="serif-italic">Saṃskāras</span> —
+                  conditioning, the karmic residues of unprocessed experience
+                  — live in the body first, and they must be released there
+                  before the mind can follow. Everything we teach is designed
+                  to land somatically.
+                </p>
+              </div>
+
+              <p className="text-foreground border-l-2 border-primary pl-6 mt-8">
+                If none of these are you — if you are here for comfort, for
+                &quot;high vibration,&quot; for a teacher to tell you what to
+                think — this is not your place. That&apos;s okay. The door is
+                honest.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================================
           SECTION 2: WHAT IS THIS?
           Brief intro to Feral Awareness - the "elevator pitch"
           EDIT: Change the intro text below
@@ -488,90 +572,6 @@ export default function Home() {
       </section>
 
       {/* ============================================================
-          SECTION 2.75: WHO THIS IS FOR
-          Speaking directly to the three audiences
-          ============================================================ */}
-      <section className="py-16 lg:py-20 bg-card/30 relative">
-        <div className="absolute inset-0 grain-overlay" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-          >
-            <p className="text-primary tracking-widest uppercase text-sm mb-4"
-              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-              Who
-            </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-10">
-              WHO THIS IS FOR
-            </h2>
-
-            <div className="space-y-8 text-muted-foreground text-base sm:text-lg leading-relaxed">
-              <div>
-                <h3 className="text-xl text-foreground tracking-wider mb-3"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                  SERIOUS PRACTITIONERS WHO HAVE HIT A WALL
-                </h3>
-                <p>
-                  You have sat with other traditions — Zen, Vipassana,
-                  Advaita, Vedanta, neo-tantra, ceremonial paths. They gave
-                  you something, and then they gave you a ceiling. You started
-                  noticing the repression underneath the peace. You started
-                  wondering what a tradition would look like that did not
-                  require you to split yourself in half to practice it.
-                  Welcome.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl text-foreground tracking-wider mb-3"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                  THE POLITICALLY RADICAL WHO ARE SUSPICIOUS OF SPIRITUALITY
-                </h3>
-                <p>
-                  You have watched the wellness industry absorb every
-                  liberation movement and sell it back as a personal
-                  development product. You are not going to be talked into a
-                  path that asks you to &quot;raise your vibration&quot; and
-                  stop caring about the world. Good. Neither are we. The Trika
-                  framework is politically sharp because the texts themselves
-                  were. Your politics are not a distraction from practice —
-                  they are already practice.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl text-foreground tracking-wider mb-3"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                  ARTISTS, PERFORMERS, PEOPLE WHO LIVE IN THEIR BODIES
-                </h3>
-                <p>
-                  You have found that concepts don&apos;t go deep enough —
-                  that the body reaches what the mind cannot. You work with
-                  tension, breath, impulse, presence. The Trika tradition
-                  treats the body as the primary laboratory.{" "}
-                  <span className="serif-italic">Saṃskāras</span> —
-                  conditioning, the karmic residues of unprocessed experience
-                  — live in the body first, and they must be released there
-                  before the mind can follow. Everything we teach is designed
-                  to land somatically.
-                </p>
-              </div>
-
-              <p className="text-foreground border-l-2 border-primary pl-6 mt-8">
-                If none of these are you — if you are here for comfort, for
-                &quot;high vibration,&quot; for a teacher to tell you what to
-                think — this is not your place. That&apos;s okay. The door is
-                honest.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============================================================
           LINEAGE — compact trust signal showing unbroken transmission
           EDIT: content.ts → HOME.lineage
           ============================================================ */}
@@ -618,6 +618,60 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {/* ============================================================
+          SECTION 3.5: TESTIMONIALS - Social proof
+          EDIT: Change TESTIMONIALS array at the top of this file
+          ============================================================ */}
+      <section className="py-12 lg:py-16 relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+            className="text-center mb-10"
+          >
+            <p className="text-primary tracking-widest uppercase text-sm mb-3"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              From practitioners
+            </p>
+            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground">
+              WHAT SHIFTS
+            </h2>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {HOME.testimonials.items.map((t, i) => (
+              <motion.div
+                key={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } },
+                }}
+                className="border border-border/30 bg-card/50 p-6 relative"
+              >
+                <div className="text-primary text-4xl leading-none mb-4 serif-italic">"</div>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6 serif-italic">
+                  {t.quote}
+                </p>
+                <div className="border-t border-border/30 pt-4">
+                  <p className="text-foreground text-sm tracking-wider"
+                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                    {t.name}
+                  </p>
+                  <p className="text-muted-foreground text-xs">{t.location}</p>
+                  {"credential" in t && t.credential && (
+                    <p className="text-muted-foreground/60 text-xs italic mt-1">{t.credential as string}</p>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ============================================================
           SECTION 3: EXPLORE - Section preview cards
@@ -685,60 +739,6 @@ export default function Home() {
                     </div>
                   </div>
                 </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          SECTION 3.5: TESTIMONIALS - Social proof
-          EDIT: Change TESTIMONIALS array at the top of this file
-          ============================================================ */}
-      <section className="py-12 lg:py-16 relative">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-            className="text-center mb-10"
-          >
-            <p className="text-primary tracking-widest uppercase text-sm mb-3"
-              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-              From practitioners
-            </p>
-            <h2 className="text-3xl sm:text-4xl tracking-wide text-foreground">
-              WHAT SHIFTS
-            </h2>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {HOME.testimonials.items.map((t, i) => (
-              <motion.div
-                key={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } },
-                }}
-                className="border border-border/30 bg-card/50 p-6 relative"
-              >
-                <div className="text-primary text-4xl leading-none mb-4 serif-italic">"</div>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6 serif-italic">
-                  {t.quote}
-                </p>
-                <div className="border-t border-border/30 pt-4">
-                  <p className="text-foreground text-sm tracking-wider"
-                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                    {t.name}
-                  </p>
-                  <p className="text-muted-foreground text-xs">{t.location}</p>
-                  {"credential" in t && t.credential && (
-                    <p className="text-muted-foreground/60 text-xs italic mt-1">{t.credential as string}</p>
-                  )}
-                </div>
               </motion.div>
             ))}
           </div>
