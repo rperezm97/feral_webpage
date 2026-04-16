@@ -18,7 +18,7 @@
    ============================================================ */
 
 import { Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 import { useState } from "react";
 import { HOME, IMAGES as CONTENT_IMAGES, LOGOS } from "@/content";
@@ -109,6 +109,8 @@ function NewsletterForm() {
 }
 
 export default function Home() {
+  const [openConsultorio, setOpenConsultorio] = useState<number | null>(null);
+
   return (
     <div className="min-h-screen">
       {/* ============================================================
@@ -278,92 +280,99 @@ export default function Home() {
           SECTION 2.75: WHO THIS IS FOR
           Speaking directly to the three audiences
           ============================================================ */}
-      <section className="py-16 lg:py-20 bg-card/30 relative">
-        <div className="absolute inset-0 grain-overlay" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+      <section className="py-16 lg:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.18]"
+          style={{ backgroundImage: `url(${IMAGES.base2})` }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-transparent to-background/70" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            initial="hidden" whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
+            className="mb-12"
           >
-            <p className="text-primary tracking-widest uppercase text-sm mb-4"
+            <p className="text-primary tracking-widest uppercase text-sm mb-3"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-              Who
+              {HOME.who.eyebrow}
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-10">
-              WHO THIS IS FOR
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground">
+              {HOME.who.heading}
             </h2>
-
-            <div className="space-y-8 text-muted-foreground text-base sm:text-lg leading-relaxed">
-              <div>
-                <h3 className="text-xl text-foreground tracking-wider mb-3"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                  SERIOUS PRACTITIONERS WHO HAVE HIT A WALL
-                </h3>
-                <p>
-                  You have sat with other traditions — Zen, Vipassana,
-                  Advaita, Vedanta, neo-tantra, ceremonial paths. They gave
-                  you something, and then they gave you a ceiling. You started
-                  noticing the repression underneath the peace. You started
-                  wondering what a tradition would look like that did not
-                  require you to split yourself in half to practice it.
-                  Welcome.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl text-foreground tracking-wider mb-3"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                  THE POLITICALLY RADICAL WHO ARE SUSPICIOUS OF SPIRITUALITY
-                </h3>
-                <p>
-                  You have watched the wellness industry absorb every
-                  liberation movement and sell it back as a personal
-                  development product. You are not going to be talked into a
-                  path that asks you to &quot;raise your vibration&quot; and
-                  stop caring about the world. Good. Neither are we. The Trika
-                  framework is politically sharp because the texts themselves
-                  were. Your politics are not a distraction from practice —
-                  they are already practice.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl text-foreground tracking-wider mb-3"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                  ARTISTS, PERFORMERS, PEOPLE WHO LIVE IN THEIR BODIES
-                </h3>
-                <p>
-                  You have found that concepts don&apos;t go deep enough —
-                  that the body reaches what the mind cannot. You work with
-                  tension, breath, impulse, presence. The Trika tradition
-                  treats the body as the primary laboratory.{" "}
-                  <span className="serif-italic">Saṃskāras</span> —
-                  conditioning, the karmic residues of unprocessed experience
-                  — live in the body first, and they must be released there
-                  before the mind can follow. Everything we teach is designed
-                  to land somatically.
-                </p>
-              </div>
-
-              <p className="text-foreground border-l-2 border-primary pl-6 mt-8">
-                If none of these are you — if you are here for comfort, for
-                &quot;high vibration,&quot; for a teacher to tell you what to
-                think — this is not your place. That&apos;s okay. The door is
-                honest.
-              </p>
-            </div>
           </motion.div>
+
+          {/* 3 image cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+            {(HOME.who.groups as Array<{ title: string; body: string; image?: string }>).map((group, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.55, delay: i * 0.13 }}
+                whileHover={{ y: -4 }}
+                className="group flex flex-col overflow-hidden border border-border/20 hover:border-primary/50 transition-colors duration-500"
+              >
+                {/* Image top */}
+                <div className="relative h-56 overflow-hidden shrink-0">
+                  {group.image && (
+                    <img
+                      src={group.image}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover opacity-45 group-hover:opacity-65 transition-all duration-700"
+                      style={{ transform: "scale(1.02)", transition: "transform 700ms ease, opacity 500ms ease" }}
+                      onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.08)")}
+                      onMouseLeave={e => (e.currentTarget.style.transform = "scale(1.02)")}
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <h3 className="text-white text-base leading-tight tracking-wider group-hover:text-primary transition-colors duration-300"
+                      style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                      {group.title}
+                    </h3>
+                  </div>
+                  {/* Accent line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </div>
+                {/* Text bottom */}
+                <div className="flex-1 bg-card/50 p-5">
+                  <p className="text-muted-foreground text-sm leading-relaxed">{group.body}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Closing line */}
+          <motion.p
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-foreground border-l-2 border-primary pl-6 max-w-2xl text-base leading-relaxed"
+          >
+            {HOME.who.closing}
+          </motion.p>
         </div>
       </section>
+
+      {/* ── Yantra divider ─────────────────────────────────────── */}
+      <div className="flex items-center justify-center py-2">
+        <div className="flex-1 h-px bg-border/20 max-w-32" />
+        <motion.img src={IMAGES.yantra} alt="" aria-hidden className="w-10 h-10 opacity-25 mx-4"
+          animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} />
+        <div className="flex-1 h-px bg-border/20 max-w-32" />
+      </div>
 
       {/* ============================================================
           SECTION 2: WHAT IS THIS?
           Brief intro to Feral Awareness - the "elevator pitch"
           EDIT: Change the intro text below
           ============================================================ */}
-      <section className="py-20 lg:py-28 relative">
+      <section className="py-20 lg:py-28 relative overflow-hidden">
+        {/* Floating yantra watermark */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <motion.img src={IMAGES.yantra} alt="" aria-hidden
+            className="w-[460px] h-[460px] opacity-[0.07] mix-blend-screen select-none"
+            animate={{ rotate: 360 }} transition={{ duration: 120, repeat: Infinity, ease: "linear" }} />
+        </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div
             initial="hidden"
@@ -442,45 +451,39 @@ export default function Home() {
       </section>
 
       {/* ============================================================
-          SECTION 2.5: CONSCIOUSNESS TEST (early placement for conversion)
+          STATS STRIP — compact trust signals between WHO and WHY
           ============================================================ */}
-      <section className="py-16 lg:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-feral-cyan/10" />
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-            className="text-center"
-          >
-            <p className="text-primary tracking-widest uppercase text-sm mb-3"
-              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-              The Entrance Gate
-            </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-wide text-foreground mb-4">
-              CONSCIOUSNESS TEST
-            </h2>
-            <p className="display text-lg sm:text-xl text-feral-cyan mb-4">
-              Not a personality quiz. A mirror.
-            </p>
-            <p className="text-muted-foreground max-w-xl mx-auto mb-8 leading-relaxed">
-              Twelve questions mapping the patterns that distinguish practitioners who actually wake up from those who don&apos;t. It measures honesty with yourself when that honesty is uncomfortable — which is harder than it sounds.
-            </p>
-            <Link
-              href={TEST_URL}
-              className="inline-block w-full sm:w-auto px-10 py-5 bg-primary text-primary-foreground tracking-widest uppercase glow-blue transition-all duration-300 hover:brightness-125"
-              style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.2rem" }}
-            >
-              Take the Test — Free
-            </Link>
-            <p className="text-muted-foreground/60 text-xs mt-4 tracking-wider uppercase"
-              style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-              Founding price · Will not last
-            </p>
-          </motion.div>
+      <motion.section
+        initial="hidden" whileInView="visible" viewport={{ once: true }}
+        variants={fadeUp}
+        className="py-10 relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/8 via-transparent to-feral-cyan/8" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-3 divide-x divide-border/20">
+            {[
+              { num: "12", label: "questions mapped to practice depth" },
+              { num: "15 min", label: "no account required" },
+              { num: "1", label: "unbroken lineage from source to now" },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="text-center px-4 py-2"
+              >
+                <p className="text-2xl sm:text-3xl tracking-wider text-primary mb-1"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  {stat.num}
+                </p>
+                <p className="text-muted-foreground/60 text-xs leading-snug">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ============================================================
           SECTION 2.5: WHY NONDUAL
@@ -490,7 +493,7 @@ export default function Home() {
         {/* Ocean of nectar texture */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${IMAGES.oceanNectar})` }} />
-        <div className="absolute inset-0 bg-black/80" />
+        <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 shimmer-overlay" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
@@ -577,6 +580,16 @@ export default function Home() {
           ============================================================ */}
       {"lineage" in HOME && (
         <section className="py-14 lg:py-20 relative overflow-hidden border-t border-border/10">
+          {/* Aurora borealis atmospheric background */}
+          <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.20]"
+            style={{ backgroundImage: `url(${IMAGES.p13})` }} />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
+          {/* Kali/Durga face — right-side atmospheric accent */}
+          <div className="absolute right-0 top-0 bottom-0 w-72 pointer-events-none">
+            <img src={IMAGES.p4} alt="" aria-hidden
+              className="h-full w-full object-cover object-center opacity-[0.22] mix-blend-luminosity" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background to-transparent" />
+          </div>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
             <motion.div
               initial="hidden"
@@ -591,24 +604,33 @@ export default function Home() {
               <h2 className="text-2xl sm:text-3xl tracking-wide text-foreground mb-10">
                 {(HOME.lineage as { heading: string }).heading}
               </h2>
-              <div className="flex flex-wrap gap-0">
+              <div className="grid sm:grid-cols-2 gap-x-16 max-w-2xl">
                 {(HOME.lineage as { nodes: Array<{ name: string; century: string; works: string }> }).nodes.map((node, i, arr) => (
-                  <div key={i} className="flex items-start gap-3 mb-6">
-                    <div className="flex flex-col items-center">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
-                      {i < arr.length - 1 && <div className="w-px flex-1 bg-primary/20 mt-1 min-h-8" />}
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.07 }}
+                    className="flex items-start gap-3 mb-6"
+                  >
+                    <div className="flex flex-col items-center shrink-0 mt-1.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-primary ring-2 ring-primary/25 shrink-0" />
+                      {i < arr.length - 1 && i % 2 === 0 && (
+                        <div className="w-px h-8 bg-primary/20 mt-1" />
+                      )}
                     </div>
-                    <div className="pb-4 mr-8">
+                    <div>
                       <p className="text-foreground text-sm tracking-wider"
                         style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
                         {node.name}
                       </p>
-                      <p className="text-muted-foreground/60 text-xs">{node.century}</p>
+                      <p className="text-primary/60 text-xs mt-0.5">{node.century}</p>
                       {node.works && (
-                        <p className="text-muted-foreground/40 text-xs serif-italic mt-0.5">{node.works}</p>
+                        <p className="text-muted-foreground/45 text-xs italic mt-0.5">{node.works}</p>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               <p className="text-muted-foreground/50 text-xs mt-2 max-w-xl">
@@ -619,12 +641,24 @@ export default function Home() {
         </section>
       )}
 
+      {/* ── Yantra divider ─────────────────────────────────────── */}
+      <div className="flex items-center justify-center py-2">
+        <div className="flex-1 h-px bg-border/20 max-w-32" />
+        <motion.img src={IMAGES.yantra} alt="" aria-hidden className="w-10 h-10 opacity-25 mx-4"
+          animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} />
+        <div className="flex-1 h-px bg-border/20 max-w-32" />
+      </div>
+
       {/* ============================================================
           SECTION 3.5: TESTIMONIALS - Social proof
           EDIT: Change TESTIMONIALS array at the top of this file
           ============================================================ */}
-      <section className="py-12 lg:py-16 relative">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+      <section className="py-12 lg:py-16 relative overflow-hidden">
+        {/* Neon smoke texture */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.22]"
+          style={{ backgroundImage: `url(${IMAGES.base1})` }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-transparent to-background/70" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -651,7 +685,8 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } },
                 }}
-                className="border border-border/30 bg-card/50 p-6 relative"
+                whileHover={{ y: -4, boxShadow: "0 0 24px rgba(0,85,255,0.15)" }}
+                className="border border-border/30 bg-card/50 p-6 relative cursor-default"
               >
                 <div className="text-primary text-4xl leading-none mb-4 serif-italic">"</div>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-6 serif-italic">
@@ -672,6 +707,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Yantra divider ─────────────────────────────────────── */}
+      <div className="flex items-center justify-center py-2">
+        <div className="flex-1 h-px bg-border/20 max-w-32" />
+        <motion.img src={IMAGES.yantra} alt="" aria-hidden className="w-10 h-10 opacity-25 mx-4"
+          animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} />
+        <div className="flex-1 h-px bg-border/20 max-w-32" />
+      </div>
 
       {/* ============================================================
           SECTION 3: EXPLORE - Section preview cards
@@ -751,6 +794,10 @@ export default function Home() {
           EDIT: Change the CONSULTORIO array at the top of this file
           ============================================================ */}
       <section className="py-14 lg:py-20 relative overflow-hidden">
+        {/* Kali + red smoke atmospheric background */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.20]"
+          style={{ backgroundImage: `url(${IMAGES.p15})` }} />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/80" />
         <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-feral-red/5 blur-3xl pointer-events-none" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
@@ -785,23 +832,43 @@ export default function Home() {
                   hidden: { opacity: 0, x: -20 },
                   visible: { opacity: 1, x: 0, transition: { duration: 0.4, delay: i * 0.08 } },
                 }}
-                className="border border-border/20 bg-card/30 p-6 sm:p-8 hover:border-primary/50 hover:bg-card/60 transition-all duration-300 group cursor-default"
+                className={`border bg-card/30 transition-all duration-300 cursor-pointer ${openConsultorio === i ? "border-primary/50 bg-card/60" : "border-border/20 hover:border-primary/30 hover:bg-card/50"}`}
+                onClick={() => setOpenConsultorio(openConsultorio === i ? null : i)}
               >
-                <div className="flex items-start gap-4">
-                  <span className="text-primary/40 text-2xl leading-none mt-1 shrink-0"
+                <div className="flex items-center gap-4 p-6 sm:p-8">
+                  <span className="text-primary/50 text-2xl leading-none shrink-0 w-8"
                     style={{ fontFamily: "'Playfair Display', serif" }}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <div>
-                    <h4 className="text-lg sm:text-xl tracking-wider text-foreground group-hover:text-primary transition-colors mb-2"
-                      style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                      {item.title}
-                    </h4>
-                    <p className="text-muted-foreground text-sm sm:text-base serif-italic leading-relaxed">
-                      {item.preview}
-                    </p>
-                  </div>
+                  <h4 className={`flex-1 text-base sm:text-lg tracking-wider transition-colors duration-300 ${openConsultorio === i ? "text-primary" : "text-foreground"}`}
+                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                    {item.title}
+                  </h4>
+                  <motion.span
+                    animate={{ rotate: openConsultorio === i ? 45 : 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="text-primary/60 text-xl shrink-0 leading-none"
+                  >
+                    +
+                  </motion.span>
                 </div>
+                <AnimatePresence>
+                  {openConsultorio === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 sm:px-8 pb-6 pl-[4.5rem]">
+                        <p className="text-muted-foreground text-sm sm:text-base serif-italic leading-relaxed border-l border-primary/30 pl-4">
+                          {item.preview}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>

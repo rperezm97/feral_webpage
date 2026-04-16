@@ -73,6 +73,20 @@ export const IMAGES = {
   milkyway:    "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80&auto=format&fit=crop",
   forest:      "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80&auto=format&fit=crop",
   candlelight: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=1600&q=80&auto=format&fit=crop",
+  // Roberto's original design assets (section backgrounds, cards, decorative elements)
+  yantra:      "/images/yantra.png",    // Logo yantra — section dividers & decorative overlays
+  base1:       "/images/base1.png",     // Dark neon electric smoke — testimonials
+  base2:       "/images/base2.png",     // Starfield with yantra corners — WHO IS FOR
+  p4:          "/images/p4.png",        // Kali/Durga face — lineage accent + who-card-3
+  p5:          "/images/p5.png",        // Design composition 5 — who-card-2
+  p7:          "/images/p7.png",        // Design composition 7
+  p9:          "/images/p9.png",        // Design composition 9 — who-card-1
+  p10:         "/images/p10.png",       // Design composition 10
+  p12:         "/images/p12.png",       // Design composition 12
+  p13:         "/images/p13.png",       // Aurora borealis — lineage background
+  p15:         "/images/p15.png",       // Kali + red smoke — consultorio background
+  P1:          "/images/P1.png",        // Portrait composition
+  P2:          "/images/P2.png",        // Portrait composition
 };
 
 // ─── BACKGROUND TYPE ─────────────────────────────────────────
@@ -213,14 +227,17 @@ export const HOME = {
       {
         title: "SERIOUS PRACTITIONERS WHO HAVE HIT A WALL",
         body:  "You have sat with other traditions — Zen, Vipassana, Advaita, Vedanta, neo-tantra, ceremonial paths. They gave you something, and then they gave you a ceiling. You started noticing the repression underneath the peace. Welcome.",
+        image: IMAGES.p9,
       },
       {
         title: "THE POLITICALLY RADICAL WHO ARE SUSPICIOUS OF SPIRITUALITY",
         body:  "You have watched the wellness industry absorb every liberation movement and sell it back as a personal development product. Good. Neither are we. The Trika framework is politically sharp because the texts themselves were.",
+        image: IMAGES.p5,
       },
       {
         title: "ARTISTS, PERFORMERS, PEOPLE WHO LIVE IN THEIR BODIES",
         body:  "You have found that concepts don't go deep enough — that the body reaches what the mind cannot. The Trika tradition treats the body as the primary laboratory. Saṃskāras live in the body first, and they must be released there before the mind can follow.",
+        image: IMAGES.p4,
       },
     ],
     closing: "If none of these are you — if you are here for comfort, for \"high vibration,\" for a teacher to tell you what to think — this is not your place. That's okay. The door is honest.",

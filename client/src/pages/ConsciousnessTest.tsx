@@ -324,7 +324,7 @@ export default function ConsciousnessTest() {
         >
           {q.section}
         </p>
-        <p className="text-xs mb-6" style={{ color: "rgba(238,238,238,0.35)" }}>
+        <p className="text-xs mb-6 lg:hidden" style={{ color: "rgba(238,238,238,0.35)" }}>
           Question {step} of 12
         </p>
         <h2
@@ -813,70 +813,118 @@ export default function ConsciousnessTest() {
     );
   };
 
+  // Current question image (for desktop panel)
+  const currentImage = step >= 1 && step <= 12 ? QUESTIONS[step - 1]?.image : undefined;
+
   // ── MAIN RENDER ─────────────────────────────────────────────
   return (
-    <div className="min-h-screen relative" style={{ backgroundColor: "#0A0A0A" }}>
-      {/* Per-question background image — fades in/out as you progress */}
-      {step >= 1 && step <= 12 && QUESTIONS[step - 1]?.image && (
-        <>
-          <div
-            key={`bg-${step}`}
-            className="pointer-events-none fixed inset-0 bg-cover bg-center transition-opacity duration-1000"
-            style={{ backgroundImage: `url(${QUESTIONS[step - 1].image})`, opacity: 0.07, zIndex: 0 }}
-          />
-          <div className="pointer-events-none fixed inset-0 bg-black/60" style={{ zIndex: 0 }} />
-        </>
-      )}
+    <div className="min-h-screen relative lg:flex" style={{ backgroundColor: "#0A0A0A" }}>
 
-      {/* Grain overlay */}
-      <div
-        className="pointer-events-none fixed inset-0 opacity-30"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "128px 128px",
-          zIndex: 0,
-        }}
-      />
-
-      {/* Subtle cyan glow top */}
-      <div
-        className="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 w-96 h-96 opacity-5"
-        style={{
-          background: "radial-gradient(circle, #00E5FF 0%, transparent 70%)",
-          zIndex: 0,
-        }}
-      />
-
-      <div ref={topRef} className="relative z-10">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-24 pb-24">
-
-          {/* Progress bar — hidden on intro and results */}
-          {step > 0 && step < 16 && (
-            <div className="mb-12">
-              <div className="flex justify-between text-xs mb-2" style={{ color: "rgba(238,238,238,0.3)", fontFamily: "'Bebas Neue', sans-serif" }}>
-                <span>Progress</span>
-                <span>{progress}%</span>
-              </div>
-              <div className="h-px w-full" style={{ backgroundColor: "rgba(238,238,238,0.08)" }}>
-                <div
-                  className="h-full transition-all duration-500"
-                  style={{
-                    width: `${progress}%`,
-                    backgroundColor: "var(--feral-cyan, #00E5FF)",
-                  }}
-                />
-              </div>
-            </div>
+      {/* ── DESKTOP IMAGE PANEL (left 42%) ── */}
+      <div className="hidden lg:block lg:w-[42%] lg:fixed lg:left-0 lg:top-0 lg:bottom-0 overflow-hidden">
+        <AnimatePresence mode="wait">
+          {currentImage ? (
+            <motion.div
+              key={`panel-${step}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${currentImage})` }}
+            />
+          ) : (
+            <motion.div
+              key="panel-default"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0"
+              style={{ background: "radial-gradient(ellipse at center, rgba(0,229,255,0.08) 0%, transparent 70%)" }}
+            />
           )}
+        </AnimatePresence>
+        {/* Overlay + right fade */}
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0A0A0A]" />
+        {/* Yantra watermark on image */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <motion.img
+            src="/images/yantra.png" alt="" aria-hidden
+            className="w-48 h-48 opacity-10 mix-blend-screen"
+            animate={{ rotate: 360 }} transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
+        {/* Section label bottom left */}
+        {step >= 1 && step <= 12 && (
+          <div className="absolute bottom-12 left-8 right-8">
+            <p className="text-xs tracking-widest uppercase opacity-50"
+              style={{ color: "#00E5FF", fontFamily: "'Bebas Neue', sans-serif" }}>
+              {QUESTIONS[step - 1]?.section}
+            </p>
+            <p className="text-xs opacity-25" style={{ color: "rgba(238,238,238,0.5)" }}>
+              Question {step} of 12
+            </p>
+          </div>
+        )}
+      </div>
 
-          <AnimatePresence mode="wait">
-            {step === 0 && renderIntro()}
-            {step >= 1 && step <= 12 && renderQuestion()}
-            {(step === 13 || step === 14) && renderOpenQuestion()}
-            {step === 15 && renderEmailStep()}
-            {step === 16 && renderResults()}
-          </AnimatePresence>
+      {/* ── CONTENT PANEL (right 58% on desktop, full on mobile) ── */}
+      <div className="lg:ml-[42%] w-full relative z-10">
+        {/* Mobile: full-bleed background */}
+        {currentImage && (
+          <div
+            className="lg:hidden pointer-events-none fixed inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${currentImage})`, opacity: 0.12 }}
+          />
+        )}
+
+        {/* Grain overlay */}
+        <div
+          className="pointer-events-none fixed inset-0 opacity-20 lg:opacity-15"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "128px 128px",
+            zIndex: 0,
+          }}
+        />
+
+        {/* Subtle cyan glow top */}
+        <div
+          className="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 w-96 h-96 opacity-5"
+          style={{ background: "radial-gradient(circle, #00E5FF 0%, transparent 70%)", zIndex: 0 }}
+        />
+
+        <div ref={topRef} className="relative z-10">
+          <div className="max-w-xl mx-auto lg:max-w-none lg:mx-0 px-6 sm:px-10 lg:px-14 pt-16 lg:pt-24 pb-16">
+
+            {/* Progress bar — hidden on intro and results */}
+            {step > 0 && step < 16 && (
+              <div className="mb-10">
+                <div className="flex justify-between text-xs mb-2" style={{ color: "rgba(238,238,238,0.3)", fontFamily: "'Bebas Neue', sans-serif" }}>
+                  <span>Progress</span>
+                  <span>{progress}%</span>
+                </div>
+                <div className="h-0.5 w-full rounded-full overflow-hidden" style={{ backgroundColor: "rgba(238,238,238,0.06)" }}>
+                  <motion.div
+                    className="h-full rounded-full"
+                    animate={{ width: `${progress}%` }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    style={{ backgroundColor: "var(--feral-cyan, #00E5FF)" }}
+                  />
+                </div>
+              </div>
+            )}
+
+            <AnimatePresence mode="wait">
+              {step === 0 && renderIntro()}
+              {step >= 1 && step <= 12 && renderQuestion()}
+              {(step === 13 || step === 14) && renderOpenQuestion()}
+              {step === 15 && renderEmailStep()}
+              {step === 16 && renderResults()}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </div>
