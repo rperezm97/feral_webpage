@@ -87,6 +87,16 @@ export const IMAGES = {
   p15:         "/images/p15.png",       // Kali + red smoke — consultorio background
   P1:          "/images/P1.png",        // Portrait composition
   P2:          "/images/P2.png",        // Portrait composition
+  P1_alt:      "/images/P1_alt.png",    // Portrait alt — founder/about
+  // New tradition-aligned assets (replace Unsplash generic atmospherics)
+  kseyo:       "/images/kseyo.png",     // Kṣemarāja / non-dual abstract — doctrine sections
+  kseyob:      "/images/kseyob.png",    // Kṣemarāja variant — pull-quote backgrounds
+  chiva:       "/images/chiva.png",     // Śiva composition — core doctrine
+  drag:        "/images/drag.png",      // Queer/drag composition — political/queer sections
+  cuerpo:      "/images/cuerpo.png",    // Body composition — embodiment / practice
+  jesus:       "/images/jesus.png",     // Decolonial critique — comparison sections
+  mantis:      "/images/mantis.png",    // Śakti / Kali energy — desire + force sections
+  p14:         "/images/p14.png",       // Design composition 14
 };
 
 // ─── BACKGROUND TYPE ─────────────────────────────────────────
@@ -159,7 +169,7 @@ export const HOME = {
     headline:    "FERAL AWARENESS",
     eyebrow:     "Non-dual Tantra · Kashmir Shaivism · The Trika",
     subheadline: "Radical spirituality for people who are done being sold comfort dressed up as liberation.",
-    clarifier:   "Not neo-tantra. Not wellness. Not self-improvement. Trika Kashmir Shaivism — six thousand years of non-dual tradition, lineage-based and politically clear.",
+    clarifier:   "Not neo-tantra. Not wellness. Not self-improvement. Trika Kashmir Shaivism. Six thousand years of non-dual tradition, lineage-based and politically clear.",
     cta_primary:   { href: "/test",   label: "Take the Consciousness Test" },
     cta_secondary: { href: "/school", label: "Enter the School" },
     cta_freebie:   { href: "/freebie/intro-spanda", label: "Get the free guide" },
@@ -173,10 +183,10 @@ export const HOME = {
     heading:  "AN AWARENESS THAT DOES NOT CONTRACT",
     intro:    "Feral awareness is awareness that has stopped flinching.",
     body: [
-      "It holds the ground — the body, the nervous system, the people you love, the political present — while simultaneously expanding into the edges of the universe, where the texts of the Trika tradition describe an ocean of nectar (amṛta) pulsing through every experience. It doesn't shrink when the mind contracts around a desire or an object. It doesn't withdraw from the world in the name of purity.",
-      "\"Feral\" means pre-domesticated. Not wild in the sense of chaotic. Wild in the sense of not fitted to the cage you were born into.",
-      "The Trika tradition has a word for the mystical experience at the center of this: camatkāra — ecstatic awe, the shiver of recognition that reality is not a neutral backdrop but a living pulsation of consciousness (spanda). When you feel it, life stops being a problem to solve and starts being a flow.",
-      "This is not self-improvement. It is pratyabhijñā — the recognition of what you already are. Consciousness itself, in its fullness (pūrṇatā), temporarily contracted into the experience of being \"you.\"",
+      "It holds the ground: the body, the nervous system, the people you love, the political present. It doesn't withdraw from the world to stay spiritual. It doesn't shrink when the mind contracts around a desire. It stays with all of it.",
+      "Feral means pre-domesticated. Not wild in the sense of chaotic. Wild in the sense of not fitted to the cage you were born into.",
+      "There's a word for the mystical experience at the center of this: camatkāra. The shiver of recognition that reality is not a neutral backdrop but a living pulsation (spanda). When you feel it, life stops being a problem to solve and starts being a flow.",
+      "This is not self-improvement. It is pratyabhijñā: the recognition of what you already are. Consciousness itself, fullness (pūrṇatā), temporarily contracted into the experience of being you.",
     ],
   },
 
@@ -189,7 +199,7 @@ export const HOME = {
     eyebrow:    "The Entrance Gate",
     heading:    "CONSCIOUSNESS TEST",
     subheading: "Not a personality quiz. A mirror.",
-    body:       "Twelve questions mapping the patterns that distinguish practitioners who actually wake up from those who don't. It measures honesty with yourself when that honesty is uncomfortable — which is harder than it sounds.",
+    body:       "Twelve questions mapping the patterns that separate practitioners who actually wake up from those who don't. It measures honesty with yourself when that honesty is uncomfortable. Harder than it sounds.",
     cta:        { href: "/test", label: "Take the Test — Free" },
     note:       "Founding price · Will not last",
   },
@@ -198,7 +208,7 @@ export const HOME = {
   nondual: {
     bg: {
       type:    "image" as BgType,
-      url:     IMAGES.oceanNectar,
+      url:     IMAGES.chiva,
       videoId: "",
       overlay: "bg-black/80",
       grain:   false,
@@ -207,10 +217,10 @@ export const HOME = {
     eyebrow: "The frame",
     heading: "WHY NONDUAL TANTRA",
     body: [
-      "Most of what you get sold as \"eastern spirituality\" in the West comes from two places: the Vedas and Patañjali's Yoga Sūtras. Both treat the world as an illusion to overcome, the body as an obstacle, desire as a trap. Both come from brahmanic caste contexts — privileged people who owned land and wrote texts that reflected their privilege.",
-      "Kashmir Shaivism comes from a completely different lineage: the Bhairava Āgamas, non-dual tantric texts that put consciousness and the yoginī at the center, treat multiplicity and diversity as manifestations of śakti, and embrace pleasure, body, art, and the world itself as the path.",
-      "The world is not māyā as \"illusion.\" Māyā is the creative power of consciousness voluntarily contracting itself to taste finitude — to experience being separate so it can recognize its own fullness. Renunciation without enjoyment becomes repression in spiritual clothing. Enjoyment without liberation is empty hedonism. The non-dual texts refuse both errors.",
-      "This path is decolonial because the tradition itself was decolonial. It is queer and feminist because śakti — power, energy, the feminine principle — is not subordinate to Śiva. They are inseparable and equal. Your politics are not a distraction from the path. They are already practice.",
+      "Most of what you get sold as eastern spirituality in the West comes from two places: the Vedas and Patañjali's Yoga Sūtras. Both treat the world as illusion, the body as obstacle, desire as a trap. Both come from brahmanic caste contexts. Privileged people who owned land and wrote texts that reflected their privilege.",
+      "Kashmir Shaivism comes from a different lineage: the Bhairava Āgamas. Non-dual tantric texts that put consciousness and the yoginī at the center. Multiplicity is śakti. Pleasure, body, art, and the world itself are the path.",
+      "Māyā is not illusion. Māyā is the creative power of consciousness voluntarily contracting itself to taste finitude. To experience being separate so it can recognize its own fullness. Renunciation without enjoyment becomes repression in spiritual clothing. Enjoyment without liberation is empty hedonism. The non-dual texts refuse both errors.",
+      "This path is decolonial because the tradition itself was decolonial. It is queer and feminist because śakti (power, energy, the feminine principle) is not subordinate to Śiva. They are inseparable and equal. Your politics are not a distraction from the path. They are already practice.",
     ],
     pullquote: "In Trika, liberation and enjoyment are not opposites. A tradition that gives you one without the other is incomplete.",
   },
@@ -226,21 +236,21 @@ export const HOME = {
     groups: [
       {
         title: "SERIOUS PRACTITIONERS WHO HAVE HIT A WALL",
-        body:  "You have sat with other traditions — Zen, Vipassana, Advaita, Vedanta, neo-tantra, ceremonial paths. They gave you something, and then they gave you a ceiling. You started noticing the repression underneath the peace. Welcome.",
+        body:  "You have sat with other traditions. Zen, Vipassana, Advaita, Vedanta, neo-tantra, ceremonial paths. They gave you something, and then they gave you a ceiling. You started noticing the repression underneath the peace. Welcome.",
         image: IMAGES.p9,
       },
       {
         title: "THE POLITICALLY RADICAL WHO ARE SUSPICIOUS OF SPIRITUALITY",
-        body:  "You have watched the wellness industry absorb every liberation movement and sell it back as a personal development product. Good. Neither are we. The Trika framework is politically sharp because the texts themselves were.",
-        image: IMAGES.p5,
+        body:  "You have watched the wellness industry absorb every liberation movement and sell it back as personal development. Good. Neither are we. The Trika framework is politically sharp because the texts themselves were.",
+        image: IMAGES.drag,
       },
       {
         title: "ARTISTS, PERFORMERS, PEOPLE WHO LIVE IN THEIR BODIES",
-        body:  "You have found that concepts don't go deep enough — that the body reaches what the mind cannot. The Trika tradition treats the body as the primary laboratory. Saṃskāras live in the body first, and they must be released there before the mind can follow.",
-        image: IMAGES.p4,
+        body:  "You have found that concepts don't go deep enough. That the body reaches what the mind cannot. The Trika tradition treats the body as the primary laboratory. Saṃskāras live in the body first. They must be released there before the mind can follow.",
+        image: IMAGES.cuerpo,
       },
     ],
-    closing: "If none of these are you — if you are here for comfort, for \"high vibration,\" for a teacher to tell you what to think — this is not your place. That's okay. The door is honest.",
+    closing: "If none of these are you. If you are here for comfort, for \"high vibration,\" for a teacher to tell you what to think. This is not your place. That's okay. The door is honest.",
   },
 
   // ── FREEBIE CTA STRIP ────────────────────────────────────
@@ -249,7 +259,7 @@ export const HOME = {
     heading:    "START HERE — FREE",
     subheading: "Not ready for the test? Start with a free guide.",
     items: [
-      { slug: "intro-spanda", label: "Intro to Spanda", tagline: "The living pulsation at the heart of Kashmir Shaivism — free PDF" },
+      { slug: "intro-spanda", label: "Intro to Spanda", tagline: "The living pulsation at the heart of Kashmir Shaivism. Free PDF." },
     ],
   },
 
@@ -275,7 +285,7 @@ export const HOME = {
   sections_block: {
     bg: {
       type:    "image" as BgType,
-      url:     IMAGES.nebula,
+      url:     IMAGES.kseyo,
       videoId: "",
       overlay: "bg-gradient-to-b from-background via-transparent to-background",
       grain:   false,
@@ -299,7 +309,7 @@ export const HOME = {
         title:       "About",
         description: "Rob Pérez Martínez. Berlin. A story that includes a psychotic break, eight years of physical theater, and a teacher who refused to dilute the transmission.",
         href:        "/about",
-        image:       IMAGES.about,
+        image:       IMAGES.P1_alt,
       },
       {
         title:       "School",
@@ -341,7 +351,7 @@ export const HOME = {
         credential: "Yoga teacher, 6 years practice",
       },
       {
-        quote:      "I came in as a skeptic — I'm a political organizer and I distrust anything that smells like wellness. This doesn't. It's rigorous, embodied, and doesn't ask you to stop caring about the world.",
+        quote:      "I came in as a skeptic. I'm a political organizer and I distrust anything that smells like wellness. This doesn't. It's rigorous, embodied, and doesn't ask you to stop caring about the world.",
         name:       "L.T.",
         location:   "Amsterdam",
         credential: "Political organizer, secular background",
@@ -354,27 +364,27 @@ export const HOME = {
     bg: { type: "none" as BgType },
     eyebrow: "The Consultorio",
     heading: "QUESTIONS THAT BURN",
-    body:    "Real themes from the practice. No sanitized case studies. These are the fires we hold in the Consultorio — one-on-one tantric guidance for people doing real work.",
+    body:    "Real themes from the practice. No sanitized case studies. These are the fires we hold in the Consultorio. One-on-one tantric guidance for people doing real work.",
     items: [
       {
         title:   "Spiritual bypass and the tyranny of \"high vibration\"",
-        preview: "When \"raising your frequency\" becomes another way to avoid grief, rage, and the political present — that is bypass. The Trika tradition holds that unprocessed emotion is contracted śakti. What has not moved through the body has not been processed. Equanimity built on top of avoidance is a performance, not liberation.",
+        preview: "When raising your frequency becomes another way to avoid grief, rage, and the political present, that is bypass. The Trika tradition holds that unprocessed emotion is contracted śakti. What has not moved through the body has not been processed. Equanimity built on top of avoidance is a performance, not liberation.",
       },
       {
         title:   "Colonial religion and body shame",
-        preview: "The belief that the body is a problem — sinful, dirty, lower — did not disappear when you stopped identifying as Christian. It entered your nervous system as saṃskāra: body-held conditioning that shapes how you perceive, react, and contract. Kashmir Shaivism makes the inverse claim: the body is the primary laboratory of consciousness.",
+        preview: "The belief that the body is a problem, sinful, dirty, lower, did not disappear when you stopped identifying as Christian. It entered your nervous system as saṃskāra: body-held conditioning that shapes how you perceive, react, and contract. Kashmir Shaivism makes the inverse claim. The body is the primary laboratory of consciousness.",
       },
       {
         title:   "Desire as expansion, not lack",
-        preview: "In Trika philosophy, desire (icchā śakti) is not a sign of deficiency — it is spanda, the pulsation of consciousness reaching toward its own expression. The problem is not the desire. It is the contraction around the desire: the belief that the object you chase is separate from what you already are.",
+        preview: "In Trika philosophy, desire (icchā śakti) is not a sign of deficiency. It is spanda, the pulsation of consciousness reaching toward its own expression. The problem is not the desire. It is the contraction around the desire: the belief that the object you chase is separate from what you already are.",
       },
       {
         title:   "Frozen emotion and the fear of death",
-        preview: "What presents itself as an emotion is often a saṃskāra: condensed, unprocessed experience held in the body as rigidity. Abhinavagupta teaches that every vikāra — every disturbance — is śakti in disguise. Fear of death, recognized clearly, becomes the recognition of the impermanent arising within the permanent ground.",
+        preview: "What presents itself as an emotion is often a saṃskāra: condensed, unprocessed experience held in the body as rigidity. Abhinavagupta teaches that every vikāra, every disturbance, is śakti in disguise. Fear of death, recognized clearly, becomes the recognition of the impermanent arising within the permanent ground.",
       },
       {
         title:   "Self-improvement as social control",
-        preview: "The self-improvement industry operates on the premise that you are deficient and that fixing yourself will make you free. Kashmir Shaivism begins from the opposite position: pūrṇatā, fullness — you are already complete consciousness, temporarily contracted. The work is pratyabhijñā — recognition — not construction.",
+        preview: "The self-improvement industry operates on the premise that you are deficient and that fixing yourself will make you free. Kashmir Shaivism begins from the opposite position: pūrṇatā, fullness. You are already complete consciousness, temporarily contracted. The work is pratyabhijñā, recognition, not construction.",
       },
     ],
     cta: { href: "/test", label: "Submit your question" },
@@ -384,7 +394,7 @@ export const HOME = {
   test_cta: {
     bg: {
       type:    "image" as BgType,
-      url:     IMAGES.deepwater,
+      url:     IMAGES.mantis,
       videoId: "",
       overlay: "bg-black/75",
       grain:   false,
@@ -392,8 +402,8 @@ export const HOME = {
     },
     heading:    "CONSCIOUSNESS TEST",
     subheading: "The entrance gate to the school",
-    body:       "This is not a personality quiz. Twelve questions mapping the patterns that distinguish practitioners who actually wake up from those who don't. Fifteen minutes. No account required.",
-    badge:      "School open · Founding price — not permanent",
+    body:       "This is not a personality quiz. Twelve questions mapping the patterns that separate practitioners who actually wake up from those who don't. Fifteen minutes. No account required.",
+    badge:      "School open · Founding price, not permanent",
     cta:        { href: "/test", label: "Take the Test — Free" },
   },
 
@@ -401,7 +411,7 @@ export const HOME = {
   newsletter: {
     bg: {
       type:    "image" as BgType,
-      url:     IMAGES.iridescent,
+      url:     IMAGES.kseyob,
       videoId: "",
       overlay: "bg-gradient-to-b from-background via-black/60 to-background",
       grain:   false,
@@ -433,9 +443,9 @@ export const TANTRA = {
     eyebrow: "What it is",
     heading: "A LIVING MAP OF CONSCIOUSNESS",
     body: [
-      "Kashmir Shaivism — also called the Trika, meaning \"the threefold\" — is a non-dual philosophical and contemplative tradition that crystallized in the Kashmir Valley between roughly the seventh and twelfth centuries, as a synthesis of much older oral and textual currents. It is rooted in a specific body of scripture called the Bhairava Āgamas — non-dual tantric texts that were transmitted inside small circles of practicing yogīs and yoginīs, and are still studied and practiced today in an unbroken lineage.",
-      "At the center of the tradition is a simple, radical claim: there is one reality, and that reality is consciousness. Not an impersonal ground, not a remote deity, not a cosmic principle you have to reach. Consciousness is what you already are, right now, reading this. Waking up is not becoming something new. It is pratyabhijñā, recognition — the direct, felt seeing of what was always the case.",
-      "This is a tradition that insists the finite and the infinite are not opposed. Your body is not an obstacle; it is the laboratory. Your desires are not traps; they are spanda, the pulsation of consciousness reaching toward its own expression. Your emotions are not lower-vibrational noise; they are the pathways. Your political life, your relationships, your grief, your joy — all of it is already the practice, if you know how to meet it.",
+      "Kashmir Shaivism (also called the Trika, meaning \"the threefold\") is a non-dual philosophical and contemplative tradition that crystallized in the Kashmir Valley between roughly the seventh and twelfth centuries, as a synthesis of much older oral and textual currents. It is rooted in a specific body of scripture called the Bhairava Āgamas. Non-dual tantric texts that were transmitted inside small circles of practicing yogīs and yoginīs, and are still studied and practiced today in an unbroken lineage.",
+      "At the center of the tradition is a simple, radical claim. There is one reality, and that reality is consciousness. Not an impersonal ground, not a remote deity, not a cosmic principle you have to reach. Consciousness is what you already are, right now, reading this. Waking up is not becoming something new. It is pratyabhijñā, recognition. The direct, felt seeing of what was always the case.",
+      "This is a tradition that insists the finite and the infinite are not opposed. Your body is not an obstacle. It is the laboratory. Your desires are not traps. They are spanda, the pulsation of consciousness reaching toward its own expression. Your emotions are not lower-vibrational noise. They are the pathways. Your political life, your relationships, your grief, your joy. All of it is already the practice, if you know how to meet it.",
     ],
   },
 
@@ -444,9 +454,9 @@ export const TANTRA = {
     eyebrow: "The frame",
     heading: "WHY NONDUAL",
     body: [
-      "The word \"non-dual\" gets thrown around a lot, and most of the time it means something vaguely mystical — \"everything is one, man.\" The technical meaning in the Trika tradition is much more precise, and it matters.",
+      "The word \"non-dual\" gets thrown around a lot, and most of the time it means something vaguely mystical. \"Everything is one, man.\" The technical meaning in the Trika tradition is much more precise, and it matters.",
       "Dualistic traditions split reality into two fundamentally different categories: consciousness and matter, spirit and world, sacred and profane. Practice becomes the work of moving from one side to the other. Most of the yoga and meditation you have encountered in the West operates this way, even when it doesn't advertise it. The body is to be transcended. Desire is to be renounced.",
-      "Non-dual tantra refuses this split at the root. There is one reality — cit, consciousness, pure awareness — and everything that appears is that same reality in a particular mode. The world is not other than consciousness. Your body is not a vehicle for something more real; it is that something more real, appearing as a body.",
+      "Non-dual tantra refuses this split at the root. There is one reality (cit, consciousness, pure awareness) and everything that appears is that same reality in a particular mode. The world is not other than consciousness. Your body is not a vehicle for something more real. It is that something more real, appearing as a body.",
       "Why does this matter practically? Because as long as your cosmovision splits reality into two, your practice will be an exhausting attempt to get rid of half of yourself.",
     ],
     pullquote: "In a non-dual map, nothing needs to be rejected. Every state is already consciousness. The task is not purification but recognition.",
@@ -457,16 +467,16 @@ export const TANTRA = {
     eyebrow: "The texts",
     heading: "THE BHAIRAVA ĀGAMAS AND THEIR COMMENTATORS",
     intro: [
-      "The Trika tradition is based on a specific category of scripture called the Bhairava Āgamas. They take Bhairava — a wrathful, boundary-dissolving form of Śiva — as the name of ultimate reality, and they refuse every split between sacred and profane, pure and impure, permitted and forbidden.",
-      "These texts were not written as philosophy. They are condensed maps: short, cryptic verses meant to be received from a teacher and unpacked through practice and commentary.",
+      "The Trika tradition is based on a specific category of scripture called the Bhairava Āgamas. They take Bhairava (a wrathful, boundary-dissolving form of Śiva) as the name of ultimate reality, and they refuse every split between sacred and profane, pure and impure, permitted and forbidden.",
+      "These texts were not written as philosophy. They are condensed maps. Short, cryptic verses meant to be received from a teacher and unpacked through practice and commentary.",
     ],
     texts: [
       { title: "Śiva Sūtras",              author: "Vasugupta · ~9th c.",        desc: "The foundational aphorisms, received by Vasugupta after a vision. Three sections mapping the three upāyas." },
-      { title: "Spanda Kārikā",            author: "Vasugupta · ~9th c.",        desc: "The doctrine of vibration. Consciousness as dynamic pulsation — the heartbeat of the absolute, felt in every moment of experience." },
+      { title: "Spanda Kārikā",            author: "Vasugupta · ~9th c.",        desc: "The doctrine of vibration. Consciousness as dynamic pulsation. The heartbeat of the absolute, felt in every moment of experience." },
       { title: "Vijñāna Bhairava Tantra",  author: "Anonymous · early medieval", desc: "One hundred and twelve techniques (dhāraṇās) for recognition through direct sensory, emotional, and somatic experience. The most practical of the core texts." },
-      { title: "Pratyabhijñāhṛdayam",      author: "Kṣemarāja · ~11th c.",       desc: "The Heart of Recognition. Twenty short sūtras with commentary — the most accessible entry point. If you read only one text to begin with, this is it." },
+      { title: "Pratyabhijñāhṛdayam",      author: "Kṣemarāja · ~11th c.",       desc: "The Heart of Recognition. Twenty short sūtras with commentary. The most accessible entry point. If you read only one text to begin with, this is it." },
       { title: "Tantrāloka",               author: "Abhinavagupta · ~10th–11th c.", desc: "The encyclopedic masterwork. Thirty-seven chapters synthesizing the entire non-dual tantric tradition." },
-      { title: "Tantrasāra",               author: "Abhinavagupta · ~10th–11th c.", desc: "The essence of the Tantrāloka — a shorter, distilled version of the same teachings." },
+      { title: "Tantrasāra",               author: "Abhinavagupta · ~10th–11th c.", desc: "The essence of the Tantrāloka. A shorter, distilled version of the same teachings." },
       { title: "Īśvarapratyabhijñākārikā", author: "Utpaladeva · ~10th c.",       desc: "The foundational text of the Pratyabhijñā (Recognition) school. Liberation is not something to attain but something to recognize." },
       { title: "Śivastotrāvalī",           author: "Utpaladeva · ~10th c.",       desc: "Ecstatic devotional hymns from the same philosopher. Proof that rigorous philosophy and bhakti are not in conflict." },
     ],
@@ -488,11 +498,11 @@ export const TANTRA = {
     eyebrow: "A necessary distinction",
     heading: "NEO-TANTRA IS NOT TANTRA",
     body: [
-      "What you find marketed as \"tantra\" in the West — at retreats, weekend workshops, couples' therapy with a spiritual accent, partner breath exercises, eye-gazing, sacred sexuality courses — is almost entirely a twentieth-century Western invention. Its lineage is not the Bhairava Āgamas. Its lineage is Osho, the human potential movement, and the wellness industry's ongoing project of absorbing every genuine tradition.",
-      "This is not a minor terminological complaint. It is a specific kind of cultural appropriation: take the name of a sophisticated non-dual philosophical tradition, strip out the philosophy, the scriptures, the lineage, the political bite, and most of the content, keep the exotic word, and sell it.",
-      "The real tantric tradition does include sexuality as one possible doorway — among many others, alongside breath, sound, emotion, silence, movement, taste, memory, and dreaming. But it is not a sexuality tradition. It is a consciousness tradition that treats every modality of human experience as a potential gate.",
+      "What you find marketed as \"tantra\" in the West (at retreats, weekend workshops, couples' therapy with a spiritual accent, partner breath exercises, eye-gazing, sacred sexuality courses) is almost entirely a twentieth-century Western invention. Its lineage is not the Bhairava Āgamas. Its lineage is Osho, the human potential movement, and the wellness industry's ongoing project of absorbing every genuine tradition.",
+      "This is not a minor terminological complaint. It is a specific kind of cultural appropriation. Take the name of a sophisticated non-dual philosophical tradition, strip out the philosophy, the scriptures, the lineage, the political bite, and most of the content, keep the exotic word, and sell it.",
+      "The real tantric tradition does include sexuality as one possible doorway among many others. Alongside breath, sound, emotion, silence, movement, taste, memory, and dreaming. But it is not a sexuality tradition. It is a consciousness tradition that treats every modality of human experience as a potential gate.",
     ],
-    pullquote: "We are not hostile to pleasure or intimacy — the texts are not. We are hostile to the replacement of a living tradition with its marketing.",
+    pullquote: "We are not hostile to pleasure or intimacy. The texts are not. We are hostile to the replacement of a living tradition with its marketing.",
   },
 
   lifestyle: {
@@ -500,9 +510,9 @@ export const TANTRA = {
     eyebrow: "Form of life",
     heading: "NOTHING TO RENOUNCE, NOTHING TO PERFORM",
     body: [
-      "Because the tradition is non-dual, there is no frontier between the spiritual and the ordinary. Practice is not a half-hour activity you do in the morning. It is continuous, active recognition in the middle of daily life — washing dishes, walking to the train, arguing with your landlord, cooking, grieving, being tired.",
+      "Because the tradition is non-dual, there is no frontier between the spiritual and the ordinary. Practice is not a half-hour activity you do in the morning. It is continuous, active recognition in the middle of daily life. Washing dishes, walking to the train, arguing with your landlord, cooking, grieving, being tired.",
       "Because there is no split to enforce, there is no renunciation. You do not have to give up pleasure, money, sexuality, relationships, art, politics, or coffee. The point is not what you do with the objects but what you do with the contraction around the objects.",
-      "Shaivite practitioners go unnoticed. There is no uniform, no special diet, no coded vocabulary, no performance of spirituality. Devotion is internal. In a culture where spirituality is often a costume, this is quietly radical.",
+      "Shaivite practitioners go unnoticed. No uniform. No special diet. No coded vocabulary. No performance of spirituality. Devotion is internal. In a culture where spirituality is often a costume, this is quietly radical.",
     ],
   },
 
@@ -526,9 +536,9 @@ export const PRACTICE = {
     eyebrow: "What practice actually is",
     heading: "NOT A PERFORMANCE",
     body: [
-      "Practice in the Trika tradition is not about becoming a better person, calming your mind, raising your vibration, accumulating techniques, or performing serenity. It is about one thing: pratyabhijñā — the direct recognition that what you are has never been other than pure consciousness.",
-      "Everything else is scaffolding for that one recognition. Breath practices, meditation techniques, body work, mantra, devotion, philosophical study — all of these are tools that create the conditions in which recognition can land and stabilize. They are not the goal. When a technique becomes the goal, it becomes another identity, another accumulation.",
-      "The Trika tradition organizes these scaffoldings into three levels, called the upāyas — means, or methods. They are not three separate paths you choose between. They are three different angles of approach, calibrated to where the contraction is currently thickest in your experience.",
+      "Practice in the Trika tradition is not about becoming a better person, calming your mind, raising your vibration, accumulating techniques, or performing serenity. It is about one thing: pratyabhijñā. The direct recognition that what you are has never been other than pure consciousness.",
+      "Everything else is scaffolding for that one recognition. Breath practices, meditation techniques, body work, mantra, devotion, philosophical study. All of these are tools that create the conditions in which recognition can land and stabilize. They are not the goal. When a technique becomes the goal, it becomes another identity, another accumulation.",
+      "The Trika tradition organizes these scaffoldings into three levels, called the upāyas. Means, or methods. They are not three separate paths you choose between. They are three different angles of approach, calibrated to where the contraction is currently thickest in your experience.",
     ],
   },
 
@@ -540,23 +550,23 @@ export const PRACTICE = {
       {
         name:        "Āṇavopāya",
         subtitle:    "The path of the individual",
-        description: "The most accessible of the three. Practices that work with the body, the breath, mantra, sound, image — concrete supports for attention when the sense of separation is still thick and the mind pulls hard into discursive thinking.",
+        description: "The most accessible of the three. Practices that work with the body, the breath, mantra, sound, image. Concrete supports for attention when the sense of separation is still thick and the mind pulls hard into discursive thinking.",
         examples: [
-          "Prāṇāyāma — breath practices that shift the relationship between inhale, exhale, and the pauses",
-          "Mantra — recitation as a doorway into the felt resonance of sound-consciousness",
-          "Bindu concentration — single-pointed awareness on focal points in the body",
+          "Prāṇāyāma: breath practices that shift the relationship between inhale, exhale, and the pauses",
+          "Mantra: recitation as a doorway into the felt resonance of sound-consciousness",
+          "Bindu concentration: single-pointed awareness on focal points in the body",
           "Body-centered dhāraṇās from the Vijñāna Bhairava Tantra",
         ],
       },
       {
         name:        "Śāktopāya",
         subtitle:    "The path of energy and meaning",
-        description: "The middle path. Practices that work directly with śakti — the pulsation of consciousness expressing itself as thought, emotion, intention, perception, desire. Less about gross supports and more about watching the pure movement of energy through the field of experience.",
+        description: "The middle path. Practices that work directly with śakti: the pulsation of consciousness expressing itself as thought, emotion, intention, perception, desire. Less about gross supports and more about watching the pure movement of energy through the field of experience.",
         examples: [
-          "Contemplation of the 36 tattvas — the structure of how consciousness contracts into experience",
-          "Working with vikalpas — watching mental constructs arise and dissolve without grasping",
-          "Active meditation in daily life — practice that does not stop when you leave the cushion",
-          "Śakti practices — using emotion and energetic intensity as pathways",
+          "Contemplation of the 36 tattvas: the structure of how consciousness contracts into experience",
+          "Working with vikalpas: watching mental constructs arise and dissolve without grasping",
+          "Active meditation in daily life: practice that does not stop when you leave the cushion",
+          "Śakti practices: using emotion and energetic intensity as pathways",
         ],
       },
       {
@@ -566,12 +576,12 @@ export const PRACTICE = {
         examples: [
           "Direct recognition (pratyabhijñā) through insight into the nature of awareness",
           "Transmission through the presence of a realized teacher",
-          "The collapse of effort into what the texts call sahaja — the spontaneous natural state",
+          "The collapse of effort into what the texts call sahaja: the spontaneous natural state",
           "Stabilization of the recognized ground across all activity",
         ],
       },
     ],
-    anupaya_note: "Some texts speak of a fourth category called anupāya — literally \"no means.\" It is important to understand that anupāya is not a method you can practice. It is the ground that the three upāyas point toward. Teachers who tell beginners \"there is nothing to do, just drop into anupāya\" are either confused or deliberately skipping the work.",
+    anupaya_note: "Some texts speak of a fourth category called anupāya: literally \"no means.\" Anupāya is not a method you can practice. It is the ground that the three upāyas point toward. Teachers who tell beginners \"there is nothing to do, just drop into anupāya\" are either confused or deliberately skipping the work.",
   },
 
   body: {
@@ -580,8 +590,8 @@ export const PRACTICE = {
     heading: "THE BODY FIRST",
     body: [
       "The body is not a vehicle for something more real. In a non-dual map, the body is that more real, appearing as a body. This changes what practice looks like. It is not about disciplining the body into submission so the real spiritual work can happen. The body is where the real spiritual work happens.",
-      "The Trika tradition knows that saṃskāras — the residues of unprocessed experience, the conditioning that shapes how you perceive and react — live in the body before they live in the mind. What looks like a thought is very often a bodily contraction dressed up in language. You cannot think your way out of these, because they are not thoughts.",
-      "This is why eight years of physical theater work — Grotowski, Meyerhold, Artaud — fold naturally into this practice. The Motion Lab in Berlin is where we do this work in person.",
+      "The Trika tradition knows that saṃskāras (the residues of unprocessed experience, the conditioning that shapes how you perceive and react) live in the body before they live in the mind. What looks like a thought is very often a bodily contraction dressed up in language. You cannot think your way out of these, because they are not thoughts.",
+      "This is why eight years of physical theater work (Grotowski, Meyerhold, Artaud) fold naturally into this practice. The Motion Lab in Berlin is where we do this work in person.",
     ],
     pullquote: "The body comes first. The meaning comes second. If it is not in the body, it is philosophy, not practice.",
   },
@@ -592,9 +602,9 @@ export const PRACTICE = {
     heading: "DEVOTION MELTS WHAT TECHNIQUE CANNOT TOUCH",
     body: [
       "Technique organizes. Discipline sharpens. But when the heart is closed, practice becomes a task, a performance, a dissociated repetition. The problem with technique alone is that it operates inside the same contracted identity that needs to dissolve.",
-      "Bhakti — devotion — is what makes practice porous enough for recognition to land. Not devotion as sentimental performance. Devotion in the Trika sense is the warmth that undoes the inner hardening of conditioned personality. Bhakti is seeing every object as the radiance of your own consciousness, and letting that seeing melt the contraction around it.",
-      "Swami Lakshmanjoo taught that devotion is not decoration added on top of \"real practice.\" My own teacher Mar Delgado puts it this way: real knowledge and real devotion are one. Technique can discipline attention — but devotion melts the contraction that keeps recognition from becoming lived.",
-      "You cannot manufacture bhakti. You can only make space for it — by letting the heart be touched, by noticing the moments when the world actually does shimmer a little, by refusing the cynicism that keeps you safe from being moved.",
+      "Bhakti (devotion) is what makes practice porous enough for recognition to land. Not devotion as sentimental performance. Devotion in the Trika sense is the warmth that undoes the inner hardening of conditioned personality. Bhakti is seeing every object as the radiance of your own consciousness, and letting that seeing melt the contraction around it.",
+      "Swami Lakshmanjoo taught that devotion is not decoration added on top of \"real practice.\" My own teacher Mar Delgado puts it this way: real knowledge and real devotion are one. Technique can discipline attention. Devotion melts the contraction that keeps recognition from becoming lived.",
+      "You cannot manufacture bhakti. You can only make space for it. By letting the heart be touched, by noticing the moments when the world actually does shimmer a little, by refusing the cynicism that keeps you safe from being moved.",
     ],
   },
 
@@ -607,7 +617,7 @@ export const PRACTICE = {
 export const ABOUT = {
 
   hero: {
-    bg: { type: "image" as BgType, url: IMAGES.about, videoId: "", overlay: "bg-black/60", grain: true },
+    bg: { type: "image" as BgType, url: IMAGES.P1_alt, videoId: "", overlay: "bg-black/60", grain: true },
     eyebrow:    "Who is doing this work",
     heading:    "ABOUT",
     subheading: "Roberto Pérez Martínez · Berlin",
@@ -617,7 +627,7 @@ export const ABOUT = {
     bg: { type: "none" as BgType },
     pullquote: "I am not a guru. I am not enlightened. I am a practitioner in a specific lineage who has spent enough time in this tradition to be able to share it carefully, and who has the explicit authorization of my own teacher to do so. That is the only credential that matters here.",
     body: [
-      "My name is Roberto Pérez Martínez. I go by Rob. I was born in a small town in Spain, raised Catholic, and I left the church the moment I understood it had nothing to offer me. I have a Bachelor's degree in mathematics and a Master's in artificial intelligence — I spent some years doing research at the Fraunhofer Institut, which is a long way from where I am now and also, in some unexpected ways, not as far as it sounds. I am queer, neurodivergent, and currently based in Berlin, where I run this school and continue my practice in the Trika tradition.",
+      "My name is Roberto Pérez Martínez. I go by Rob. I was born in a small town in Spain, raised Catholic, and I left the church the moment I understood it had nothing to offer me. Bachelor's in mathematics. Master's in artificial intelligence. Years of research at the Fraunhofer Institut. A long way from where I am now, and in some unexpected ways, not as far as it sounds. I am queer, neurodivergent, and currently based in Berlin, where I run this school and continue my practice in the Trika tradition.",
     ],
   },
 
@@ -626,10 +636,10 @@ export const ABOUT = {
     eyebrow: "How I got here",
     heading: "THE LONG WAY ROUND",
     body: [
-      "Eight years ago, somewhere in my mid-twenties, I had a psychotic break. I do not romanticize this. It was terrifying, it cost me a lot, and I am one of the people who walked back from it more or less intact, which is not everyone's outcome. What I will say is that the break opened something. It cracked the assumption that ordinary consensus reality was the only available frame, and somewhere in the wreckage I started reading the Tibetan Book of the Dead because nothing else I owned felt relevant to what was happening to me.",
-      "That was the first time I understood that there were traditions on this planet that had been mapping the kinds of states I was now familiar with — not as pathology but as territory. It was also my first awakening. Not in the sense that I was suddenly enlightened. In the sense that a layer of identification dropped, briefly, and I saw something I could not unsee.",
-      "I moved to Berlin. I went through what I can now identify as several years of spiritual bypass — chasing the openness of the first awakening, trying to reproduce it with techniques and substances and intensities, mistaking expanded states for liberation. The wellness industry is happy to sell you a thousand variations on that exact mistake.",
-      "What pulled me out was not a peak experience. It was, of all things, eight years of practicing physical theater — the lineages of Grotowski, Meyerhold, and Artaud. I started to notice that what I was learning in the studio was operating on the same layer that the spiritual stuff had been claiming to operate on. The body was doing the work that the mind had been failing to do.",
+      "Eight years ago, somewhere in my mid-twenties, I had a psychotic break. I do not romanticize this. It was terrifying, it cost me a lot, and I am one of the people who walked back from it more or less intact. That is not everyone's outcome. What I will say is that the break opened something. It cracked the assumption that ordinary consensus reality was the only available frame, and somewhere in the wreckage I started reading the Tibetan Book of the Dead because nothing else I owned felt relevant to what was happening to me.",
+      "That was the first time I understood that there were traditions on this planet that had been mapping the kinds of states I was now familiar with. Not as pathology but as territory. It was also my first awakening. Not in the sense that I was suddenly enlightened. In the sense that a layer of identification dropped, briefly, and I saw something I could not unsee.",
+      "I moved to Berlin. I went through what I can now identify as several years of spiritual bypass. Chasing the openness of the first awakening, trying to reproduce it with techniques and substances and intensities, mistaking expanded states for liberation. The wellness industry is happy to sell you a thousand variations on that exact mistake.",
+      "What pulled me out was not a peak experience. It was, of all things, eight years of practicing physical theater. The lineages of Grotowski, Meyerhold, and Artaud. I started to notice that what I was learning in the studio was operating on the same layer that the spiritual stuff had been claiming to operate on. The body was doing the work that the mind had been failing to do.",
       "Two years ago I found my teacher.",
     ],
   },
@@ -640,8 +650,8 @@ export const ABOUT = {
     heading: "MAR DELGADO",
     body: [
       "Mar Delgado is a PhD linguist, a scholar of the Trika tradition, and a realized teacher in the lineage of Kashmir Shaivism. She received her initial transmission from a direct disciple of Daniel Odier, and after her own realization her teaching aligns most closely with the work of Swami Lakshmanjoo and the Lakshmanjoo Academy. She runs a project called Tantra Shaivita Aplicado, and she is the reason I am able to offer this work at all.",
-      "What Mar does that almost nobody else does is hold both halves of this tradition simultaneously. She is a rigorous textual scholar — she reads the Sanskrit, she works with the original commentaries, she does not let people get away with vague pseudo-tantric language. And she is actually realized. Both at once. That is rare.",
-      "The lineage she stands in runs back through Lakshmanjoo, Kṣemarāja, Abhinavagupta, Utpaladeva, Somānanda, and Vasugupta — and forward, through her, into the work I am doing now. Mar has authorized this school and continues to actively support it. Nothing I teach is invented by me. Everything comes through her, the texts, and a tradition older than any of us.",
+      "What Mar does that almost nobody else does is hold both halves of this tradition simultaneously. She is a rigorous textual scholar. She reads the Sanskrit, she works with the original commentaries, she does not let people get away with vague pseudo-tantric language. And she is actually realized. Both at once. That is rare.",
+      "The lineage she stands in runs back through Lakshmanjoo, Kṣemarāja, Abhinavagupta, Utpaladeva, Somānanda, and Vasugupta. And forward, through her, into the work I am doing now. Mar has authorized this school and continues to actively support it. Nothing I teach is invented by me. Everything comes through her, the texts, and a tradition older than any of us.",
     ],
     pullquote: "If you find anything valuable in this school, the gratitude belongs to Mar and to the long line of practitioners standing behind her.",
   },
@@ -654,7 +664,7 @@ export const ABOUT = {
     items: [
       {
         title: "A technical mind.",
-        body:  "Mathematics and AI research trained me to be uncomfortable with vagueness. I cannot stand spirituality that hides behind soft language. When I teach the Trika tradition, I want the structure to be visible — the technical vocabulary, the precise distinctions, the actual claims the texts are making.",
+        body:  "Mathematics and AI research trained me to be uncomfortable with vagueness. I cannot stand spirituality that hides behind soft language. When I teach the Trika tradition, I want the structure to be visible. The technical vocabulary, the precise distinctions, the actual claims the texts are making.",
       },
       {
         title: "A body trained in physical theater.",
@@ -672,7 +682,9 @@ export const ABOUT = {
   // To add a new photo: paste any URL here (CDN, Google Drive direct link, etc.)
   // Each entry shows in the About page gallery grid.
   gallery: [
-    { url: IMAGES.about, caption: "Berlin" },
+    { url: IMAGES.P1,      caption: "Berlin" },
+    { url: IMAGES.P2,      caption: "Motion Lab" },
+    { url: IMAGES.P1_alt,  caption: "Practice" },
     // { url: "https://your-cdn.com/photo.jpg", caption: "Your caption here" },
   ],
 
@@ -695,7 +707,7 @@ export const SCHOOL = {
     bg: { type: "none" as BgType },
     body: [
       "Feral Awareness is a school of non-dual tantra in the Trika tradition. It is not a marketplace of spiritual products. There are no weekend retreats, no certification programs, no \"transformational experiences\" to book. Those formats do not produce the thing they promise. What we offer is ongoing formation for people who are serious about the path, in three formats: an online school, an in-person Motion Lab in Berlin, and one-on-one guidance through the Consultorio.",
-      "Entry into any of these formats starts the same way: you take the Consciousness Test. This is not a personality quiz. It is a mirror — a set of questions designed to surface how honestly you are currently relating to your own experience, and whether the work we do here is a good fit for where you actually are. The test is free and takes about fifteen minutes. It exists to protect both of us from wasting time.",
+      "Entry into any of these formats starts the same way. You take the Consciousness Test. It is not a personality quiz. It is a mirror. A set of questions designed to surface how honestly you are currently relating to your own experience, and whether the work we do here is a good fit for where you actually are. Free. Fifteen minutes. It exists to protect both of us from wasting time.",
       "We are not for everyone. We are for people who sense that something fundamental is missing from the spirituality on offer, who feel that awakening has political dimensions, and who are tired of being sold comfort dressed up as liberation. If that is you, welcome.",
     ],
   },
@@ -719,7 +731,7 @@ export const SCHOOL = {
       { title: "No bypass",             text: "We do not use spirituality to avoid what is actually happening in your life, your body, your politics, or your grief. We use it to meet these things more fully." },
       { title: "Scripture and lineage", text: "Everything we teach is grounded in the Bhairava Āgamas, the commentarial tradition of Kashmir Shaivism, and an unbroken line of practice that runs through Swami Lakshmanjoo, Mar Delgado, and into this work." },
       { title: "Body first",            text: "Saṃskāras live in the body before they live in the mind. If practice is not landing in the body, it is philosophy. We work somatically before we work conceptually." },
-      { title: "No gurus on pedestals", text: "I am a practitioner who shares the path, not a savior. The teacher is a mirror, not a destination. Anyone who lets you give them the authority of your own recognition is stealing from you." },
+      { title: "No gurus on pedestals", text: "I am a practitioner who shares the path. Not a savior. The teacher is a mirror, not a destination. Anyone who lets you give them the authority of your own recognition is stealing from you." },
       { title: "Decolonial integrity",  text: "The tradition was already decolonial before the word existed. We honor the source, refuse cultural appropriation, do not dilute the philosophy for Western comfort, and do not separate politics from practice." },
       { title: "Liberation and enjoyment", text: "Mokṣa without bhoga is repression in spiritual clothing. Bhoga without mokṣa is empty hedonism. The tradition refuses both errors, and so do we." },
     ],
@@ -745,15 +757,15 @@ export const SCHOOL = {
         cta: "Apply for the school",
       },
       {
-        title:       "Motion Lab — Berlin",
+        title:       "Motion Lab · Berlin",
         subtitle:    "Physical theater meets non-dual practice",
-        description: "In-person work in Berlin where the tantric tradition meets the physical theater lineages I come from — Grotowski, Meyerhold, Artaud. We use movement, breath, voice, improvisation, and sustained presence to dissolve bodily contractions and expand the capacity of the body to hold consciousness. Small groups. Deep work. This is not a yoga class.",
+        description: "In-person work in Berlin where the tantric tradition meets the physical theater lineages I come from. Grotowski, Meyerhold, Artaud. We use movement, breath, voice, improvisation, and sustained presence to dissolve bodily contractions and expand the capacity of the body to hold consciousness. Small groups. Deep work. This is not a yoga class.",
         features: [
           "In-person sessions in Berlin, held weekly or bi-weekly",
           "Physical theater techniques as tantric practice",
           "Somatic exploration, movement, breath, voice, sustained presence",
           "Direct work with bodily contractions that hold conditioning in place",
-          "Integration of philosophy through the body — not as concept",
+          "Integration of philosophy through the body, not as concept",
           "Small groups to allow for real depth",
         ],
         cta: "Join the Motion Lab",
@@ -779,10 +791,10 @@ export const SCHOOL = {
     eyebrow: "About money",
     heading: "WHY PRICING COMES AFTER THE TEST",
     body: [
-      "You will notice that there are no prices listed on this page. This is deliberate, and it is not a sales tactic. Pricing for the school is discussed after you take the Consciousness Test, for two reasons.",
-      "First, the formats are calibrated. The Online School, the Motion Lab, and the Consultorio each involve different amounts of time, different depths of work, and different kinds of commitment. Quoting a flat number without knowing where you actually are would misrepresent the offer.",
+      "You will notice there are no prices on this page. That is on purpose. Pricing is discussed after the Consciousness Test, for two reasons.",
+      "First, the formats are calibrated. The Online School, the Motion Lab, and the Consultorio each involve different amounts of time, different depths of work, and different kinds of commitment. A flat number without knowing where you are would misrepresent the offer.",
       "Second, I keep the work accessible. Sliding scales exist. Solidarity arrangements exist. I would rather have the conversation about what is actually workable for your life than post a number that either excludes you or inflates the price for people who can afford more.",
-      "Take the test. If the fit is there, we will talk about money honestly, and figure out whether there is a format and a price that actually work for you. If the fit is not there, I will tell you that too.",
+      "Take the test. If the fit is there, we will talk about money honestly, and figure out a format and a price that actually work for you. If the fit is not there, I will tell you that too.",
     ],
   },
 };
@@ -921,9 +933,9 @@ export const TEST_PAGE = {
     {
       id: "Q1",
       section: "Where You Actually Are",
-      text: "How long have you been seriously seeking? Not reading, not interested — actually sustaining a practice.",
-      subtext: "If you're not sure whether it counts — it probably doesn't.",
-      image: IMAGES.nebula,
+      text: "How long have you been seriously seeking? Not reading, not interested. Actually sustaining a practice.",
+      subtext: "If you're not sure whether it counts, it probably doesn't.",
+      image: IMAGES.kseyo,
       options: [
         { letter: "c", label: "3–5 years",            points: 3 },
         { letter: "a", label: "Just starting",        points: 1 },
@@ -967,15 +979,15 @@ export const TEST_PAGE = {
     {
       id: "Q3",
       section: "Where You Actually Are",
-      text: "Have you had what you would call a genuine awakening experience — a moment of expanded recognition that dropped a layer of identification?",
+      text: "Have you had what you would call a genuine awakening experience? A moment of expanded recognition that dropped a layer of identification?",
       subtext: "Not a nice feeling in meditation. A genuine shift in the sense of self.",
-      image: IMAGES.milkyway,
+      image: IMAGES.chiva,
       options: [
-        { letter: "d", label: "Yes — multiple times, with increasing stability",           points: 4 },
+        { letter: "d", label: "Yes, multiple times, with increasing stability",           points: 4 },
         { letter: "b", label: "Something happened but I'm not sure how to name it",       points: 2 },
-        { letter: "e", label: "Yes — the ground of ordinary life has shifted, durably",   points: 5 },
-        { letter: "a", label: "No — nothing that felt like that",                          points: 1 },
-        { letter: "c", label: "Yes — once, and it hasn't stabilized since",               points: 3 },
+        { letter: "e", label: "Yes, the ground of ordinary life has shifted, durably",   points: 5 },
+        { letter: "a", label: "No, nothing that felt like that",                          points: 1 },
+        { letter: "c", label: "Yes, once, and it hasn't stabilized since",               points: 3 },
       ],
       feedback: {
         a: "No awakening experience doesn't mean no capacity for it. It might mean you haven't yet found the conditions in which it can land, or that the practices you've used haven't been calibrated for that. That's exactly what the upāyas are for.",
@@ -988,9 +1000,9 @@ export const TEST_PAGE = {
     {
       id: "Q4",
       section: "Honesty With Yourself",
-      text: "When you encounter a teaching or practice that contradicts something you've built your identity around — a belief, a community, a self-image — what happens?",
+      text: "When you encounter a teaching or practice that contradicts something you've built your identity around (a belief, a community, a self-image), what happens?",
       subtext: "Be honest. Nobody is watching.",
-      image: IMAGES.iridescent,
+      image: IMAGES.drag,
       options: [
         { letter: "d", label: "I actively look for where it might be right",                points: 4 },
         { letter: "b", label: "I feel uncomfortable and usually avoid it",                  points: 2 },
@@ -1009,15 +1021,15 @@ export const TEST_PAGE = {
     {
       id: "Q5",
       section: "Honesty With Yourself",
-      text: "In your spiritual life, how often do you perform something — for a teacher, a community, yourself — rather than actually doing the work?",
+      text: "In your spiritual life, how often do you perform something (for a teacher, a community, yourself) rather than actually doing the work?",
       subtext: "This is the question that gets lied to the most.",
-      image: IMAGES.deepwater,
+      image: IMAGES.mantis,
       options: [
-        { letter: "d", label: "Often — performance has been one of my main obstacles",     points: 4 },
+        { letter: "d", label: "Often. Performance has been one of my main obstacles",     points: 4 },
         { letter: "a", label: "I'm pretty sure I'm mostly genuine",                        points: 1 },
-        { letter: "c", label: "Regularly — it's something I actively work with",           points: 3 },
+        { letter: "c", label: "Regularly. It's something I actively work with",           points: 3 },
         { letter: "e", label: "I'm not sure I can fully tell the difference yet",          points: 3 },
-        { letter: "b", label: "Rarely — I catch it sometimes",                             points: 2 },
+        { letter: "b", label: "Rarely. I catch it sometimes",                             points: 2 },
       ],
       feedback: {
         a: "\"Pretty sure I'm mostly genuine\" is almost always what performance sounds like from the inside. This isn't an accusation — it's a structural feature of the problem. Genuine practice makes you less certain, not more.",
@@ -1031,13 +1043,13 @@ export const TEST_PAGE = {
       id: "Q6",
       section: "The Body",
       text: "How does your spiritual practice relate to your body?",
-      image: IMAGES.oceanNectar,
+      image: IMAGES.cuerpo,
       options: [
         { letter: "b", label: "I have a body-based practice (yoga, movement) but it feels separate from the 'real' work", points: 2 },
         { letter: "e", label: "The body is the primary site of practice for me",                  points: 5 },
         { letter: "c", label: "I know the body is important but I haven't found the right container for it", points: 3 },
-        { letter: "a", label: "I mostly work with my mind — meditation, inquiry, study",         points: 1 },
-        { letter: "d", label: "My practice is explicitly somatic — body and insight are integrated", points: 4 },
+        { letter: "a", label: "I mostly work with my mind. Meditation, inquiry, study",         points: 1 },
+        { letter: "d", label: "My practice is explicitly somatic. Body and insight are integrated", points: 4 },
       ],
       feedback: {
         a: "Mind-based practice is where most lineages start, and it can go quite far. The limit it hits is the saṃskāras — the condensed somatic memory that lives in the body as contraction. At some point, the mind hits a floor, and only the body can go below it.",
@@ -1050,14 +1062,14 @@ export const TEST_PAGE = {
     {
       id: "Q7",
       section: "The Body",
-      text: "Have you ever had a somatic release in practice — something in the body shifting, releasing, or dissolving that wasn't just relaxation?",
-      image: IMAGES.forest,
+      text: "Have you ever had a somatic release in practice? Something in the body shifting, releasing, or dissolving that wasn't just relaxation?",
+      image: IMAGES.p14,
       options: [
-        { letter: "c", label: "Yes — occasionally, usually in retreat or intense practice",points: 3 },
-        { letter: "a", label: "No — not that I can identify",                              points: 1 },
-        { letter: "e", label: "Yes — and I understand it as part of the process, not chance", points: 5 },
-        { letter: "b", label: "Maybe — something physical happened but I'm not sure",      points: 2 },
-        { letter: "d", label: "Yes — this happens in my regular practice",                 points: 4 },
+        { letter: "c", label: "Yes. Occasionally, usually in retreat or intense practice", points: 3 },
+        { letter: "a", label: "No, not that I can identify",                              points: 1 },
+        { letter: "e", label: "Yes, and I understand it as part of the process, not chance", points: 5 },
+        { letter: "b", label: "Maybe. Something physical happened but I'm not sure",      points: 2 },
+        { letter: "d", label: "Yes, this happens in my regular practice",                 points: 4 },
       ],
       feedback: {
         a: "No identifiable somatic release doesn't mean the body isn't doing anything. It often means the practice container hasn't created the conditions for it. The body is not passive — it's waiting for the right approach.",
@@ -1071,12 +1083,12 @@ export const TEST_PAGE = {
       id: "Q8",
       section: "Desire and Pleasure",
       text: "How do you relate to desire in your spiritual life?",
-      image: IMAGES.candlelight,
+      image: IMAGES.kseyob,
       options: [
-        { letter: "b", label: "Desire is complicated — I know it's not purely bad but I'm not sure how to work with it", points: 2 },
+        { letter: "b", label: "Desire is complicated. I know it's not purely bad but I'm not sure how to work with it", points: 2 },
         { letter: "d", label: "I understand desire as the pulsation of consciousness reaching toward expression",      points: 4 },
-        { letter: "a", label: "Desire is an obstacle — the tradition I'm in asks me to reduce or transcend it", points: 1 },
-        { letter: "e", label: "Desire and liberation are not opposed for me — I practice inside both simultaneously",  points: 5 },
+        { letter: "a", label: "Desire is an obstacle. The tradition I'm in asks me to reduce or transcend it", points: 1 },
+        { letter: "e", label: "Desire and liberation are not opposed for me. I practice inside both simultaneously",  points: 5 },
         { letter: "c", label: "I'm learning to use desire as information rather than a problem to solve",              points: 3 },
       ],
       feedback: {
@@ -1091,11 +1103,11 @@ export const TEST_PAGE = {
       id: "Q9",
       section: "Politics and Spirituality",
       text: "How does your spiritual practice relate to your political and social life?",
-      image: IMAGES.nebula,
+      image: IMAGES.jesus,
       options: [
         { letter: "c", label: "I see them as related but my practice doesn't explicitly integrate them",               points: 3 },
-        { letter: "a", label: "I keep them separate — spirituality is inner work, politics is outer",                   points: 1 },
-        { letter: "e", label: "I don't experience a separation — liberation requires political consciousness",          points: 5 },
+        { letter: "a", label: "I keep them separate. Spirituality is inner work, politics is outer",                   points: 1 },
+        { letter: "e", label: "I don't experience a separation. Liberation requires political consciousness",          points: 5 },
         { letter: "b", label: "I try to keep them connected but find it difficult",                                     points: 2 },
         { letter: "d", label: "My politics emerged from or are deeply informed by my practice",                        points: 4 },
       ],
@@ -1111,13 +1123,13 @@ export const TEST_PAGE = {
       id: "Q10",
       section: "What You're Looking For",
       text: "What are you actually looking for from a school or teacher?",
-      subtext: "There are no wrong answers here — but some answers fit this school and some don't.",
-      image: IMAGES.iridescent,
+      subtext: "There are no wrong answers here. But some answers fit this school and some don't.",
+      image: IMAGES.P1_alt,
       options: [
-        { letter: "d", label: "Transmission — contact with someone who has actually realized something",              points: 4 },
+        { letter: "d", label: "Transmission. Contact with someone who has actually realized something",              points: 4 },
         { letter: "a", label: "Techniques and practices I can do on my own",                                           points: 1 },
-        { letter: "e", label: "Formation — I want to be changed, not just taught",                                    points: 5 },
-        { letter: "c", label: "Intellectual depth — rigorous teaching in a serious tradition",                        points: 3 },
+        { letter: "e", label: "Formation. I want to be changed, not just taught",                                    points: 5 },
+        { letter: "c", label: "Intellectual depth. Rigorous teaching in a serious tradition",                        points: 3 },
         { letter: "b", label: "Community and belonging with other practitioners",                                      points: 2 },
       ],
       feedback: {
@@ -1132,7 +1144,7 @@ export const TEST_PAGE = {
       id: "Q11",
       section: "What You're Looking For",
       text: "What would make you stop engaging with a teacher or school?",
-      image: IMAGES.deepwater,
+      image: IMAGES.p15,
       options: [
         { letter: "b", label: "If the community became more important than the practice",                              points: 3 },
         { letter: "d", label: "If the teaching became comfortable and stopped challenging me",                         points: 5 },
@@ -1153,7 +1165,7 @@ export const TEST_PAGE = {
       section: "Readiness",
       text: "What do you bring to this work right now?",
       subtext: "Not what you hope to bring. What you actually have.",
-      image: IMAGES.mountain,
+      image: IMAGES.p10,
       options: [
         { letter: "c", label: "Real practice and a specific question or obstacle I haven't been able to move",         points: 4 },
         { letter: "e", label: "Honestly — I'm not sure. Something keeps bringing me back to this.",                    points: 3 },
@@ -1253,8 +1265,8 @@ export const FREEBIES = [
     slug:          "intro-spanda",
     title:         "Introduction to Spanda",
     tagline:       "The living pulsation at the heart of Kashmir Shaivism",
-    description:   "Spanda — the sacred vibration — is where Kashmir Shaivism begins. This guide unpacks what the Spanda Kārikā and Abhinavagupta's commentaries say about the divine pulsation at the root of every thought, sensation, and breath. Not a summary. A map for practice.",
-    thumbnail:     IMAGES.nebula,
+    description:   "Spanda, the sacred vibration, is where Kashmir Shaivism begins. This guide unpacks what the Spanda Kārikā and Abhinavagupta's commentaries say about the divine pulsation at the root of every thought, sensation, and breath. Not a summary. A map for practice.",
+    thumbnail:     IMAGES.chiva,
     // ↓ EDIT THIS: paste the URL of your PDF, Google Drive file, or video
     file_url:      "", // e.g. "https://drive.google.com/file/d/xxx/view"
     email_subject: "Your free guide: Introduction to Spanda — Feral Awareness",

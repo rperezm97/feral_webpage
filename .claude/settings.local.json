@@ -21,7 +21,25 @@
       "Bash(unzip -q \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\The Manual for Self Realization_ 112 Meditations of the -- Swami Lakshmanjoo -- 2015 -- Universal Shaiva Fellowship -- 9780996636506 -- e8afc58461c357581a4b9aa51429ac78 -- Anna's Archive.epub\" -d manual_self_realization)",
       "Bash(cp \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\Tantra_base_texts\\\\Support texts\\\\The Manual for Self Realization_ 112 Meditations of the -- Swami Lakshmanjoo -- 2015 -- Universal Shaiva Fellowship -- 9780996636506 -- e8afc58461c357581a4b9aa51429ac78 -- Anna's Archive.epub\" /tmp/manual.epub)",
       "Bash(unzip -q manual.epub -d manual_self_realization)",
-      "Bash(unzip -q \"/c/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/Tantra_base_texts/Support texts/\"*Manual*.epub -d manual_self_realization)"
+      "Bash(unzip -q \"/c/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/Tantra_base_texts/Support texts/\"*Manual*.epub -d manual_self_realization)",
+      "WebFetch(domain:feralawareness.com)",
+      "Bash(pnpm tsc *)",
+      "Bash(cp \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\design\\\\base1.png\" \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\webpages\\\\feral-site\\\\client\\\\public\\\\images\\\\base1.png\")",
+      "Bash(cp \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\design\\\\base2.png\" \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\webpages\\\\feral-site\\\\client\\\\public\\\\images\\\\base2.png\")",
+      "Bash(cp \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\design\\\\p4.png\" \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\webpages\\\\feral-site\\\\client\\\\public\\\\images\\\\p4.png\")",
+      "Bash(cp \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\design\\\\p8.png\" \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\webpages\\\\feral-site\\\\client\\\\public\\\\images\\\\p8.png\")",
+      "Bash(cp \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\design\\\\p11.png\" \"C:\\\\Users\\\\berti\\\\Mi_equipo\\\\Documentos\\\\Roberto\\\\TANTRA\\\\webpages\\\\feral-site\\\\client\\\\public\\\\images\\\\p11.png\")",
+      "Bash(xargs grep *)",
+      "Bash(cp \"C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/design/p5.png\" \"C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/webpages/feral-site/client/public/images/p5.png\")",
+      "Bash(cp \"C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/design/p7.png\" \"C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/webpages/feral-site/client/public/images/p7.png\")",
+      "Bash(cp \"C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/design/p9.png\" \"C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/webpages/feral-site/client/public/images/p9.png\")",
+      "Bash(cp \"C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/design/p10.png\" \"C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/webpages/feral-site/client/public/images/p10.png\")",
+      "Bash(cp \"C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/design/p12.png\" \"C:/Users/berti/Mi_equipo/Documentos/Roberto/TANTRA/webpages/feral-site/client/public/images/p12.png\")",
+      "Bash(pnpm build *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('name:', d.get\\('name'\\)\\); [print\\(k,':',v\\) for k,v in d.get\\('scripts',{}\\).items\\(\\)]\")",
+      "Bash(node -e \"const d=require\\('./package.json'\\); Object.entries\\(d.scripts||{}\\).forEach\\(\\([k,v]\\)=>console.log\\(k+': '+v\\)\\)\")",
+      "Bash(pnpm add *)",
+      "Bash(pnpm typecheck *)"
     ]
   }
 }
